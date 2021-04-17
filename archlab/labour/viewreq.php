@@ -139,11 +139,11 @@ if(isset($_REQUEST['y']))
             																	.$v['site_loc']."</td><td>";
                                               if($v['status'] == 1 || $v['status'] =='')
                                               {
-                                              echo "<a href='viewreq.php?x=" .$v['sid']." '>Approved</a>";
+                                              echo "<a href='viewreq.php?x=" .$v['sid']." '>Available</a>";
                                               }
                                               else
                                               {
-                                              echo "<a href='viewreq.php?y=" .$v['sid']." '>Waiting for Approval</a>
+                                              echo "<a href='viewreq.php?y=" .$v['sid']." '>Engaged</a>
                                               </td>";
                                               }
                                               echo "</tr>";
@@ -152,7 +152,7 @@ if(isset($_REQUEST['y']))
               																{
               																	?>
               																<script>alert("No Request Found");
-              																location.href="viewreq.php";
+              																location.href="index.php";
               																exit;
               																</script>
               																<?php

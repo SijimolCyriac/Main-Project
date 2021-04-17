@@ -214,7 +214,7 @@ if(!empty($_SESSION['uname']))
 																	<div class="form-group">
 																	<div class="form-label-group">
 																	<input type="hidden" name="id" value="<?php echo $fin['did']; ?>">
-																	<input type="text" id="inputName" class="form-control" placeholder="District Name" name="address" autofocus="autofocus" required value="<?php echo $fin['dist_name']; ?>">
+																	<input type="text" id="am" class="form-control" placeholder="District Name" name="address" onblur="validate()" autofocus="autofocus" required value="<?php echo $fin['dist_name']; ?>">
 																	</div>
 																	</div>
 														<div class="modal-footer">
@@ -233,7 +233,20 @@ if(!empty($_SESSION['uname']))
 									if(isset($_POST['update'])){
 										$address = $_POST['address'];
 										$id = $_POST['id'];
-
+										$r="select * from tbl_district where dist_name='$address'";
+										$result=mysqli_query($con,$r);
+										$num=mysqli_num_rows($result);
+										if($num==1)
+										{
+											?>
+										<script>alert("District Name Already Exists");
+										location.href="viewdist.php";
+										 exit;
+										</script>
+										<?php
+										}
+										else
+										{
 									$query = "update tbl_district set dist_name='$address' where did='$id'";
 										mysqli_query($con,$query)or die (mysqli_error($con));
 										?>
@@ -242,7 +255,7 @@ if(!empty($_SESSION['uname']))
 									window.location = "viewdist.php";
 									</script>
 									<?php
-								}
+								}}
 																		 if($fin['status'] == 0 || $fin['status'] =='')
 																		 {
 																			 echo "<a href='viewdist.php?x=" .$fin['did']." '>inactive</a>";
@@ -284,7 +297,7 @@ if(!empty($_SESSION['uname']))
 																				}
 																				?>
 																			</select><br>
-																			<input type="text" id="inputName" class="form-control" placeholder="District Name" name="address" autofocus="autofocus" required>
+																			<input type="text" id="am1" class="form-control" placeholder="District Name" name="address" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
@@ -351,6 +364,32 @@ if(!empty($_SESSION['uname']))
                 </footer>
             </div>
         </div>
+				<script>
+				function validate()
+				{
+				var name=document.getElementById("am").value;
+
+				var letters=/^[a-zA-Z]*$/;
+				if(!name.match(letters))
+				{
+					document.getElementById("am").value="";
+				alert("Please Enter Valid District Name");
+
+				}
+				}
+				function validate1()
+				{
+				var name=document.getElementById("am1").value;
+
+				var letters=/^[a-zA-Z]*$/;
+				if(!name.match(letters))
+				{
+					document.getElementById("am1").value="";
+				alert("Please Enter Valid District Name");
+
+				}
+				}
+				</script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

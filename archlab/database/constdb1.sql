@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2021 at 07:01 PM
+-- Generation Time: Apr 16, 2021 at 05:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -68,16 +68,7 @@ INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, 
 (5, 18, 4, 'Roof Leakage', 0),
 (6, 18, 4, 'vkhhjijo', 0),
 (7, 18, 4, 'bjkhbkjhnkjhnlj', 0),
-(8, 18, 15, 'Water leakage', 0),
-(9, 18, 0, 'bjnkljkljkl', 0),
-(10, 18, 0, 'gghohoi', 0),
-(11, 18, 0, 'sdrfdsfgx', 0),
-(12, 18, 15, 'vbcvnnv', 0),
-(13, 2, 5, 'vhgh hbjhjki', 0),
-(17, 2, 5, 'uiyuy hhhoi', 0),
-(18, 2, 15, 'vghghkku', 0),
-(19, 2, 15, 'nbjknjxlfjbckxbj', 0),
-(20, 2, 5, 'bfghcx', 0);
+(8, 18, 15, 'Water leakage', 0);
 
 -- --------------------------------------------------------
 
@@ -172,7 +163,7 @@ INSERT INTO `tbl_daily_progress_report` (`report_id`, `title`, `login_id`, `desc
 (1, 'House Construction', 2, 'Day 1 : Concrete', 'image_6.jpg', '2021-01-28', '2021-02-6', 1),
 (3, 'Day 1 Concrete Work', 8, 'Completed concrete work', 'work-6.jpg', '2021-01-11', '2021-01-18', 1),
 (9, 'Day 1 Structural work', 17, 'Structural work Started', 'bg_2.jpg', '2021-03-01', '2021-03-08', 1),
-(16, 'Day 3 Concrete', 18, 'hfj  rd', 'home.jpg', '2021-04-05', '2021-04-10', 0),
+(16, 'Day 3 Concrete', 18, 'hfj  rd', 'home.jpg', '2021-04-05', '2021-04-10', 1),
 (17, 'Day 4', 18, 'vgbnv', 'image_8.jpg', '2021-04-06', '2021-04-11', 0);
 
 -- --------------------------------------------------------
@@ -519,8 +510,7 @@ INSERT INTO `tbl_services` (`serv_id`, `service`, `status`) VALUES
 (2, 'Apartment Construction', 1),
 (3, 'Office Construction', 1),
 (4, 'House Construction', 0),
-(5, '  House Construction', 0),
-(6, 'HomeConstruction', 0);
+(5, '  House Construction', 0);
 
 -- --------------------------------------------------------
 
@@ -545,8 +535,7 @@ CREATE TABLE `tbl_site_loc` (
 
 INSERT INTO `tbl_site_loc` (`sid`, `proj_name`, `site_loc`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `status`) VALUES
 (1, 'Office Construction', 'Mithilapuri', '2021-04-16', '2021-04-23', 'Siby Jose', 'Guna', 0),
-(3, 'House Construction', 'Paika North Pala', '2021-04-24', '2021-05-01', 'Siby Jose', 'Guna', 1),
-(4, 'Office Construction', 'gj jnkjnjnl', '2021-04-16', '2021-04-23', 'Siby Jose', 'Krishna Das', 0);
+(3, 'House Construction', 'Paika North Pala', '2021-04-24', '2021-05-01', 'Siby Jose', 'Guna', 1);
 
 -- --------------------------------------------------------
 
@@ -579,7 +568,8 @@ INSERT INTO `tbl_state` (`sid`, `state_name`, `status`) VALUES
 (12, 'West Bengal', 1),
 (13, 'Meghalaya', 0),
 (14, 'fghj', 0),
-(16, '  Rajasthan', 0);
+(16, '  Rajasthan', 0),
+(17, '    Rajasthan', 0);
 
 -- --------------------------------------------------------
 
@@ -727,7 +717,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
@@ -811,19 +801,19 @@ ALTER TABLE `tbl_project`
 -- AUTO_INCREMENT for table `tbl_services`
 --
 ALTER TABLE `tbl_services`
-  MODIFY `serv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `serv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`
 --
 ALTER TABLE `tbl_state`
-  MODIFY `sid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_weekly_wages`

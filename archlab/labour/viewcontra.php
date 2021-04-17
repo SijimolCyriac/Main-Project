@@ -75,7 +75,7 @@ $temp=$_SESSION['uname'];
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
 																	<a class="nav-link" href="searchcontra.php">Search Contractor</a>
-
+<a class="nav-link" href="viewreq.php">View Request</a>
                                 </nav>
                             </div>
 

@@ -234,7 +234,20 @@ if(!empty($_SESSION['uname']))
 									if(isset($_POST['update'])){
 									  $address = $_POST['address'];
 									  $id = $_POST['id'];
-
+										$r="select * from tbl_state where state_name='$address'";
+										$result=mysqli_query($con,$r);
+										$num=mysqli_num_rows($result);
+										if($num==1)
+										{
+											?>
+										<script>alert("State Name Already Exists");
+										location.href="viewstate.php";
+										 exit;
+										</script>
+										<?php
+										}
+										else
+									{
 									$query = "update tbl_state set state_name='$address' where sid='$id'";
 										mysqli_query($con,$query)or die (mysqli_error($con));
 										?>
@@ -243,7 +256,7 @@ if(!empty($_SESSION['uname']))
 									window.location = "viewstate.php";
 									</script>
 									<?php
-								}
+								}}
 																		 if($fin['status'] == 0 || $fin['status'] =='')
 			                             	 {
 			                             		 echo "<a href='viewstate.php?x=" .$fin['sid']." '>inactive</a>";
@@ -274,7 +287,7 @@ if(!empty($_SESSION['uname']))
 																		<form method="POST" action="addsta.php">
 																			<div class="form-group">
 																			<div class="form-label-group">
-																			<input type="text" id="am" class="form-control" placeholder="State Name" name="address" onblur="validate()" autofocus="autofocus" required>
+																			<input type="text" id="am1" class="form-control" placeholder="State Name" name="address1" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
@@ -290,7 +303,7 @@ if(!empty($_SESSION['uname']))
 												</div>
 												</div>
 												</div>
-											
+
                         <div style="height: 100vh;"></div>
                         <div class="card mb-4"><div class="card-body"></div></div>
                     </div>
@@ -318,6 +331,18 @@ if(!empty($_SESSION['uname']))
 				if(!name.match(letters))
 				{
 					document.getElementById("am").value="";
+				alert("Please Enter Valid State Name");
+
+				}
+				}
+				function validate1()
+				{
+				var name=document.getElementById("am1").value;
+
+				var letters=/^[a-zA-Z]*$/;
+				if(!name.match(letters))
+				{
+					document.getElementById("am1").value="";
 				alert("Please Enter Valid State Name");
 
 				}
