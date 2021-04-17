@@ -31,15 +31,10 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="abouts.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="teams.html" class="nav-link">Team</a></li>
+
 	          <li class="nav-item"><a href="servic.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Sign Up <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="custreg.php">Customer</a></li>
-                <li><a href="contrareg.php">Contractor</a></li>
-                <li><a href="labreg.php">Labour</a></li>
-              </ul>
+            <li class="nav-item"><a class="nav-link" href="custreg.php">Sign Up </a>
             </li>
             <li class="nav-item active"><a href="login.php" class="nav-link">Sign In</a></li>
 	        </ul>
@@ -92,7 +87,7 @@
 	          <div class="heading-section pr-md-5">
 	            <h2 class="mb-4">BuildTech Construction Management System</h2>
 
-	             <p>BuildTech Construction Management System is a web application to manage all day to day operations required by the customer who is constructing an individual house. It provides information in a quick time according to the requirements that are to be fulfilled. It also provides a convenient method of online construction contracts. This system provides consistency of data and develops the user friendly and interactive website which will reduce the paper works, faster and easy work and save the time. The user can also reduce the time and effort in searching contractors by using this system. Labours can easily find jobs and also contractors can easily find best labours.</p>
+	             <p>BuildTech Construction Management System is a web application to manage all day to day operations required by the customer who is constructing an individual house, buildings, office etc. It provides information in a quick time according to the requirements that are to be fulfilled. It also provides a convenient method of online construction contracts. This system provides consistency of data and develops the user friendly and interactive website which will reduce the paper works, faster and easy work and save the time. The user can also reduce the time and effort in searching contractors by using this system. Labours can easily find jobs and also contractors can easily find best labours.</p>
 	          </div>
 					</div>
 				</div>

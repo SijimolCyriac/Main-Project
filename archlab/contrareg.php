@@ -72,15 +72,10 @@ include("DbConne.php");
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="abouts.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="teams.html" class="nav-link">Team</a></li>
+
 	          <li class="nav-item"><a href="servic.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Sign Up <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a href="custreg.php" style="color:green;">Customer</a></li>
-                <li class="nav-item"><a href="contrareg.php" style="color:green;">Contractor</a></li>
-                <li class="nav-item"><a href="labreg.php" style="color:green;">Labour</a></li>
-              </ul>
+          <li class="nav-item"><a class="nav-link" href="custreg.php">Sign Up </a>
             </li>
             <li class="nav-item"><a href="login.php" class="nav-link">Sign In</a></li>
 	        </ul>
