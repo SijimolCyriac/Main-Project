@@ -174,6 +174,7 @@ $temp=$_SESSION['uname'];
 																																<br><label class="custom">No of Floors</label>
 		 																	 													<select name="rooms" id="room1" class="form-control" required>
 		 																	 														<option value="">Select No of Floors</option>
+																																	<option value="0">0</option>
 																																	<option value="1">1</option>
 																																	<option value="2">2</option>
 																																	<option value="3">3</option>
@@ -392,7 +393,7 @@ $temp=$_SESSION['uname'];
 function validate6()
 {
 var name=document.getElementById("address1").value;
-var letters=/^[a-zA-Z0-9\s]*$/;
+var letters=/^[a-zA-Z0-9,\s]*$/;
 if(!name.match(letters))
 {
 alert("Please Enter Address Correctly");

@@ -256,7 +256,7 @@ if(isset($_REQUEST['y']))
 function validate6()
 {
 var name=document.getElementById("address1").value;
-var letters=/^[a-zA-Z0-9\s]*$/;
+var letters=/^[a-z.A-Z0-9,\s]*$/;
 if(!name.match(letters))
 {
 alert("Please Enter Address Correctly");

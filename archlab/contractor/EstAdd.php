@@ -4,6 +4,19 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
+$sql="select * from tbl_login where  username='$temp'";
+$res1 = mysqli_query($con,$sql);
+$li=mysqli_fetch_array($res1);
+$login_id=$li['login_id'];
+
+$sql="select * from tbl_contractor_reg where  login_id='$login_id'";
+$res1 = mysqli_query($con,$sql);
+$li=mysqli_fetch_array($res1);
+$name=$li['contractor_name'];
+
+
+
+
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,17 +126,18 @@ $temp=$_SESSION['uname'];
 																	<?php
 																	include("DbConne.php");
 
-
-																	$sql="select * from tbl_project p,tbl_est e
-																	where  p.proj_id=e.proj_id";
+																	$sql="select * from tbl_project p,tbl_est e	where  p.proj_id=e.proj_id and contractor_name='$name'";
 																	$res1 = mysqli_query($con,$sql);
+
+																if(mysqli_num_rows($res1)>0)
+																{
 
 																	echo "<h2><center>Estimation Details</center></h2>";
  																	echo "<tr><th>Project Name</th><th>Customer Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Status</th></tr>";
 
-
 																	while($v=mysqli_fetch_array($res1))
 																	{
+
 																		if($v['status']==1)
 																		{
 																			$f='Approved';
@@ -143,7 +157,7 @@ $temp=$_SESSION['uname'];
 																	.$f."</td>";
 																	echo "</tr>";
 																	}
-
+}
 																	?>
 													</table></form>
 

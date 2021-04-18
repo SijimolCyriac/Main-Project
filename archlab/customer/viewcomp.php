@@ -240,7 +240,7 @@ if(isset($_SESSION['uname']))
 							function validate2()
 							{
 							var name=document.getElementById("comp1").value;
-							var letters=/^[a-zA-Z\s]*$/;
+							var letters=/^[a-z.A-Z,\s]*$/;
 							if(!name.match(letters))
 							{
 							alert("Please Enter Complaint Correctly");

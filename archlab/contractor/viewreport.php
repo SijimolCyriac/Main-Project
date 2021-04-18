@@ -96,7 +96,7 @@ $login_id=$_SESSION['lid'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View Daily Work Details <a href="#" data-toggle="modal" data-target="#AddReport"
+                        <h2 class="mt-4">View Weekly Work Details <a href="#" data-toggle="modal" data-target="#AddReport"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -109,7 +109,11 @@ $login_id=$_SESSION['lid'];
 															<div class="table-responsive">
 
 															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
 																<?php
+																echo "<h2><center>Weekly Work Details</center></h2>";
+																echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Date</th><th>Status</th></tr>";
+
 																include("DbConne.php");
 
 																$sql="select * from tbl_contractor_reg where login_id='$login_id'";
@@ -121,17 +125,16 @@ $login_id=$_SESSION['lid'];
 
 																$sql1="select * from tbl_project where contractor_id='$contractor_id'";
 																$query2=mysqli_query($con,$sql1);
-																if($result1=mysqli_fetch_array($query2)){
+															while($result1=mysqli_fetch_array($query2)){
 																$cust_id=$result1['cust_id'];
 
 																$query = "select * from tbl_customer_reg where cust_id='$cust_id'";
 																$results = mysqli_query($con,$query);
-																echo "<h2><center>Daily Work Details</center></h2>";
-																echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Date</th><th>Status</th></tr>";
 																if($v=mysqli_fetch_array($results))
 																{
 																	$chk_id=$v['login_id'];
-																	$sql2="select * from tbl_daily_progress_report where login_id='$chk_id'";
+																	$chk_id1=$result['login_id'];
+																	$sql2="select * from tbl_daily_progress_report where login_id='$chk_id' and from_login_id='$chk_id1'";
 																	$query3=mysqli_query($con,$sql2);
 																	while($result2=mysqli_fetch_array($query3)){
 
@@ -190,7 +193,7 @@ $login_id=$_SESSION['lid'];
 																			<br><label class="custom">Description</label>
 																			<textarea  name="comp" class="form-control" id="work1" onblur="validate2()" placeholder="Enter Work Details"  autofocus="autofocus" required></textarea>
 																			<br><label class="custom">Work Details</label>
-																			<input type="file" name="proj" class="form-control" id="file1" onchange="valproof()" placeholder="Upload Work Details"  autofocus="autofocus" required>
+																			<input type="file" name="proj" class="form-control" id="d1" onchange="return fileValidation()" />
                                       <br><label class="custom">From Date</label>
 																	    <input type="date" name="fdate" class="form-control" placeholder="Enter Date" autofocus="autofocus" required>
 																			<br><label class="custom">To Date</label>
@@ -204,6 +207,7 @@ $login_id=$_SESSION['lid'];
 															</button>
 															<input type="submit" name="submit" value="Upload" class="btn btn-success">
 														</div>
+
 														</form>
 
 												</div>
@@ -211,6 +215,7 @@ $login_id=$_SESSION['lid'];
 												</div>
 												</div>
 												<?php
+
 												if(isset($_POST['submit'])){
 													$title=$_POST["name"];
 													$cust_name=$_POST["cname"];
@@ -227,7 +232,14 @@ $login_id=$_SESSION['lid'];
 													$res=mysqli_query($con,$f);
 													$h=mysqli_fetch_array($res);
 													$e=$h['login_id'];
-													$sq="insert into tbl_daily_progress_report(title,login_id,description,activityDetails,fdate,tdate,status) values('$title','$e','$summary','$details','$fdate','$tdate','$status')";
+
+
+													$abc="select login_id from tbl_login where username='$temp'";
+													$query=mysqli_query($con,$abc);
+													$result=mysqli_fetch_array($query);
+													$c=$result['login_id'];
+
+													$sq="insert into tbl_daily_progress_report(title,login_id,from_login_id,description,activityDetails,fdate,tdate,status) values('$title','$e','$c','$summary','$details','$fdate','$tdate','$status')";
 													if(mysqli_query($con,$sq))
 													  {
 													    ?>
@@ -283,25 +295,44 @@ document.getElementById("name1").value="";
 function validate2()
 {
 var name=document.getElementById("work1").value;
-var letters=/^[a-zA-Z\s]*$/;
+var letters=/^[a-z.A-Z,\s]*$/;
 if(!name.match(letters))
 {
 alert("Please Enter Details Coorectly");
 document.getElementById("work1").value="";
 }
 }
-function valproof()
+function valprof()
 {
 var proof = document.getElementById("file1").value;
 var pat=/^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.pdf)$/;
 if(!proof.match(pat))
 {
 alert("Enter Valid File Type Eg: .jpg/.jpeg/.pdf");
-document.getElementById("file1").value="";
-}
-}
+var fl=document.getElementById("file1");
 
+}
+}
 </script>
+<script>
+        function fileValidation() {
+            var fileInput =
+                document.getElementById('d1');
+
+            var filePath = fileInput.value;
+
+            // Allowing file type
+            var allowedExtensions =
+                    /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Enter Valid File Type Eg: .jpg/.jpeg/.pdf');
+                fileInput.value = '';
+                return false;
+            }
+
+        }
+    </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>

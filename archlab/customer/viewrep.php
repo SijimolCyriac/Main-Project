@@ -4,7 +4,9 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 	$temp=$_SESSION['uname'];
-
+	if(isset($_REQUEST['x']))
+		{
+			$u=intval($_GET['x']);}
 	?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -87,7 +89,7 @@ if(isset($_SESSION['uname']))
 	                    <div class="container-fluid">
 	                        <h1 class="mt-4">Weekly Progress Report</h1>
 	                        <ol class="breadcrumb mb-4">
-	                            <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+	                            <li class="breadcrumb-item"><a href="viewreport.php">Dashboard</a></li>
 	                            <li class="breadcrumb-item active">Weekly Report</li>
 	                        </ol>
 	               <div class="graph-visual tables-main" id="exampl">
@@ -98,37 +100,35 @@ if(isset($_SESSION['uname']))
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<?php
 									include("DbConne.php");
-									$query = "select l.login_id,h.cust_id from tbl_login l,tbl_customer_reg h  where l.username='$temp' and l.login_id=h.login_id";
-									$results = mysqli_query($con,$query);
-									$x=mysqli_fetch_array($results);
-									$d=$x['cust_id'];
-
-									$sql="select * from tbl_project where cust_id='$d'";
+									$sql="select * from tbl_daily_progress_report where report_id='$u'";
 									$res1 = mysqli_query($con,$sql);
+									$v=mysqli_fetch_array($res1);
+                  $cid=$v['from_login_id'];
+
+
+									$sq="select * from tbl_contractor_reg c,tbl_daily_progress_report d where c.login_id='$cid'";
+									$res1 = mysqli_query($con,$sq);
 									if(mysqli_num_rows($res1)>0)
 									{
-										$row=mysqli_fetch_array($res1);
+	                  echo "<h3><center>Weekly Progress Report Details</center></h3>";
 										echo "<h5><center>Contractor Details</center></h5>";
 										echo "<tr><th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Company Name</th></tr>";
-										$contractor_id=$row['contractor_id'];
-										$sql="select * from tbl_contractor_reg where contractor_id='$contractor_id'";
-										$res1 = mysqli_query($con,$sql);
-										$v=mysqli_fetch_array($res1);
+
+									$v=mysqli_fetch_array($res1);
 									echo "<tr>";
 									echo "<td>".$v['contractor_name']."</td><td>"
 									.$v['phone_no']."</td><td>"
 									.$v['email_id']."</td><td>"
 									.$v['companyName']."</td>";
 									echo "</tr>";
+								}
 									?>
 									</table>
 
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<?php
 								include("DbConne.php");
-								if(isset($_REQUEST['x']))
-									{
-										$u=intval($_GET['x']);
+
 
 								$sql="select a.login_id,b.login_id from tbl_login a,tbl_daily_progress_report b where
 								a.login_id=b.login_id and a.username='$temp'";
@@ -151,16 +151,16 @@ if(isset($_SESSION['uname']))
 								.$v['fdate']."</td><td>"
 								.$v['tdate']."</td>";
 								echo "</tr>";
-							}}}}
+							}}
 								?>
-								</table>
-								<p style="margin-top:1%"  align="center">
-								  <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i>
-								</p>
+							</table>
 
 								</div></div>
 								</div>
                </div>
+							 <p style="margin-top:1%"  align="center">
+						 		<a style="color:white;" class='btn btn-sm btn-info' OnClick="CallPrint(this.value)">Generate Report</a>
+						 	</p>
 
 
 								<div style="height: 100vh;"></div>
