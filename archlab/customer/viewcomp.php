@@ -8,6 +8,8 @@ if(isset($_SESSION['uname']))
 	?>
 	<!DOCTYPE html>
 	<html lang="en">
+	<?php 	include("header.php");
+	?>
 	    <head>
 	        <meta charset="utf-8" />
 	        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,30 +30,7 @@ if(isset($_SESSION['uname']))
 
 	    </head>
 	    <body>
-	        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	            <a class="navbar-brand" href="index.php">BuildTech Construction</a>
-	            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-	            <!-- Navbar Search-->
-	            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-	                <div class="input-group">
 
-	                    <div class="input-group-append">
-
-	                    </div>
-	                </div>
-	            </form>
-	            <!-- Navbar-->
-	            <ul class="navbar-nav ml-auto ml-md-0">
-								<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-										 echo $temp;
-										 ?></a>
-										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-												<a class="dropdown-item" href="logout.php">Logout</a>
-										</div>
-								</li>
-	            </ul>
-	        </nav>
 	        <div id="layoutSidenav">
 	            <div id="layoutSidenav_nav">
 	                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -71,13 +50,13 @@ if(isset($_SESSION['uname']))
 		 												 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 		 														 <nav class="sb-sidenav-menu-nested nav">
 		 																 <a class="nav-link" href="viewproj.php">View Project</a>
-
+<a class="nav-link" href="viewest.php">View Estimation</a>
 		 														 </nav>
 		 												 </div>
 
 		 												 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 		 														 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-		 														 Daily Progress Report
+		 														 Weekly Progress Report
 		 														 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 		 												 </a>
 		 												 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -169,27 +148,34 @@ if(isset($_SESSION['uname']))
 														<form method="POST" action="addcomp.php">
 															<?php
 															include("DbConne.php");
-															$query = "select l.login_id,h.cust_id from tbl_login l,tbl_customer_reg h  where l.username='$temp' and l.login_id=h.login_id";
+															$query = "select l.login_id,h.cust_id from tbl_login l,tbl_customer_reg h  where l.username='$temp' and
+															l.login_id=h.login_id";
 															$results = mysqli_query($con,$query);
 															$x=mysqli_fetch_array($results);
 															$d=$x['cust_id'];
 
-															$sql="select * from tbl_project where cust_id='$d'";
-															$res1 = mysqli_query($con,$sql);
-															$row=mysqli_fetch_array($res1);
 
-															$contractor_id=$row['contractor_id'];
-															$_SESSION['contraid']=$contractor_id;
-															$sql="select * from tbl_contractor_reg where contractor_id='$contractor_id'";
-															$c=mysqli_query($con,$sql);
-															$result=mysqli_fetch_array($c);
 															?>
 															<div class="form-group">
 															<label class="custom">Contractor Name</label>
 															<div class="form-label-group">
-															<input type="text" class="form-control" id="name1" name="name" value="<?php echo $result['contractor_name']; ?>" placeholder="Contractor Name" onblur="validate()" autofocus="autofocus" required>
-															</div>
-															</div>
+																<select  name="name" id="name1" class="form-control" autofocus="autofocus" required>
+																	<option value="">Select Contractor Name</option>
+																	<?php
+																	include("DbConne.php");
+																	$ss="select * from tbl_contractor_reg c,tbl_project p where p.cust_id='$d' and p.contractor_id=c.contractor_id";
+																	$query1 =mysqli_query($con,$ss);
+																	if(mysqli_num_rows($query1))
+																	{
+
+																	while($row=mysqli_fetch_array($query1))
+																	{ ?>
+																	<option value="<?php echo $row['contractor_id'];?>"><?php echo $row['contractor_name'];?></option>
+																	<?php
+																}}
+																	?>
+																 </select>
+															</div></div>
 															<div class="form-group">
 															<label class="custom">Complaint</label>
 															<div class="form-label-group">

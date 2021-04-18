@@ -104,12 +104,12 @@ if(isset($_SESSION['uname']))
 
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                                Daily Progress Report
+                                Weeky Progress Report
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="btwrep.php">View Report</a>
+                                    <a class="nav-link" href="viewreport.php">View Report</a>
 
                                 </nav>
                             </div>
@@ -148,9 +148,9 @@ if(isset($_SESSION['uname']))
 													</div>
 													<div class="col-xl-4 col-md-6">
 															<div class="card bg-success text-white mb-4">
-																	<div class="card-body">Daily Progress Report</div>
+																	<div class="card-body">Weekly Progress Report</div>
 																	<div class="card-footer d-flex align-items-center justify-content-between">
-																			<a class="small text-white stretched-link" href="btwrep.php">View Details</a>
+																			<a class="small text-white stretched-link" href="viewreport.php">View Details</a>
 																			<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 																	</div>
 															</div>

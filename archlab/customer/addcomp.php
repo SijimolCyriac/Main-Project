@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("DbConne.php");
-$cod=$_SESSION['contraid'];
+$cod=$_POST['name'];
 $b=$_SESSION['uname'];
 $abc="select login_id from tbl_login where username='$b'";
 $query=mysqli_query($con,$abc);
@@ -22,7 +22,7 @@ if(mysqli_query($con,$sq))
   {
     ?>
     <script>alert("Complaint Added Successfully");
-    location.href="index.php";
+    location.href="viewcomp.php";
      exit;
     </script>
     <?php

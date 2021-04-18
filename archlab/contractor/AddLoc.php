@@ -28,7 +28,20 @@ $fdate=$_POST['fdate'];
 $tdate=$_POST['tdate'];
 $status='0';
 
+$jss="select * from tbl_site_loc where proj_name='$proj_name' and site_loc='$site_address' and fdate='$fdate' and tdate='$tdate' and contractor_name='$d' and labour_name='$ce'";
+$quee=mysqli_query($con,$jss);
+$num=mysqli_num_rows($quee);
+if($num==1)
+{
+  ?>
+  <script>alert("Site Location Already Assigned");
+  location.href="sitelab.php";
+   exit;
+  </script>
+  <?php
+}
 
+else{
 $sq="insert into tbl_site_loc(proj_name,site_loc,fdate,tdate,contractor_name,labour_name,status) values('$proj_name','$site_address','$fdate','$tdate','$d','$ce','$status')";
 if(mysqli_query($con,$sq))
   {
@@ -38,6 +51,6 @@ if(mysqli_query($con,$sq))
      exit;
     </script>
     <?php
-  }}
+  }}}
     mysqli_close($con);
      ?>

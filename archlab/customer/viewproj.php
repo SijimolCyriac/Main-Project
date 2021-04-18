@@ -8,6 +8,8 @@ if(isset($_SESSION['uname']))
 	?>
 	<!DOCTYPE html>
 	<html lang="en">
+	<?php 	include("header.php");
+	?>
 	    <head>
 	        <meta charset="utf-8" />
 	        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,30 +30,7 @@ if(isset($_SESSION['uname']))
 
 	    </head>
 	    <body>
-	        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	            <a class="navbar-brand" href="index.php">BuildTech Construction</a>
-	            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-	            <!-- Navbar Search-->
-	            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-	                <div class="input-group">
 
-	                    <div class="input-group-append">
-
-	                    </div>
-	                </div>
-	            </form>
-	            <!-- Navbar-->
-	            <ul class="navbar-nav ml-auto ml-md-0">
-								<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-										 echo $temp;
-										 ?></a>
-										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-												<a class="dropdown-item" href="logout.php">Logout</a>
-										</div>
-								</li>
-	            </ul>
-	        </nav>
 	        <div id="layoutSidenav">
 	            <div id="layoutSidenav_nav">
 	                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -71,13 +50,13 @@ if(isset($_SESSION['uname']))
 	                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	                                <nav class="sb-sidenav-menu-nested nav">
 	                                    <a class="nav-link" href="viewproj.php">View Project</a>
-
+<a class="nav-link" href="viewest.php">View Estimation</a>
 	                                </nav>
 	                            </div>
 
 															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 	                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-	                                Daily Progress Report
+	                                Weekly Progress Report
 	                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 	                            </a>
 	                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
