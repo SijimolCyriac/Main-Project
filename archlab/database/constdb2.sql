@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2021 at 06:29 PM
+-- Generation Time: Apr 17, 2021 at 07:01 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -68,19 +68,16 @@ INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, 
 (5, 18, 4, 'Roof Leakage', 0),
 (6, 18, 4, 'vkhhjijo', 0),
 (7, 18, 4, 'bjkhbkjhnkjhnlj', 0),
-(8, 18, 15, 'Water leakage', 1),
+(8, 18, 15, 'Water leakage', 0),
 (9, 18, 0, 'bjnkljkljkl', 0),
 (10, 18, 0, 'gghohoi', 0),
 (11, 18, 0, 'sdrfdsfgx', 0),
 (12, 18, 15, 'vbcvnnv', 0),
 (13, 2, 5, 'vhgh hbjhjki', 0),
 (17, 2, 5, 'uiyuy hhhoi', 0),
-(18, 2, 15, 'vghghkku', 1),
+(18, 2, 15, 'vghghkku', 0),
 (19, 2, 15, 'nbjknjxlfjbckxbj', 0),
-(20, 2, 5, 'bfghcx', 0),
-(21, 18, 25, 'vjvj bjhjh bjkhjlijij', 0),
-(22, 18, 25, 'Aesytfy, giuhuohu', 0),
-(23, 18, 25, 'xfdf, Asrydytt gvggj hbhkuhi.', 0);
+(20, 2, 5, 'bfghcx', 0);
 
 -- --------------------------------------------------------
 
@@ -160,7 +157,6 @@ CREATE TABLE `tbl_daily_progress_report` (
   `report_id` int(10) NOT NULL,
   `title` varchar(30) NOT NULL,
   `login_id` int(10) NOT NULL,
-  `from_login_id` int(10) NOT NULL,
   `description` varchar(500) NOT NULL,
   `activityDetails` varchar(100) NOT NULL,
   `fdate` varchar(100) NOT NULL,
@@ -172,16 +168,12 @@ CREATE TABLE `tbl_daily_progress_report` (
 -- Dumping data for table `tbl_daily_progress_report`
 --
 
-INSERT INTO `tbl_daily_progress_report` (`report_id`, `title`, `login_id`, `from_login_id`, `description`, `activityDetails`, `fdate`, `tdate`, `status`) VALUES
-(1, 'House Construction', 2, 5, 'Day 1 : Concrete', 'image_6.jpg', '2021-01-28', '2021-02-6', 1),
-(3, 'Day 1 Concrete Work', 8, 0, 'Completed concrete work', 'work-6.jpg', '2021-01-11', '2021-01-18', 1),
-(9, 'Day 1 Structural work', 17, 0, 'Structural work Started', 'bg_2.jpg', '2021-03-01', '2021-03-08', 1),
-(16, 'Day 3 Concrete', 18, 15, 'hfj  rd', 'home.jpg', '2021-04-05', '2021-04-10', 1),
-(17, 'Day 4', 18, 15, 'vgbnv', 'image_8.jpg', '2021-04-06', '2021-04-11', 0),
-(18, 'Apartment Construction', 18, 25, 'Gfugj bhbk,gygkhuhlohuiu.', 'bg_1.jpg', '2021-04-19', '2021-04-26', 0),
-(19, 'Apartment Construction', 18, 25, 'vhgiki hbkhk hbholjoijpip', 'bg_1.jpg', '2021-05-03', '2021-05-08', 0),
-(20, 'Office Construction', 2, 15, 'vhkhk jbkjnjljl', 'bg_1.jpg', '2021-05-03', '2021-05-08', 0),
-(21, 'Apartment Construction', 18, 25, 'bkhbkj jbjnlnl', 'about.jpg', '2021-04-05', '2021-04-10', 0);
+INSERT INTO `tbl_daily_progress_report` (`report_id`, `title`, `login_id`, `description`, `activityDetails`, `fdate`, `tdate`, `status`) VALUES
+(1, 'House Construction', 2, 'Day 1 : Concrete', 'image_6.jpg', '2021-01-28', '2021-02-6', 1),
+(3, 'Day 1 Concrete Work', 8, 'Completed concrete work', 'work-6.jpg', '2021-01-11', '2021-01-18', 1),
+(9, 'Day 1 Structural work', 17, 'Structural work Started', 'bg_2.jpg', '2021-03-01', '2021-03-08', 1),
+(16, 'Day 3 Concrete', 18, 'hfj  rd', 'home.jpg', '2021-04-05', '2021-04-10', 0),
+(17, 'Day 4', 18, 'vgbnv', 'image_8.jpg', '2021-04-06', '2021-04-11', 0);
 
 -- --------------------------------------------------------
 
@@ -255,8 +247,7 @@ CREATE TABLE `tbl_est` (
 
 INSERT INTO `tbl_est` (`est_id`, `proj_id`, `cust_name`, `contractor_name`, `total_cost`, `concrete`, `brick`, `door`, `electrical`, `status`) VALUES
 (1, 13, 'Binoy', 'Siby Jose', '2275000', '122500', '105625', '1127666.6666666667', '55000', 1),
-(2, 14, 'Cyriac K J', 'Siby Jose', '3330000', '148000', '243000', '2305000', '60000', 0),
-(3, 15, 'Binoy', 'Jojiiii', '4875000', '175500', '546875', '4723222.222222222', '70000', 0);
+(2, 14, 'Cyriac K J', 'Siby Jose', '3330000', '148000', '243000', '2305000', '60000', 0);
 
 -- --------------------------------------------------------
 
@@ -381,7 +372,7 @@ INSERT INTO `tbl_login` (`login_id`, `username`, `password`, `user_type`, `statu
 (18, 'Binoy12', 'af91d6e7e33c2fa4ad296225cae316b1', 'customer', 1),
 (19, 'Krishna', 'fd3cd910989c5ba0d7b80c66c9e6d114', 'labour', 1),
 (21, 'Kimkim12', '8cf0f7e17a5e4cae4799a0dadfaa13ad', 'labour', 1),
-(25, 'Jojii12', '79175e19c58910f640fb6b53b752efd8', 'contractor', 1),
+(25, 'Jojii12', '562253c4272a357ad6e30131ddda2177', 'contractor', 1),
 (26, 'Jack12', '97ef8e786de7cd4f589e9028ac64face', 'customer', 1);
 
 -- --------------------------------------------------------
@@ -433,8 +424,7 @@ INSERT INTO `tbl_postoff` (`pid`, `post_office`, `status`) VALUES
 (16, 'Agra', 0),
 (17, 'Bomdila', 0),
 (18, 'Madurai', 0),
-(19, 'abcd', 0),
-(20, '     Koorali', 1);
+(19, 'abcd', 0);
 
 -- --------------------------------------------------------
 
@@ -506,8 +496,7 @@ INSERT INTO `tbl_project` (`proj_id`, `yur_service`, `site_address`, `proj_plan`
 (2, 'Construction', 'Pala South Kottayam', 'bg_1.jpg', '800000', '', 0, 0, 4, 1, 1),
 (3, 'Construction', 'Mithilapuri North Kottayam', 'work-5.jpg', '1000000', '', 0, 0, 7, 4, 1),
 (13, 'Office Construction', 'fgkmg nbhgkg nbhbkb', 'Aadhar2.pdf', '4500000', 'Standard Package', 2, 1300, 8, 5, 1),
-(14, 'Office Construction', 'vhk bjb jnln', 'work-1.jpg', '330000', 'Premium Package', 3, 1800, 2, 5, 0),
-(15, 'Apartment Construction', '5th Mile, Elamgulam, Kottyam', 'about.jpg', '100000', 'Luxury Package', 6, 2500, 8, 6, 0);
+(14, 'Office Construction', 'vhk bjb jnln', 'work-1.jpg', '330000', 'Premium Package', 3, 1800, 2, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -557,8 +546,7 @@ CREATE TABLE `tbl_site_loc` (
 INSERT INTO `tbl_site_loc` (`sid`, `proj_name`, `site_loc`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `status`) VALUES
 (1, 'Office Construction', 'Mithilapuri', '2021-04-16', '2021-04-23', 'Siby Jose', 'Guna', 0),
 (3, 'House Construction', 'Paika North Pala', '2021-04-24', '2021-05-01', 'Siby Jose', 'Guna', 1),
-(4, 'Office Construction', 'gj jnkjnjnl', '2021-04-16', '2021-04-23', 'Siby Jose', 'Krishna Das', 0),
-(5, 'House Construction', 'Fyigiy hbhbhuh', '2021-04-26', '2021-05-03', 'Melbin Joseph', 'Guna', 0);
+(4, 'Office Construction', 'gj jnkjnjnl', '2021-04-16', '2021-04-23', 'Siby Jose', 'Krishna Das', 0);
 
 -- --------------------------------------------------------
 
@@ -739,7 +727,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
@@ -757,7 +745,7 @@ ALTER TABLE `tbl_customer_reg`
 -- AUTO_INCREMENT for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -769,7 +757,7 @@ ALTER TABLE `tbl_district`
 -- AUTO_INCREMENT for table `tbl_est`
 --
 ALTER TABLE `tbl_est`
-  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_feedback`
@@ -805,7 +793,7 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT for table `tbl_postoff`
 --
 ALTER TABLE `tbl_postoff`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_prof`
@@ -817,7 +805,7 @@ ALTER TABLE `tbl_prof`
 -- AUTO_INCREMENT for table `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_services`
@@ -829,7 +817,7 @@ ALTER TABLE `tbl_services`
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`
