@@ -264,7 +264,7 @@ if(!empty($_SESSION['uname']))
 																			<label class="custom">Category Name</label>
 
 																			<div class="form-label-group">
-																			<input type="text" id="c" class="form-control" placeholder="Enter Cateogry Name" name="address" autofocus="autofocus" onblur="validate()" required>
+																			<input type="text" id="cc" class="form-control" placeholder="Enter Cateogry Name" name="address" autofocus="autofocus" onblur="validate1()" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
@@ -309,6 +309,18 @@ if(!empty($_SESSION['uname']))
 			  if(!name.match(letters))
 			  {
 					document.getElementById("c").value="";
+			  alert("Please Enter Valid Category Name");
+
+			  }
+			  }
+				function validate1()
+			  {
+			  var name=document.getElementById("cc").value;
+
+			  var letters=/^[a-zA-Z]*$/;
+			  if(!name.match(letters))
+			  {
+					document.getElementById("cc").value="";
 			  alert("Please Enter Valid Category Name");
 
 			  }

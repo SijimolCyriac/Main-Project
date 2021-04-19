@@ -142,7 +142,7 @@ if(isset($_SESSION['uname']))
 								</td>";
 								}
 								echo "</tr>";
-							}}
+							}}}
 else
 {
 echo "</table><h1 align='center'>No Report Found..</h1>";
@@ -153,7 +153,7 @@ exit;
 </script>
 <?php
 }
-						}
+					
 
 								?>
 								</table>

@@ -61,7 +61,7 @@ if(isset($_SESSION['uname']))
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
-															Daily Progress Report
+															Weekly Progress Report
 																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -103,7 +103,7 @@ if(isset($_SESSION['uname']))
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Daily Progress Report</div>
+                                    <div class="card-body">Weekly Progress Report</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="viewreport.php">Upload Report</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

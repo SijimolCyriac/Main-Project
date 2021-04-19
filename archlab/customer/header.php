@@ -69,6 +69,7 @@ $result=mysqli_fetch_array($c);
     <input type="text" class="form-control" value="<?php echo $result['email_id']; ?>" autofocus="autofocus" name="email" id="email1" placeholder="Enter Email Address" onblur="validate1()" required/>
     <br><label for="exampleInputEmail1">Username</label>
     <input type="text" class="form-control" name="uname"  value="<?php echo $a['username']; ?>" autofocus="autofocus" id="uname1" placeholder="Enter Username" onblur="validate3()"  required/>
+
 </div>
 </div>
 <div class="modal-footer">

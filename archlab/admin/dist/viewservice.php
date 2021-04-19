@@ -189,7 +189,7 @@ if(!empty($_SESSION['uname']))
 			                            <div class="form-label-group">
 			                            <input type="hidden" name="id" value="<?php echo $fin['serv_id']; ?>">
 																	<label for="exampleInputEmail">Service Name</label>
-			                            <input type="text" id="d" class="form-control"  placeholder="Enter Service Name" name="address" onblur="validate()" autofocus="autofocus" required value="<?php echo $fin['service']; ?>">
+			                            <input type="text" id="dd" class="form-control"  placeholder="Enter Service Name" name="address" onblur="validate()" autofocus="autofocus" required value="<?php echo $fin['service']; ?>">
 			                            </div>
 			                            </div>
 			                      <div class="modal-footer">
@@ -265,7 +265,7 @@ if(!empty($_SESSION['uname']))
 																			<label class="custom">Service Name</label>
 
 																			<div class="form-label-group">
-																			<input type="text" id="d" class="form-control" placeholder="Enter Service Name" name="address" onblur="validate()" autofocus="autofocus" required>
+																			<input type="text" id="d" class="form-control" placeholder="Enter Service Name" name="address" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
@@ -303,6 +303,17 @@ if(!empty($_SESSION['uname']))
         </div>
 				<script>
 				function validate()
+				{
+				var name=document.getElementById("dd").value;
+				var letters=/^[a-zA-Z]*$/;
+				if(!name.match(letters))
+				{
+				document.getElementById("dd").value="";
+				alert("Please Enter Valid Service Name");
+
+				}
+				}
+				function validate1()
 				{
 				var name=document.getElementById("d").value;
 				var letters=/^[a-zA-Z]*$/;

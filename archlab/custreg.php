@@ -17,21 +17,7 @@ include("DbConne.php");
       .status-not-available{color:#D60202;}
       </style>
       <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-      <script>
-      function checkAvailability() {
-      	$("#loaderIcon").show();
-      	jQuery.ajax({
-      	url: "check_availability.php",
-      	data:'username='+$("#uname1").val(),
-      	type: "POST",
-      	success:function(data){
-      		$("#user-availability-status").html(data);
-      		$("#loaderIcon").hide();
-      	},
-      	error:function (){}
-      	});
-      }
-      </script>
+
 
       <script>
       function getdistrict(val) {
@@ -44,27 +30,7 @@ include("DbConne.php");
       }
       })
       }
-      function check() {
-            var uname = document.getElementById('uname1').value;
-                  if (!uname) return;
-                  console.log("WORKING user TILL HERE");
-                  var ajax = new XMLHttpRequest();
-                  console.log("hello");
-                  ajax.onreadystatechange = function(){
-                    if (this.readyState == 4 && this.status == 200 ){
-                      console.log(this.response); //helps SEE WHATS GOING ON in the php file;
-                      if(this.response=='TRUE'){
-                          // document.getElementById('u').innerHTML="Username taken";
-                          document.getElementById('uname1').value="";
-                          document.forms["tf"]["uname"].focus();
-                          alert("username taken");
-                      }
-                    }
-                  }
-                  ajax.open("GET", "getuname.php?uname="+uname, true);
-                  ajax.send();
 
-      }
       </script>
 
       <!-- Title Page-->
@@ -105,9 +71,9 @@ include("DbConne.php");
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
+	      <div  class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+	          <li  class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="abouts.html" class="nav-link">About</a></li>
 
 	          <li class="nav-item"><a href="servic.html" class="nav-link">Services</a></li>
@@ -132,13 +98,13 @@ include("DbConne.php");
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header" style="background:#abb0b8">
+                            <div class="card-header" style="background:#ccd4e0">
                               <h3 class="text-center font-weight-light my-4">Create Account</h3>
                               <center><p>Register As:
                               &nbsp;&nbsp;<a href="custreg.php"><input type="radio" name="color" id="r1" checked="checked"/><label for="r1">Customer</label></a>
                               &nbsp;&nbsp;<a href="contrareg.php"><input type="radio" name="color" id="r2" /><label for="r2">Contractor</label></a>
                               &nbsp;&nbsp;<a href="labreg.php"><input type="radio" name="color" id="r3" /><label for="r3">Labour</label></a></p></center></div>
-                            <div class="card-body" style="background:#abb0b8">
+                            <div class="card-body" style="background:#ccd4e0">
             <form action="Addreg1.php" name="tf" method="POST">
               <div class="form-group">
                   <label class="small mb-1" for="inputFirstName">Full Name</label>
@@ -412,7 +378,7 @@ function check1() {
   function validate6()
   {
   var name=document.getElementById("address1").value;
-  var letters=/^[a-zA-Z0-9\s]*$/;
+  var letters=/^[a-zA-Z0-9,\s]*$/;
   if(!name.match(letters))
   {
   alert("Please Enter Address Correctly");

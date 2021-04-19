@@ -7,6 +7,8 @@ if(!empty($_SESSION['uname']))
 	?>
 <!DOCTYPE html>
 <html lang="en">
+<?php 	include("header.php");
+?>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,33 +32,7 @@ if(!empty($_SESSION['uname']))
 
     </head>
     <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.php">BuildTech Construction</a>
-            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-
-                    <div class="input-group-append">
-
-                    </div>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ml-auto ml-md-0">
-							<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-									 echo $temp;
-									 ?><i class="fas fa-user-circle fa-fw"></i></a>
-									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-										<a class="dropdown-item" href="index.php" data-toggle="modal"
-										data-target="#UpdateProfile"><i class="fas fa-user-circle"></i> Profile</a>
-										<a class="dropdown-item" href="changepasss.php"><i class="fa fa-lock"></i> Change Password</a>
-											<a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-									</div>
-							</li>
-            </ul>
-        </nav>
+        
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -179,7 +155,7 @@ if(!empty($_SESSION['uname']))
 														$con=mysqli_connect("localhost","root","","constdb") or die("COULDN'T CONNECT");
 
                             echo "<h2><center>Customer Details</center></h2>";
-                            echo "<tr><th>Customer Name</th><th>Address</th><th>Post Office</th><th>PIN Code</th><th>Phone No</th><th>Email Id</th><th>District Name</th><th>State Name</th></tr>";
+                            echo "<tr><th>Sl No</th><th>Customer Name</th><th>Address</th><th>Post Office</th><th>PIN Code</th><th>Phone No</th><th>Email Id</th><th>District Name</th><th>State Name</th></tr>";
 
 															$r="select c.cust_id,c.cust_name,c.address,c.post_office,c.PIN_Code,c.phno,c.email_id,c.dist_name,c.state_name from tbl_customer_reg c,tbl_login l where l.user_type='customer' and l.login_id=c.login_id";
 															$result=mysqli_query($con,$r);
@@ -189,8 +165,8 @@ if(!empty($_SESSION['uname']))
 															{
 
                             echo "<tr>";
-                            echo "<td>".$a['cust_name']."</td><td>"
-
+                            echo "<td>".$a['cust_id']."</td><td>"
+                                    .$a['cust_name']."</td><td>"
                                    .$a['address']."</td><td>"
                                    .$a['post_office']."</td><td>"
                                  .$a['PIN_Code']."</td><td>"

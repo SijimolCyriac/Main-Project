@@ -104,14 +104,14 @@ include("DbConne.php");
               <div class="row justify-content-center">
                   <div class="col-lg-7">
                       <div class="card shadow-lg border-0 rounded-lg mt-5">
-                          <div class="card-header" style="background:#abb0b8">
+                          <div class="card-header" style="background:#ccd4e0">
                             <h3 class="text-center font-weight-light my-4">Create Account</h3>
             <center><p>Register As:
             &nbsp;&nbsp;<a href="custreg.php"><input type="radio" name="color" id="r1" /><label for="r1">Customer</label></a>
             &nbsp;&nbsp;<a href="contrareg.php"><input type="radio" name="color" id="r2" /><label for="r2">Contractor</label></a>
             &nbsp;&nbsp;<a href="labreg.php"><input type="radio" name="color" id="r3" checked="checked"/><label for="r3">Labour</label></a></p></center>
             </div>
-            <div class="card-body" style="background:#abb0b8">
+            <div class="card-body" style="background:#ccd4e0">
             <form action="Addreg3.php" method="POST" enctype="multipart/form-data">
 
               <div class="form-group">

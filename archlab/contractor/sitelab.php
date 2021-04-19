@@ -82,7 +82,7 @@ if(isset($_REQUEST['y']))
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
-															Daily Progress Report
+															Weekly Progress Report
 																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -141,10 +141,10 @@ if(isset($_REQUEST['y']))
 																	{
 																		if($v['status']==1)
 																		{
-																			$f='Approved';
+																			$f='Available';
 																		}
 																		else {
-																			$f='Not Approved';
+																			$f='Not Available';
 																		}
 																	echo "<tr>";
 																	echo "<td>"
@@ -185,11 +185,7 @@ if(isset($_REQUEST['y']))
 																	$x=mysqli_fetch_array($results);
 																	$d=$x['contractor_id'];
 
-																	$sql="select p.proj_id,p.contractor_id,c.cust_id from tbl_project p,tbl_customer_reg c
-																	where p.contractor_id='$d' and p.cust_id=c.cust_id";
-																	$res1 = mysqli_query($con,$sql);
-																	$v=mysqli_fetch_array($res1);
-																	$m=$v['proj_id'];
+
 																	?>
 
 																<div class="form-group">

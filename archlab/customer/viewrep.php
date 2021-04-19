@@ -159,7 +159,9 @@ if(isset($_SESSION['uname']))
 								</div>
                </div>
 							 <p style="margin-top:1%"  align="center">
-						 		<a style="color:white;" class='btn btn-sm btn-info' OnClick="CallPrint(this.value)">Generate Report</a>
+
+								<a style="color:white;"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" OnClick="CallPrint(this.value)"><i
+																			 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 						 	</p>
 
 

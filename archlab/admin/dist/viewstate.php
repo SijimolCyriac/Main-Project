@@ -287,7 +287,7 @@ if(!empty($_SESSION['uname']))
 																		<form method="POST" action="addsta.php">
 																			<div class="form-group">
 																			<div class="form-label-group">
-																			<input type="text" id="am1" class="form-control" placeholder="State Name" name="address1" onblur="validate1()" autofocus="autofocus" required>
+																			<input type="text" id="am1" class="form-control" placeholder="State Name" name="address" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
