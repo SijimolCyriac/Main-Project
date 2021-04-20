@@ -105,23 +105,26 @@ if(isset($_SESSION['uname']))
 																		{
 																		$result=mysqli_fetch_array($query1);
 																		$h=$result['login_id'];
-																		$query = "select * from tbl_complaint
-																	  where  login_id='$h'";
+																		$query = "select c.complaint,c.status,r.contractor_name from tbl_complaint c,tbl_contractor_reg r
+																	  where  c.login_id='$h' and c.to_login_id=r.login_id";
 																		$results = mysqli_query($con,$query);
 
 																		echo "<h2><center>Complaint Details</center></h2>";
-																		echo "<tr><th>Complaint</th><th>Status</th></tr>";
+																		echo "<tr><th>Contractor Name</th><th>Complaint</th><th>Status</th></tr>";
 																		while($v=mysqli_fetch_array($results))
 																		{
+
 																			if($v['status']==1)
 																			{
-																				$f='Approved';
+																				$f='Solved';
 																			}
 																			else {
-																				$f='Not Approved';
+																				$f='Unsolved';
 																			}
+
 																		echo "<tr>";
 																		echo "<td>"
+																		.$v['contractor_name']."</td><td>"
 																		.$v['complaint']."</td><td>"
 																		.$f."</td>";
 																		echo "</tr>";

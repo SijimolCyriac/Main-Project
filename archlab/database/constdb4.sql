@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2021 at 05:06 PM
+-- Generation Time: Apr 19, 2021 at 06:20 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -61,9 +61,7 @@ CREATE TABLE `tbl_complaint` (
 --
 
 INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, `status`) VALUES
-(1, 2, 5, 'plastering cracks', 0),
-(2, 2, 4, 'plastering cracks', 0),
-(3, 3, 4, 'Roof leakage', 0);
+(1, 2, 5, 'plastering cracks', 1);
 
 -- --------------------------------------------------------
 
@@ -145,8 +143,7 @@ CREATE TABLE `tbl_daily_progress_report` (
 --
 
 INSERT INTO `tbl_daily_progress_report` (`report_id`, `title`, `login_id`, `from_login_id`, `description`, `activityDetails`, `fdate`, `tdate`, `status`) VALUES
-(1, 'Apartment Construction', 2, 5, 'Concrete work started', 'site6.jpg', '2021-04-19', '2021-04-26', 1),
-(2, 'House Construction', 2, 4, 'Concrete work started', 'site8.jpg', '2021-04-20', '2021-04-27', 1);
+(1, 'Apartment Construction', 2, 5, 'Concrete work started', 'site6.jpg', '2021-04-19', '2021-04-26', 1);
 
 -- --------------------------------------------------------
 
@@ -220,9 +217,7 @@ CREATE TABLE `tbl_est` (
 --
 
 INSERT INTO `tbl_est` (`est_id`, `proj_id`, `cust_name`, `contractor_name`, `total_cost`, `concrete`, `brick`, `door`, `electrical`, `status`) VALUES
-(1, 1, 'Joshy John', 'Melbin Joseph', '3330000', '148000', '243000', '2305000', '60000', 1),
-(2, 3, 'Joshy John', 'Antony Mathai', '2625000', '122500', '140625', '1501000', '55000', 1),
-(3, 4, 'Biju Jose', 'Antony Mathai', '3330000', '148000', '243000', '2305000', '60000', 1);
+(1, 1, 'Joshy John', 'Melbin Joseph', '3330000', '148000', '243000', '2305000', '60000', 1);
 
 -- --------------------------------------------------------
 
@@ -410,9 +405,7 @@ CREATE TABLE `tbl_project` (
 --
 
 INSERT INTO `tbl_project` (`proj_id`, `yur_service`, `site_address`, `proj_plan`, `bidamt`, `package`, `no_of_floors`, `sqfeet`, `cust_id`, `contractor_id`, `status`) VALUES
-(1, 'Apartment Construction', 'Panamattom, Kottayam', 'plan6.jpg', '5000000', 'Premium Package', 5, 1800, 1, 2, 1),
-(3, 'House Construction', 'Panamattom, Kottayam', 'plan1.jpg', '3000000', 'Standard Package', 1, 1500, 1, 1, 1),
-(4, 'House Construction', 'Pulpel, North Karunagappally', 'plan2.jpg', '5000000', 'Premium Package', 2, 1800, 2, 1, 0);
+(1, 'Apartment Construction', 'Panamattom, Kottayam', 'plan6.jpg', '5000000', 'Premium Package', 5, 1800, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -457,8 +450,7 @@ CREATE TABLE `tbl_site_loc` (
 --
 
 INSERT INTO `tbl_site_loc` (`sid`, `proj_name`, `site_loc`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `status`) VALUES
-(1, 'House Construction', 'Panamattam, Kottayam', '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1),
-(2, 'Apartment Construction', 'Panamattom, Kottayam', '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 0);
+(1, 'House Construction', 'Panamattam, Kottayam', '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1);
 
 -- --------------------------------------------------------
 
@@ -637,7 +629,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
@@ -655,7 +647,7 @@ ALTER TABLE `tbl_customer_reg`
 -- AUTO_INCREMENT for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -667,7 +659,7 @@ ALTER TABLE `tbl_district`
 -- AUTO_INCREMENT for table `tbl_est`
 --
 ALTER TABLE `tbl_est`
-  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_feedback`
@@ -715,7 +707,7 @@ ALTER TABLE `tbl_prof`
 -- AUTO_INCREMENT for table `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_services`
@@ -727,7 +719,7 @@ ALTER TABLE `tbl_services`
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`

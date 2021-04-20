@@ -133,11 +133,7 @@ $h=$result['login_id'];
 $query = "select l.login_id,l.comp_id,l.complaint,l.status,h.cust_name from tbl_complaint l,tbl_customer_reg h
 where  l.login_id=h.login_id and l.to_login_id='$h'";
 $results = mysqli_query($con,$query);
-	?>
-	<!--<script>alert("New Complaint Found");
-	 exit;
- </script> -->
-	<?php
+
 echo "<h2><center>Complaint Details</center></h2>";
 echo "<tr><th>Customer Name</th><th>Complaint</th><th>Status</th></tr>";
 while($v=mysqli_fetch_array($results))
