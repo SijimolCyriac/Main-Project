@@ -108,13 +108,6 @@ include("DbConne.php");
             <input type="text" class="form-control py-4" name="name" id="name1" placeholder="Full Name" onblur="validate()" required/>
             </div>
 
-            <div class="form-group">
-                <label class="small mb-1" for="inputFirstName">Email Address</label>
-            <input type="text" class="form-control py-4" name="email" id="email1" placeholder="Email Address" onblur="checkAvailability3()" required/>
-
-          </div><span id="user-availability-status1"></span>
-            <span id="username-list"></span>
-            <p id="loaderIcon" style="display:none;">Loading..</p>
 
             <div class="form-row">
                 <div class="col-md-6">
@@ -130,6 +123,13 @@ include("DbConne.php");
             </div></div>
               </div>
 
+              <div class="form-group">
+                  <label class="small mb-1" for="inputFirstName">Email Address</label>
+              <input type="text" class="form-control py-4" name="email" id="email1" placeholder="Email Address" onblur="checkAvailability3()" required/>
+
+              </div><span id="user-availability-status1"></span>
+              <span id="username-list"></span>
+              <p id="loaderIcon" style="display:none;">Loading..</p>
 
 
               <div class="form-group">

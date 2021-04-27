@@ -104,7 +104,7 @@ if(isset($_SESSION['uname']))
 
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                                Weeky Progress Report
+                                Weekly Progress Report
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -171,7 +171,7 @@ if(isset($_SESSION['uname']))
 												  <ul class="price">
 												    <li class="header">Standard</li>
 												    <li class="grey">&#8377; 1750 / SqFt</li>
-												    <li class="grey"><a href="#" class="button" data-toggle="modal" data-target="#myStd">Estimate Now</a></li>
+												    <li class="grey"><a href="#" class="btn btn-success d-block px-2 py-3" data-toggle="modal" data-target="#myStd">Estimate Now</a></li>
 												  </ul>
 												</div>
 
@@ -187,6 +187,7 @@ if(isset($_SESSION['uname']))
 
 												<div class="form-group">
 												<div class="form-label-group">
+
 												<label for="exampleInputEmail1">Area in Square Feet:</label>
 												<input type="number" name="sqr" id="a" class="form-control" placeholder="Enter Square Feet" autofocus="autofocus" required>
 											  <br><label for="exampleInputEmail1">Total Cost:</label>
@@ -202,8 +203,8 @@ if(isset($_SESSION['uname']))
 												<div class="columns">
 												  <ul class="price">
 												    <li class="header" style="background-color:#4CAF50">Premium</li>
-												    <li class="grey">&#8377; 1850 / SqFt</li>
-												    <li class="grey"><a href="#" class="button" data-toggle="modal" data-target="#myPre">Estimate Now</a></li>
+												    <li class="grey">&#8377; 1950 / SqFt</li>
+												    <li class="grey"><a href="#" class="btn btn-success d-block px-2 py-3" data-toggle="modal" data-target="#myPre">Estimate Now</a></li>
 												  </ul>
 												</div>
 
@@ -220,6 +221,7 @@ if(isset($_SESSION['uname']))
 
 																								<div class="form-group">
 																								<div class="form-label-group">
+
 																								<label for="exampleInputEmail1">Area in Square Feet:</label>
 																								<input type="number" name="sqr" id="a" class="form-control" placeholder="Enter Square Feet" autofocus="autofocus" required>
 																							  <br><label for="exampleInputEmail1">Total Cost:</label>
@@ -235,8 +237,8 @@ if(isset($_SESSION['uname']))
 												<div class="columns">
 												  <ul class="price">
 												    <li class="header">Luxury</li>
-												    <li class="grey">&#x20B9; 1950 / SqFt</li>
-												    <li class="grey"><a href="#" class="button" data-toggle="modal" data-target="#myLux">Estimate Now</a></li>
+												    <li class="grey">&#x20B9; 2150 / SqFt</li>
+												    <li class="grey"><a href="#" class="btn btn-success d-block px-2 py-3" data-toggle="modal" data-target="#myLux">Estimate Now</a></li>
 												  </ul>
 												</div>
 
@@ -252,6 +254,7 @@ if(isset($_SESSION['uname']))
 
 												<div class="form-group">
 												<div class="form-label-group">
+
 												<label for="exampleInputEmail1">Area in Square Feet:</label>
 												<input type="number" name="sqr" id="a" class="form-control" placeholder="Enter Square Feet" autofocus="autofocus" required>
 												<br><label for="exampleInputEmail1">Total Cost:</label>
@@ -279,23 +282,7 @@ if(isset($_SESSION['uname']))
                 </footer>
             </div>
         </div>
-				<script>
-function getpack(a)
-{
-	if(a==0)
-	{
-		var b=$('#a').val();
-		$(".x").val(1750*b);
-	}
 
-	if(a==1)
-	{
-		var b=$('#a').val();
-		$(".x").val(1950*b);
-	}
-}
-
-				</script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

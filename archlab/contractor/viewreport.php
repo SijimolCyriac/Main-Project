@@ -6,6 +6,7 @@ if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
 $login_id=$_SESSION['lid'];
+
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +97,7 @@ $login_id=$_SESSION['lid'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View Weekly Work Details <a href="#" data-toggle="modal" data-target="#AddReport"
+                        <h2 class="mt-4">Weekly Work Details <a href="#" data-toggle="modal" data-target="#AddReport"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -112,7 +113,7 @@ $login_id=$_SESSION['lid'];
 
 																<?php
 																echo "<h2><center>Weekly Work Details</center></h2>";
-																echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Date</th><th>Status</th></tr>";
+																echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Uploaded Date</th><th>Status</th></tr>";
 
 																include("DbConne.php");
 
@@ -189,7 +190,7 @@ $login_id=$_SESSION['lid'];
 																			<label class="custom">Title</label>
 																			<input type="text" name="name" class="form-control" id="title1" onblur="validate1()" placeholder="Enter Report Title"  autofocus="autofocus" required>
                                       <br><label class="custom">Customer Name</label>
-																			<input type="text" name="cname" class="form-control" id="name1" onblur="validate()" placeholder="Enter Customer Name"  autofocus="autofocus" required>
+																			<input type="text" name="cname" class="form-control" id="nam" onblur="validate()" placeholder="Enter Customer Name"  autofocus="autofocus" required>
 																			<br><label class="custom">Description</label>
 																			<textarea  name="comp" class="form-control" id="work1" onblur="validate2()" placeholder="Enter Work Details"  autofocus="autofocus" required></textarea>
 																			<br><label class="custom">Work Details</label>
@@ -239,6 +240,21 @@ $login_id=$_SESSION['lid'];
 													$result=mysqli_fetch_array($query);
 													$c=$result['login_id'];
 
+
+													$r="select * from tbl_daily_progress_report where title='$title' and login_id='$e' and from_login_id='$c' and description='$summary' and activityDetails='$details' and fdate='$fdate' and tdate='$tdate'";
+													$result=mysqli_query($con,$r);
+													$num=mysqli_num_rows($result);
+													if($num==1)
+													{
+													  ?>
+													<script>alert("Report Already Uploaded");
+													location.href="viewreport.php";
+													 exit;
+													</script>
+													<?php
+													}
+													else
+													  {
 													$sq="insert into tbl_daily_progress_report(title,login_id,from_login_id,description,activityDetails,fdate,tdate,status) values('$title','$e','$c','$summary','$details','$fdate','$tdate','$status')";
 													if(mysqli_query($con,$sq))
 													  {
@@ -248,7 +264,7 @@ $login_id=$_SESSION['lid'];
 													     exit;
 													    </script>
 													    <?php
-													  }}
+													  }}}
 													    mysqli_close($con);
 													     ?>
 
@@ -275,7 +291,7 @@ $login_id=$_SESSION['lid'];
 function validate1()
 {
 var name=document.getElementById("title1").value;
-var letters=/^[a-z0-9A-Z\s]*$/;
+var letters=/^[a-zA-Z\s]*$/;
 if(!name.match(letters))
 {
 alert("Please Enter Title Correctly");
@@ -284,12 +300,12 @@ document.getElementById("title1").value="";
 }
 function validate()
 {
-var name=document.getElementById("name1").value;
-var letters=/^[a-zA-Z\s]*$/;
-if(!name.match(letters))
+var namee=document.getElementById("nam").value;
+var letterss=/^[a-zA-Z\s]*$/;
+if(!namee.match(letterss))
 {
 alert("Please Enter Valid Name");
-document.getElementById("name1").value="";
+document.getElementById("nam").value="";
 }
 }
 function validate2()

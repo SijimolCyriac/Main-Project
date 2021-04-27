@@ -369,7 +369,7 @@ if(!empty($_SESSION['uname']))
 				{
 				var name=document.getElementById("am").value;
 
-				var letters=/^[a-zA-Z]*$/;
+				var letters=/^[a-zA-Z\s]*$/;
 				if(!name.match(letters))
 				{
 					document.getElementById("am").value="";
@@ -381,7 +381,7 @@ if(!empty($_SESSION['uname']))
 				{
 				var name=document.getElementById("am1").value;
 
-				var letters=/^[a-zA-Z]*$/;
+				var letters=/^[a-zA-Z\s]*$/;
 				if(!name.match(letters))
 				{
 					document.getElementById("am1").value="";

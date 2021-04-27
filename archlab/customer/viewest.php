@@ -126,7 +126,7 @@ $temp=$_SESSION['uname'];
 																	$res1 = mysqli_query($con,$sql);
 
 																	echo "<h2><center>Estimation Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Status</th></tr>";
+ 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Floor</th><th>Painting</th><th>Status</th></tr>";
 																	if(mysqli_num_rows($res1)>0)
  								 								{
 
@@ -141,7 +141,9 @@ $temp=$_SESSION['uname'];
 																	.$v['concrete']."</td><td>"
 																	.$v['brick']."</td><td>"
 																	.$v['door']."</td><td>"
-																	.$v['electrical']."</td><td>";
+																	.$v['electrical']."</td><td>"
+                                  .$v['floor']."</td><td>"
+                                  .$v['paint']."</td><td>";
 																	if($v['status'] == 1 || $v['status'] =='')
 																	{
 																	echo "<a href='viewest.php?x=" .$v['est_id']." '>Approved</a>";

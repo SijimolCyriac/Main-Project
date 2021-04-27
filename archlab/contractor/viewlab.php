@@ -128,11 +128,12 @@ if(mysqli_num_rows($results)>0)
 	 exit;
 	</script>
 	<?php
+	echo "<h2><center>Labour Details</center></h2>";
+	echo "<tr><th>Labour Name</th><th>Phone No</th><th>Email Address</th><th>Location</th></tr>";
 while($fin=mysqli_fetch_array($results))
 {
 
-	echo "<h2><center>Labour Details</center></h2>";
-	echo "<tr><th>Labour Name</th><th>Phone No</th><th>Email Address</th><th>Location</th></tr>";
+
 echo "<tr>";
 echo "<td>".$fin['labour_name']."</td><td>"
 .$fin['phoneno']."</td><td>"

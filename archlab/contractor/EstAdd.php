@@ -185,7 +185,7 @@ $name=$li['contractor_name'];
 																	where p.contractor_id='$d' and p.cust_id=c.cust_id";
 																	$res1 = mysqli_query($con,$sql);
 																	$v=mysqli_fetch_array($res1);
-																	$m=$v['proj_id'];
+
 																	?>
 
 																<div class="form-group">
@@ -224,6 +224,10 @@ $name=$li['contractor_name'];
 																 <input class="form-control" id="e" name="door" placeholder="Doors & Windows" autofocus="autofocus" required>
 																 <br><label for="exampleInputEmail1">Electrical & Plumbing:</label>
 																 <input class="form-control" id="f" name="elec" placeholder="Electrical & Plumbing" autofocus="autofocus" required>
+																<br><label for="exampleInputEmail1">Flooring:</label>
+																<input class="form-control" id="g" name="floor" placeholder="Flooring" autofocus="autofocus" required>
+																<br><label for="exampleInputEmail1">Painting & Finishing:</label>
+																<input class="form-control" id="h" name="paint" placeholder="Painting & Finishing" autofocus="autofocus" required>
 
 																											</div>
 																											</div>
@@ -238,26 +242,34 @@ $name=$li['contractor_name'];
 																											$("#d").val(b*(b/8)*0.5);
 																											$("#e").val(b*4*150*(b/900)+1000);
 																											$("#f").val(30000+25000);
+																										$("#g").val(b*(b/8)*0.6);
+																												$("#h").val((1750/4)*70*4);
 
 																											}
 
 																											if(a==1)
 																											{
 																											var b=$('#a').val();
-																											$("#x").val(1850*b);
-																											$("#c").val((1850/5)*80*5);
+																											$("#x").val(1950*b);
+																											$("#c").val((1950/5)*80*5);
 																											$("#d").val(b*(b/8)*0.6);
 																											$("#e").val(b*4*160*(b/900)+1000);
 																											$("#f").val(35000+25000);
+																											$("#g").val(b*(b/8)*0.7);
+																											$("#h").val((1950/4)*70*4);
+
 																											}
 																											if(a==2)
 																											{
 																											var b=$('#a').val();
-																											$("#x").val(1950*b);
-																											$("#c").val((1950/6)*90*6);
+																											$("#x").val(2150*b);
+																											$("#c").val((2150/6)*90*6);
 																											$("#d").val(b*(b/8)*0.7);
 																											$("#e").val(b*4*170*(b/900)+1000);
 																											$("#f").val(40000+30000);
+																											$("#g").val(b*(b/8)*0.9);
+																											$("#h").val((2150/4)*70*4);
+
 																											}
 																											}
 																											</script>

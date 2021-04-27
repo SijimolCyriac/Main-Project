@@ -32,6 +32,8 @@ $concrete=$_POST['con'];
 $brick=$_POST['brick'];
 $door=$_POST['door'];
 $electrical=$_POST['elec'];
+$floor=$_POST['floor'];
+$paint=$_POST['paint'];
 $r="select * from tbl_est where proj_id='$p'";
 $result=mysqli_query($con,$r);
 $num=mysqli_num_rows($result);
@@ -46,7 +48,7 @@ location.href="EstAdd.php";
 }
 else
   {
-		$sq="insert into tbl_est(proj_id,cust_name,contractor_name,total_cost,concrete,brick,door,electrical) values('$p','$ce','$d','$cost','$concrete','$brick','$door','$electrical')";
+		$sq="insert into tbl_est(proj_id,cust_name,contractor_name,total_cost,concrete,brick,door,electrical,floor,paint) values('$p','$ce','$d','$cost','$concrete','$brick','$door','$electrical','$floor','$paint')";
 		if(mysqli_query($con,$sq))
 		{
 			?>

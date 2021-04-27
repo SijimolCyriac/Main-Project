@@ -4,14 +4,8 @@ include("DbConne.php");
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <title>Register Form</title>
+      <title>Construction Management System</title>
 
-      <!-- Required meta tags-->
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="Colorlib Templates">
-      <meta name="author" content="Colorlib">
-      <meta name="keywords" content="Colorlib Templates">
       <style>
       .status-available{color:#2FC332;}
       .status-not-available{color:#D60202;}
@@ -78,7 +72,7 @@ include("DbConne.php");
 
 	          <li class="nav-item"><a href="servic.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="custreg.php">Sign Up </a>
+            <li class="nav-item"><a class="nav-link" href="custreg.php">Sign Up </a>
             </li>
             <li class="nav-item"><a href="login.php" class="nav-link">Sign In</a></li>
 	        </ul>

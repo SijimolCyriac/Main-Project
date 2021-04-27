@@ -26,6 +26,7 @@ $pack=$_POST['pack'];
 $rooms=$_POST['rooms'];
 $feet=$_POST['feet'];
 $status='0';
+
 $sq="insert into tbl_project(yur_service,site_address,proj_plan,bidamt,package,no_of_floors,sqfeet,cust_id,contractor_id,status) values('$service','$site_address','$proj_plan','$bidamt','$pack','$rooms','$feet','$b','$a','$status')";
 if(mysqli_query($con,$sq))
   {
