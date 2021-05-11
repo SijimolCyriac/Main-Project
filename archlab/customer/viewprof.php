@@ -161,8 +161,7 @@ $temp=$_SESSION['uname'];
 		 																	 							<textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
 		 																	 									<br><label class="custom">Upload Project Plan</label>
 		 																	 									<input type="file" name="proj" class="form-control" placeholder="Upload Project Plan" id="file1" onchange="valproof()" autofocus="autofocus" required>
-		 																	 											<br><label class="custom">Bid Amount</label>
-		 																	 													<input type="number" name="amount" class="form-control" placeholder="Enter Bid Amount" autofocus="autofocus" required>
+
                                                                 	<br><label class="custom">Package</label>
 																																	<select name="pack" id="pack1" class="form-control" required>
 			 																	 														<option value="">Select Package</option>

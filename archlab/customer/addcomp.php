@@ -17,7 +17,7 @@ $query1=mysqli_query($con,$abc1);
 $result1=mysqli_fetch_array($query1);
 $e=$result1['login_id'];
 
-$sq="insert into tbl_complaint(login_id,to_login_id,complaint,status) values('$c','$e','$complaint','$status')";
+$sq="insert into tbl_complaint(login_id,to_login_id,complaint,ccstatus) values('$c','$e','$complaint','$status')";
 if(mysqli_query($con,$sq))
   {
     ?>

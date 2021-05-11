@@ -7,13 +7,13 @@ $temp=$_SESSION['uname'];
 if(isset($_REQUEST['x']))
 {
 	$a=intval($_GET['x']);
-	$sql="update tbl_site_loc set status='0' where sid='$a'";
+	$sql="update tbl_site_loc set sstatus='0' where sid='$a'";
 	mysqli_query($con,$sql);
 }
 if(isset($_REQUEST['y']))
 {
 	$a=intval($_GET['y']);
-	$sql="update tbl_site_loc set status='1' where sid='$a'";
+	$sql="update tbl_site_loc set sstatus='1' where sid='$a'";
 	mysqli_query($con,$sql);
 }
 	?>
@@ -129,8 +129,8 @@ if(isset($_REQUEST['y']))
 																	$x=mysqli_fetch_array($results);
 																	$d=$x['contractor_name'];
 
-																	$sql="select * from tbl_site_loc
-																	where  contractor_name='$d'";
+																	$sql="select * from tbl_site_loc s,tbl_project p
+																	where  p.proj_id=s.proj_id and s.contractor_name='$d'";
 																	$res1 = mysqli_query($con,$sql);
 
 																	echo "<h2><center>Location Details</center></h2>";
@@ -139,7 +139,7 @@ if(isset($_REQUEST['y']))
 
 																	while($v=mysqli_fetch_array($res1))
 																	{
-																		if($v['status']==1)
+																		if($v['sstatus']==1)
 																		{
 																			$f='Available';
 																		}
@@ -148,12 +148,12 @@ if(isset($_REQUEST['y']))
 																		}
 																	echo "<tr>";
 																	echo "<td>"
-																	.$v['proj_name']."</td><td>"
+																	.$v['yur_service']."</td><td>"
 																	.$v['labour_name']."</td><td>"
 
 																	.$v['fdate']."</td><td>"
 																	.$v['tdate']."</td><td>"
-																	.$v['site_loc']."</td><td>"
+																	.$v['site_address']."</td><td>"
 
 																	.$f."</td>";
 																	echo "</tr>";
@@ -194,6 +194,17 @@ if(isset($_REQUEST['y']))
 																 <label for="exampleInputEmail1">Contractor Name:</label>
 																<input type="text" class="form-control" id="name1" name="name" value="<?php echo $x['contractor_name']; ?>"
 																placeholder="Contractor Name"  autofocus="autofocus" required>
+																<br><label class="custom">Customer Name</label>
+																<select  name="nam" id="nam1" class="form-control" autofocus="autofocus" required>
+																 <option value="">Select Customer Name</option>
+																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
+																 while($row=mysqli_fetch_array($query))
+																 { ?>
+																 <option value="<?php echo $row['cust_name'];?>"><?php echo $row['cust_name'];?></option>
+																 <?php
+																 }
+																 ?>
+																</select>
 																<br><label for="exampleInputEmail1">Labour Name:</label>
 															 <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>
 																 <option value="">Select Labour Name</option>
@@ -206,8 +217,18 @@ if(isset($_REQUEST['y']))
 																 ?>
 																</select>
 																<br><label for="exampleInputEmail1">Project Name:</label>
-															 <input type="text" class="form-control" id="proj1" name="proj"
-															 placeholder="Project Name" onblur="validate7()" autofocus="autofocus" required>
+																<select  id="proj1" name="proj" class="form-control" autofocus="autofocus" required>
+ 																 <option value="">Select Project Name</option>
+ 																 <?php $query =mysqli_query($con,"select distinct yur_service from tbl_project p,tbl_customer_reg c
+															   where p.contractor_id='$d' and p.cust_id=c.cust_id");
+ 																 while($row=mysqli_fetch_array($query))
+ 																 { ?>
+ 																 <option value="<?php echo $row['yur_service'];?>"><?php echo $row['yur_service'];?></option>
+ 																 <?php
+ 																 }
+ 																 ?>
+ 																</select>
+
 																<br><label class="custom">Site Address</label>
 																 <textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
 															 <br><label class="custom">From Date</label>

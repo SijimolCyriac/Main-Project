@@ -104,16 +104,15 @@ if(isset($_SESSION['uname']))
 								$x=mysqli_fetch_array($results);
 								$d=$x['cust_id'];
 
-								$sql="select p.proj_id, p.yur_service,p.site_address,p.proj_plan,p.bidamt,p.status,c.contractor_name,c.phone_no,c.email_id,c.contractor_id,p.cust_id from tbl_project p,tbl_contractor_reg c
+								$sql="select p.proj_id, p.yur_service,p.site_address,p.proj_plan,p.status,c.contractor_name,c.phone_no,c.email_id,c.contractor_id,p.cust_id from tbl_project p,tbl_contractor_reg c
 								where p.cust_id='$d' and p.contractor_id=c.contractor_id";
 
 								$res1 = mysqli_query($con,$sql);
 								if(mysqli_num_rows($res1)>0)
 								{
 
-
 								echo "<h2><center>Project Details</center></h2>";
-								echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th><th>Bid Amount</th>
+								echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th>
 								<th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Status</th></tr>";
 
 while($row=mysqli_fetch_array($res1))
@@ -129,7 +128,7 @@ while($row=mysqli_fetch_array($res1))
 							echo "<td>".$row['yur_service']."</td><td>"
 							.$row['site_address']."</td><td>";
 							echo "<a href='proj.php?x=" .$row['proj_id']." ' target='_blank'>view project</a></td><td>"
-							.$row['bidamt']."</td><td>"
+
 							.$row['contractor_name']."</td><td>"
 							.$row['phone_no']."</td><td>"
 									 .$row['email_id']."</td><td>"

@@ -42,6 +42,7 @@ if(isset($_SESSION['uname']))
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="viewproj.php">View Project Details</a>
 																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
                                 </nav>
@@ -55,18 +56,19 @@ if(isset($_SESSION['uname']))
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
 																			<a class="nav-link" href="sitelab.php">Assign Location</a>
-
+	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
 
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
-															Weekly Progress Report
+															Daily Progress Report
 																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
 																</nav>
 														</div>
 
@@ -103,9 +105,9 @@ if(isset($_SESSION['uname']))
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Weekly Progress Report</div>
+                                    <div class="card-body">Daily Progress Report</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="viewreport.php">Upload Report</a>
+                                        <a class="small text-white stretched-link" href="viewreport.php">View Report</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

@@ -130,7 +130,7 @@ $results = mysqli_query($con,$query);
 $x=mysqli_fetch_array($results);
 $d=$x['contractor_id'];
 
-$sql="select p.proj_id, p.yur_service,p.site_address,p.proj_plan,p.bidamt,p.package,p.no_of_floors,p.sqfeet,p.status,c.cust_name,c.phno,
+$sql="select p.proj_id, p.yur_service,p.site_address,p.proj_plan,p.package,p.no_of_floors,p.sqfeet,p.status,c.cust_name,c.phno,
 c.email_id,p.contractor_id,c.cust_id from tbl_project p,tbl_customer_reg c
 where p.contractor_id='$d' and p.cust_id=c.cust_id";
 $res1 = mysqli_query($con,$sql);
@@ -138,7 +138,7 @@ $res1 = mysqli_query($con,$sql);
 if(mysqli_num_rows($res1)>0)
 {
 echo "<h2><center>Project Details</center></h2>";
-echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th><th>Bid Amount</th><th>Package</th><th>No of Floors</th><th>Square Feet</th><th>Customer Name</th><th>Phone No</th><th>Email Address</th><th>Status</th></tr>";
+echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th><th>Package</th><th>No of Floors</th><th>Square Feet</th><th>Customer Name</th><th>Phone No</th><th>Email Address</th><th>Status</th></tr>";
 while($v=mysqli_fetch_array($res1))
 {
 $m=$v['proj_id'];
@@ -147,7 +147,7 @@ echo "<tr>";
 echo "<td>".$v['yur_service']."</td><td>"
 .$v['site_address']."</td><td>";
 echo "<a href='proj.php?x=" .$v['proj_id']." ' target='_blank'>View Project</a></td><td>"
-.$v['bidamt']."</td><td>"
+
 .$v['package']."</td><td>"
 .$v['no_of_floors']."</td><td>"
 .$v['sqfeet']."</td><td>"

@@ -6,18 +6,28 @@ if(isset($_SESSION['uname']))
 $temp=$_SESSION['uname'];
 if(isset($_REQUEST['x']))
 {
- $a=$_GET['x'];
- $sql="update tbl_site_loc  set sstatus='0' where sid='$a'";
-mysqli_query($con,$sql);
+	$a=intval($_GET['x']);
+	$sql="update tbl_comp_assignlab set cstatus='1' where assign_id='$a'";
+	mysqli_query($con,$sql);
+  $aa="select comp_id from tbl_comp_assignlab where assign_id='$a'";
+  $c=mysqli_query($con,$aa);
+  $d=mysqli_fetch_array($c);
+  $b=$d['comp_id'];
+  $sql="update tbl_complaint set ccstatus='1' where comp_id='$b'";
+	mysqli_query($con,$sql);
 }
 if(isset($_REQUEST['y']))
 {
-	$a=$_GET['y'];
-
-	$sql="update tbl_site_loc set sstatus='1' where sid='$a'";
+	$a=intval($_GET['y']);
+	$sql="update tbl_comp_assignlab set cstatus='0' where assign_id='$a'";
+	mysqli_query($con,$sql);
+  $aa="select comp_id from tbl_comp_assignlab where assign_id='$a'";
+  $c=mysqli_query($con,$aa);
+  $d=mysqli_fetch_array($c);
+  $b=$d['comp_id'];
+  $sql="update tbl_complaint set ccstatus='0' where comp_id='$b'";
 	mysqli_query($con,$sql);
 }
-
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,10 +116,10 @@ if(isset($_REQUEST['y']))
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">Worksite Details</h2>
+                    <h2 class="mt-4">Complaint Details</h2>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Contractor</li>
+                        <li class="breadcrumb-item active">Labour</li>
                     </ol>
 
 
@@ -127,33 +137,43 @@ if(isset($_REQUEST['y']))
             																	$x=mysqli_fetch_array($results);
             																	$d=$x['labour_name'];
 
-            																	$sql="select * from tbl_site_loc s,tbl_project p
-            																	where  p.proj_id=s.proj_id and s.labour_name='$d'";
+
+                                              $sq="select c.complaint from tbl_complaint c,tbl_comp_assignlab p
+                                              where p.comp_id=c.comp_id";
+                                              $res = mysqli_query($con,$sq);
+                                              $u=mysqli_fetch_array($res);
+
+            																	$sql="select * from tbl_comp_assignlab c, tbl_project p
+            																	where p.proj_id=c.proj_id and c.labour_name='$d'";
             																	$res1 = mysqli_query($con,$sql);
 
-            																	echo "<h2><center>Location Details</center></h2>";
-             																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
+
+
+
+            																	echo "<h2><center>Complaint Details</center></h2>";
+             																	echo "<tr><th>Customer Name</th><th>Complaint</th><th>Site Location</th><th>Status</th></tr>";
                                               if(mysqli_num_rows($res1)>0)
                                               {
-
                                               while($v=mysqli_fetch_array($res1))
                                               {
+                                              $g=$v['proj_id'];
 
+                                                                                            $squ="select c.cust_name from tbl_customer_reg c,tbl_project p
+                                                                                            where p.cust_id=c.cust_id and p.proj_id='$g'";
+                                                                                            $resu = mysqli_query($con,$squ);
+                                                                                            $x=mysqli_fetch_array($resu);
                                               echo "<tr>";
                                               echo "<td>"
-                                              .$v['yur_service']."</td><td>"
-            																	.$v['contractor_name']."</td><td>"
-
-            																	.$v['fdate']."</td><td>"
-            																	.$v['tdate']."</td><td>"
+                                              .$x['cust_name']."</td><td>"
+            																	.$u['complaint']."</td><td>"
             																	.$v['site_address']."</td><td>";
-                                              if($v['sstatus'] == 1 || $v['sstatus'] =='')
+                                              if($v['cstatus'] == 0 || $v['cstatus'] =='')
                                               {
-                                              echo "<a href='viewreq.php?x=" .$v['sid']." '>Available</a>";
+                                              echo "<a href='viewcomp.php?x=" .$v['assign_id']." '>Unsolved</a>";
                                               }
                                               else
                                               {
-                                              echo "<a href='viewreq.php?y=" .$v['sid']." '>Engaged</a>
+                                              echo "<a href='viewcomp.php?y=" .$v['assign_id']." '>Solved</a>
                                               </td>";
                                               }
                                               echo "</tr>";

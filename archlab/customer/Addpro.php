@@ -21,13 +21,14 @@ $a=$_SESSION['siji'];
 $proj_plan=$_FILES['proj']['name'];
 $fileloc="project/";
 move_uploaded_file($_FILES["proj"]["tmp_name"],$fileloc.$proj_plan);
-$bidamt=$_POST['amount'];
+
 $pack=$_POST['pack'];
 $rooms=$_POST['rooms'];
 $feet=$_POST['feet'];
 $status='0';
+$proj_status='0';
 
-$sq="insert into tbl_project(yur_service,site_address,proj_plan,bidamt,package,no_of_floors,sqfeet,cust_id,contractor_id,status) values('$service','$site_address','$proj_plan','$bidamt','$pack','$rooms','$feet','$b','$a','$status')";
+$sq="insert into tbl_project(yur_service,site_address,proj_plan,package,no_of_floors,sqfeet,cust_id,contractor_id,status,proj_status) values('$service','$site_address','$proj_plan','$pack','$rooms','$feet','$b','$a','$status','$proj_status')";
 if(mysqli_query($con,$sq))
   {
     ?>

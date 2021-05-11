@@ -197,7 +197,7 @@ $name=$li['contractor_name'];
 																<br><label for="exampleInputEmail1">Customer Name:</label>
 															 <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>
 																 <option value="">Select Customer Name</option>
-																 <?php $query =mysqli_query($con,"SELECT * FROM tbl_customer_reg where status=1");
+																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
 																 while($row=mysqli_fetch_array($query))
 																 { ?>
 																 <option value="<?php echo $row['cust_id'];?>"><?php echo $row['cust_name'];?></option>

@@ -105,7 +105,7 @@ if(isset($_SESSION['uname']))
 																		{
 																		$result=mysqli_fetch_array($query1);
 																		$h=$result['login_id'];
-																		$query = "select c.complaint,c.status,r.contractor_name from tbl_complaint c,tbl_contractor_reg r
+																		$query = "select c.complaint,c.ccstatus,r.contractor_name from tbl_complaint c,tbl_contractor_reg r
 																	  where  c.login_id='$h' and c.to_login_id=r.login_id";
 																		$results = mysqli_query($con,$query);
 
@@ -114,7 +114,7 @@ if(isset($_SESSION['uname']))
 																		while($v=mysqli_fetch_array($results))
 																		{
 
-																			if($v['status']==1)
+																			if($v['ccstatus']==1)
 																			{
 																				$f='Solved';
 																			}

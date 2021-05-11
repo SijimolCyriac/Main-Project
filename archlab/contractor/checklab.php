@@ -1,11 +1,21 @@
 <?php
 session_start();
 include("DbConne.php");
-
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
-
+if(isset($_REQUEST['x']))
+{
+	$a=intval($_GET['x']);
+	$sql="update tbl_site_loc set sstatus='0' where sid='$a'";
+	mysqli_query($con,$sql);
+}
+if(isset($_REQUEST['y']))
+{
+	$a=intval($_GET['y']);
+	$sql="update tbl_site_loc set sstatus='1' where sid='$a'";
+	mysqli_query($con,$sql);
+}
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,24 +31,11 @@ $temp=$_SESSION['uname'];
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
-				      <script>
-				      function getlab(val,val1) {
-				      $.ajax({
-				      type: "POST",
-				      url: "get_lab.php",
-				      data:'catname='+val,
-				      success: function(data){
-				        $("#"+val1).html(data);
-				      }
-				      })
-				      }
-
-				      </script>
 				<style>
 										table, th, td {
 
 												text-align:center;
-												background-color:;
+
 			min-width: 150px;
 										}
 
@@ -60,17 +57,17 @@ $temp=$_SESSION['uname'];
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
-                              Project
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-	<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																<div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+															Project
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		<a class="nav-link" href="viewproj.php">View Project Details</a>
+<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
 
-                                </nav>
-                            </div>
+																</nav>
+														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
 															Labours
@@ -79,8 +76,8 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-                          <a class="nav-link" href="sitelab.php">Assign Location</a>
-
+                                        <a class="nav-link" href="sitelab.php">Assign Location</a>
+                                              <a class="nav-link" href="checklab.php">Checking Works</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -102,7 +99,6 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
-																		<a class="nav-link" href="viewcomplab.php">Worksite Complaints</a>
 																</nav>
 														</div>
 
@@ -112,7 +108,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Complaint Details</h1>
+                        <h2 class="mt-4">Checking Work</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -123,101 +119,58 @@ $temp=$_SESSION['uname'];
 														<div class="card-body">
 															<div class="table-responsive">
 
-															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-<?php
-include("DbConne.php");
-$sql="select a.login_id,b.to_login_id from tbl_login a,tbl_complaint b where
-a.login_id=b.to_login_id and a.username='$temp'";
-$query1=mysqli_query($con,$sql);
-if(mysqli_num_rows($query1)>0)
-{
-$result=mysqli_fetch_array($query1);
-$h=$result['login_id'];
-$query = "select l.login_id,l.comp_id,l.complaint,l.ccstatus,h.cust_name from tbl_complaint l,tbl_customer_reg h
-where  l.login_id=h.login_id and l.to_login_id='$h'";
-$results = mysqli_query($con,$query);
+																<form action="#" method="POST">
+																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																	<?php
+																	include("DbConne.php");
+																	$query = "select l.login_id,h.contractor_id,h.contractor_name from tbl_login l,tbl_contractor_reg h  where l.username='$temp' and l.login_id=h.login_id";
+																	$results = mysqli_query($con,$query);
+																	$x=mysqli_fetch_array($results);
+																	$d=$x['contractor_name'];
 
-echo "<h2><center>Complaint Details</center></h2>";
-echo "<tr><th>Customer Name</th><th>Complaint</th><th>Action</th><th>Status</th></tr>";
-while($v=mysqli_fetch_array($results))
-{
-echo "<tr>";
-echo "<td>".$v['cust_name']."</td><td>"
+																	$sql="select * from tbl_site_loc s,tbl_project p
+																	where  p.proj_id=s.proj_id and  s.contractor_name='$d'";
+																	$res1 = mysqli_query($con,$sql);
 
-.$v['complaint']."</td><td>";
+																	echo "<h2><center>Work Details</center></h2>";
+ 																	echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
 
-echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
-data-target="#AsgnLab'.$v['comp_id'].'">Assign Labour</a></td>';
-?>
-<div id="AsgnLab<?php echo $v['comp_id']; ?>" class="modal fade" role="dialog">
-<div class="modal-dialog">
 
-<!-- Modal content-->
-<div class="modal-content" style="width: 130%">
-<div class="modal-header"><h3>Assign Labour</h3>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body">
-<form method="POST" action="view.php">
-<div class="form-group">
-<div class="form-label-group">
-<input type="hidden" name="id" value="<?php echo $v['comp_id']; ?>">
-<label for="exampleInputEmail">Category Name</label>
-<select onChange="getlab(this.value,<?php echo $v['comp_id']; ?>)"  name="address" id="c" class="form-control" required>
-<option value="">Select Category</option>
-<?php $query =mysqli_query($con,"SELECT * FROM tbl_labour_category where status=1");
-while($row=mysqli_fetch_array($query))
-{ ?>
-<option value="<?php echo $row['category_name'];?>"><?php echo $row['category_name'];?></option>
-<?php
-}
-?>
-</select>
-<br><label for="exampleInputEmail">Labour Name</label>
-<select name="lab" id="<?php echo $v['comp_id']; ?>" class="form-control" required>
-<option value="">Select</option>
-</select>
-<br><label class="custom">Site Address</label>
- <textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">
-Close
-<span class="glyphicon glyphicon-remove-sign"></span>
-</button>
-<input type="submit" name="update" value="Send" class="btn btn-success">
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-<?php
-if($v['ccstatus']==1)
-{
-	$f='Solved';
-}
-else {
-	$f='Unsolved';
-}
-echo "<td>"
- .$f."</td>";
-echo "</tr>";
-}}
-else {
-	?>
-	<script>alert("No Complaint Found");
-	location.href="index.php";
-	 exit;
-	</script>
-	<?php
-}
-?>
-</table>
+																	while($v=mysqli_fetch_array($res1))
+																	{
+																		if($v['proj_sstatus']==0)
+																		{
+																			$f='Pending';
+																		}
+																		else if($v['proj_sstatus']==1) {
+																			$f='Work in Progress';
+																		}
+																		else {
+																			$f='Completed';
+																		}
+																	echo "<tr>";
+																	echo "<td>"
+																	.$v['yur_service']."</td><td>"
+																	.$v['labour_name']."</td><td>"
+
+																	.$v['fdate']."</td><td>"
+																	.$v['tdate']."</td><td>"
+																	.$v['site_address']."</td><td>"
+
+																	.$f."</td>";
+																	echo "</tr>";
+																	}
+
+																	?>
+													</table></form>
+
+
+													</div></div>
+													</div>
 
 
 </div></div>
+</div>
 </div>
 
   <div style="height: 100vh;"></div>
@@ -238,6 +191,7 @@ else {
 </footer>
 </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>

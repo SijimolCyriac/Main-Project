@@ -4,16 +4,17 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 	$temp=$_SESSION['uname'];
+	$login_id=$_SESSION['lid'];
 	if(isset($_REQUEST['x']))
 	{
 		$a=intval($_GET['x']);
-		$sql="update tbl_daily_progress_report set status='0' where report_id='$a'";
+		$sql="update tbl_daily_progress_report set dstatus='0' where report_id='$a'";
 		mysqli_query($con,$sql);
 	}
 	if(isset($_REQUEST['y']))
 	{
 		$a=intval($_GET['y']);
-		$sql="update tbl_daily_progress_report set status='1' where report_id='$a'";
+		$sql="update tbl_daily_progress_report set dstatus='1' where report_id='$a'";
 		mysqli_query($con,$sql);
 	}
 	?>
@@ -108,31 +109,35 @@ if(isset($_SESSION['uname']))
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<?php
 								include("DbConne.php");
+								echo "<h5><center>Report Details</center></h5>";
+								echo "<tr><th>Title</th><th>Activity Details</th><th>Action</th><th>Status</th></tr>";
 
-								$sql="select a.login_id,b.login_id from tbl_login a,tbl_daily_progress_report b where
-								a.login_id=b.login_id and a.username='$temp'";
+								$sql="select * from tbl_customer_reg where login_id='$login_id'";
 								$query1=mysqli_query($con,$sql);
 								if(mysqli_num_rows($query1)>0)
 								{
-
 								$result=mysqli_fetch_array($query1);
-								$h=$result['login_id'];
+							  $cust_id=$result['cust_id'];
 
+								$sql1="select * from tbl_project where cust_id='$cust_id'";
+								$query2=mysqli_query($con,$sql1);
+								while($result1=mysqli_fetch_array($query2)){
+									$contractor_id=$result1['contractor_id'];
+									$proj_id=$result1['proj_id'];
 
-								$query = "select h.login_id,l.report_id,l.title,l.activityDetails,l.status from tbl_daily_progress_report l,
-								tbl_customer_reg h where  l.login_id=h.login_id and l.login_id='$h'";
-								$results = mysqli_query($con,$query);
-								echo "<h5><center>Report Details</center></h5>";
-								echo "<tr><th>Title</th><th>Activity Details</th><th>Action</th><th>Status</th></tr>";
-								if(mysqli_num_rows($results)>0)
-								{
-								while($v=mysqli_fetch_array($results))
+									$query = "select * from tbl_contractor_reg where contractor_id='$contractor_id'";
+									$results = mysqli_query($con,$query);
+									if($v=mysqli_fetch_array($results))
+									{
+								$sql2="select * from tbl_daily_progress_report d,tbl_project p where p.proj_id=d.proj_id and p.proj_id='$proj_id'";
+								$query3=mysqli_query($con,$sql2);
+								while($v=mysqli_fetch_array($query3))
 								{
 								echo "<tr>";
-								echo "<td>".$v['title']."</td><td>";
+								echo "<td>".$v['yur_service']."</td><td>";
 								echo "<a href='repp.php?x=" .$v['report_id']." ' target='_blank'>Activity</a></td><td>";
                 echo "<a href='viewrep.php?x=" .$v['report_id']." ' class='btn btn-sm btn-info'>View</a></td><td>";
-								if($v['status'] == 1 || $v['status'] =='')
+								if($v['dstatus'] == 1 || $v['dstatus'] =='')
 								{
 								echo "<a href='viewreport.php?x=" .$v['report_id']." '>Verified</a>";
 								}
@@ -142,7 +147,7 @@ if(isset($_SESSION['uname']))
 								</td>";
 								}
 								echo "</tr>";
-							}}}
+							}}}}
 else
 {
 echo "</table><h1 align='center'>No Report Found..</h1>";

@@ -128,18 +128,18 @@ $login_id=$_SESSION['lid'];
 																$query2=mysqli_query($con,$sql1);
 															while($result1=mysqli_fetch_array($query2)){
 																$cust_id=$result1['cust_id'];
-																$proj_id=$result1['proj_id'];
 
 																$query = "select * from tbl_customer_reg where cust_id='$cust_id'";
 																$results = mysqli_query($con,$query);
 																if($v=mysqli_fetch_array($results))
 																{
-
-																	$sql2="select * from tbl_daily_progress_report where proj_id='$proj_id'";
+																	$chk_id=$v['login_id'];
+																	$chk_id1=$result['login_id'];
+																	$sql2="select * from tbl_daily_progress_report where login_id='$chk_id' and from_login_id='$chk_id1'";
 																	$query3=mysqli_query($con,$sql2);
 																	while($result2=mysqli_fetch_array($query3)){
 
-																	if($result2['dstatus']==1)
+																	if($result2['status']==1)
 																	{
 																		$a='Verified';
 																	}
@@ -148,7 +148,7 @@ $login_id=$_SESSION['lid'];
 																	}
 																echo "<tr>";
 																echo "<td>".$v['cust_name']."</td><td>"
-																.$result1['yur_service']."</td><td>"
+																.$result2['title']."</td><td>"
 																.$result2['description']."</td><td>";
 																echo "<a href='repp.php?x=" .$result2['report_id']." ' target='_blank'>View Activity</a></td><td>"
 
@@ -263,25 +263,19 @@ $login_id=$_SESSION['lid'];
 													$fdate=$_POST['fdate'];
 													$tdate=$_POST['tdate'];
 													$status='0';
-
-													$f="select cust_id from tbl_customer_reg where cust_name='$cust_name'";
+													$f="select login_id from tbl_customer_reg where cust_name='$cust_name'";
 													$res=mysqli_query($con,$f);
 													$h=mysqli_fetch_array($res);
-													$e=$h['cust_id'];
+													$e=$h['login_id'];
 
 
-													$sql="select * from tbl_contractor_reg where login_id='$login_id'";
-													$query=mysqli_query($con,$sql);
+													$abc="select login_id from tbl_login where username='$temp'";
+													$query=mysqli_query($con,$abc);
 													$result=mysqli_fetch_array($query);
-													$c=$result['contractor_id'];
-
-													$g="select proj_id from tbl_project where cust_id='$e' and contractor_id='$c'";
-													$s=mysqli_query($con,$g);
-													$o=mysqli_fetch_array($s);
-													$p=$o['proj_id'];
+													$c=$result['login_id'];
 
 
-													$r="select * from tbl_daily_progress_report where proj_id='$p' and description='$summary' and activityDetails='$details' and fdate='$fdate' and tdate='$tdate'";
+													$r="select * from tbl_daily_progress_report where title='$title' and login_id='$e' and from_login_id='$c' and description='$summary' and activityDetails='$details' and fdate='$fdate' and tdate='$tdate'";
 													$result=mysqli_query($con,$r);
 													$num=mysqli_num_rows($result);
 													if($num==1)
@@ -295,7 +289,7 @@ $login_id=$_SESSION['lid'];
 													}
 													else
 													  {
-													$sq="insert into tbl_daily_progress_report(proj_id,description,activityDetails,fdate,tdate,dstatus) values('$p','$summary','$details','$fdate','$tdate','$status')";
+													$sq="insert into tbl_daily_progress_report(title,login_id,from_login_id,description,activityDetails,fdate,tdate,status) values('$title','$e','$c','$summary','$details','$fdate','$tdate','$status')";
 													if(mysqli_query($con,$sq))
 													  {
 													    ?>

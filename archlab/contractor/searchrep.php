@@ -5,7 +5,7 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
-
+$login_id=$_SESSION['lid'];
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,29 +21,19 @@ $temp=$_SESSION['uname'];
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
-				      <script>
-				      function getlab(val,val1) {
-				      $.ajax({
-				      type: "POST",
-				      url: "get_lab.php",
-				      data:'catname='+val,
-				      success: function(data){
-				        $("#"+val1).html(data);
-				      }
-				      })
-				      }
+				<script>
+				function getdistrict(val) {
+				$.ajax({
+				type: "POST",
+				url: "get_district.php",
+				data:'state_id='+val,
+				success: function(data){
+					$("#district-list").html(data);
+				}
+				});
+				}
 
-				      </script>
-				<style>
-										table, th, td {
-
-												text-align:center;
-												background-color:;
-			min-width: 150px;
-										}
-
-
-								</style>
+				</script>
 
     </head>
     <body>
@@ -79,7 +69,7 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-                          <a class="nav-link" href="sitelab.php">Assign Location</a>
+<a class="nav-link" href="sitelab.php">Assign Location</a>
 
 																</nav>
 														</div>
@@ -102,17 +92,18 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
-																		<a class="nav-link" href="viewcomplab.php">Worksite Complaints</a>
 																</nav>
 														</div>
 
+
+                    </div>
 
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Complaint Details</h1>
+                        <h1 class="mt-4">Report Details</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -122,138 +113,80 @@ $temp=$_SESSION['uname'];
 												<div class="card mb-4">
 														<div class="card-body">
 															<div class="table-responsive">
+                            <h2><center>Report Details</center></h2>
+															<form action="viewreport.php" method="POST">
+																<?php
+																include("DbConne.php");
+																$sql="select * from tbl_contractor_reg where login_id='$login_id'";
+		                            $query1=mysqli_query($con,$sql);
+		                            $result=mysqli_fetch_array($query1);
 
+		                            $contractor_name=$result['contractor_name'];
+																?>
 															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-<?php
-include("DbConne.php");
-$sql="select a.login_id,b.to_login_id from tbl_login a,tbl_complaint b where
-a.login_id=b.to_login_id and a.username='$temp'";
-$query1=mysqli_query($con,$sql);
-if(mysqli_num_rows($query1)>0)
-{
-$result=mysqli_fetch_array($query1);
-$h=$result['login_id'];
-$query = "select l.login_id,l.comp_id,l.complaint,l.ccstatus,h.cust_name from tbl_complaint l,tbl_customer_reg h
-where  l.login_id=h.login_id and l.to_login_id='$h'";
-$results = mysqli_query($con,$query);
-
-echo "<h2><center>Complaint Details</center></h2>";
-echo "<tr><th>Customer Name</th><th>Complaint</th><th>Action</th><th>Status</th></tr>";
-while($v=mysqli_fetch_array($results))
-{
-echo "<tr>";
-echo "<td>".$v['cust_name']."</td><td>"
-
-.$v['complaint']."</td><td>";
-
-echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
-data-target="#AsgnLab'.$v['comp_id'].'">Assign Labour</a></td>';
-?>
-<div id="AsgnLab<?php echo $v['comp_id']; ?>" class="modal fade" role="dialog">
-<div class="modal-dialog">
-
-<!-- Modal content-->
-<div class="modal-content" style="width: 130%">
-<div class="modal-header"><h3>Assign Labour</h3>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body">
-<form method="POST" action="view.php">
-<div class="form-group">
-<div class="form-label-group">
-<input type="hidden" name="id" value="<?php echo $v['comp_id']; ?>">
-<label for="exampleInputEmail">Category Name</label>
-<select onChange="getlab(this.value,<?php echo $v['comp_id']; ?>)"  name="address" id="c" class="form-control" required>
-<option value="">Select Category</option>
-<?php $query =mysqli_query($con,"SELECT * FROM tbl_labour_category where status=1");
-while($row=mysqli_fetch_array($query))
-{ ?>
-<option value="<?php echo $row['category_name'];?>"><?php echo $row['category_name'];?></option>
-<?php
-}
-?>
-</select>
-<br><label for="exampleInputEmail">Labour Name</label>
-<select name="lab" id="<?php echo $v['comp_id']; ?>" class="form-control" required>
-<option value="">Select</option>
-</select>
-<br><label class="custom">Site Address</label>
- <textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">
-Close
-<span class="glyphicon glyphicon-remove-sign"></span>
-</button>
-<input type="submit" name="update" value="Send" class="btn btn-success">
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-<?php
-if($v['ccstatus']==1)
-{
-	$f='Solved';
-}
-else {
-	$f='Unsolved';
-}
-echo "<td>"
- .$f."</td>";
-echo "</tr>";
-}}
-else {
-	?>
-	<script>alert("No Complaint Found");
-	location.href="index.php";
-	 exit;
-	</script>
-	<?php
-}
-?>
-</table>
+                                <div class="input-group form-group">
+																<div class="input-group-prepend">
+																<span class="input-group-text"><i class="fa fa-list"></i></span>
+																</div>
 
 
-</div></div>
+																<select name="cname" class="form-control" id="nam" autofocus="autofocus" required>
+																	<option value="">Select Labour Name</option>
+																	<?php $query =mysqli_query($con,"select * from tbl_labours_reg c,tbl_site_loc p where p.contractor_name='$contractor_name' and p.labour_name=c.labour_name and p.status='1'");
+																	while($row=mysqli_fetch_array($query))
+																	{ ?>
+																	<option value="<?php echo $row['labour_name'];?>"><?php echo $row['labour_name'];?></option>
+																	<?php
+																	}
+																	?>
+																 </select>
+
+												<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+												</div>
+
+												<input type="date" name="fdate" class="form-control" placeholder="Enter Today's Date" autofocus="autofocus" required>
 </div>
 
-  <div style="height: 100vh;"></div>
-  <div class="card mb-4"><div class="card-body"></div></div>
-</div>
-</main>
-<footer class="py-4 bg-light mt-auto">
-<div class="container-fluid">
-  <div class="d-flex align-items-center justify-content-between small">
-      <div class="text-muted"></div>
-      <div>
-          <a href="#"></a>
-          &middot;
-          <a href="#"></a>
-      </div>
-  </div>
-</div>
-</footer>
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
-</body>
-<script src="app.js"></script>
-<script>
-	 history.pushState(null, null, location.href);
-	window.onpopstate = function () {
-			history.go(1);
-	};
-	</script>
+
+												<div class="card-footer">
+						            <div class="d-flex justify-content-center links">
+						            <center><input type="submit" name="search" value="Search" class="btn btn-primary" >
+						            <input type="reset" value="Cancel" class="btn btn-primary"></center>
+						            </div>
+						            </div>
+											</table>
+											</form>
+										</div></div>
+									</div>
+
+                        <div style="height: 100vh;"></div>
+                        <div class="card mb-4"><div class="card-body"></div></div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted"></div>
+                            <div>
+                                <a href="#"></a>
+                                &middot;
+                                <a href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
 <?php
 }
 else
 {
-	header("location: ../login.php");
+		header("location: ../login.php");
 }
 ?>

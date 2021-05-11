@@ -5,7 +5,6 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
-
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,19 +20,7 @@ $temp=$_SESSION['uname'];
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
-				      <script>
-				      function getlab(val,val1) {
-				      $.ajax({
-				      type: "POST",
-				      url: "get_lab.php",
-				      data:'catname='+val,
-				      success: function(data){
-				        $("#"+val1).html(data);
-				      }
-				      })
-				      }
 
-				      </script>
 				<style>
 										table, th, td {
 
@@ -102,7 +89,7 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
-																		<a class="nav-link" href="viewcomplab.php">Worksite Complaints</a>
+																				<a class="nav-link" href="viewcomplab.php">Worksite Complaints</a>
 																</nav>
 														</div>
 
@@ -129,80 +116,31 @@ include("DbConne.php");
 $sql="select a.login_id,b.to_login_id from tbl_login a,tbl_complaint b where
 a.login_id=b.to_login_id and a.username='$temp'";
 $query1=mysqli_query($con,$sql);
+echo "<h2><center>Complaint Details</center></h2>";
+echo "<tr><th>Labour Name</th><th>Complaint</th><th>Status</th></tr>";
 if(mysqli_num_rows($query1)>0)
 {
 $result=mysqli_fetch_array($query1);
 $h=$result['login_id'];
-$query = "select l.login_id,l.comp_id,l.complaint,l.ccstatus,h.cust_name from tbl_complaint l,tbl_customer_reg h
-where  l.login_id=h.login_id and l.to_login_id='$h'";
+$query = "select l.comp_id,l.complaint,h.cstatus,h.labour_name from tbl_complaint l,tbl_comp_assignlab h
+where  l.comp_id=h.comp_id and l.to_login_id='$h'";
 $results = mysqli_query($con,$query);
 
-echo "<h2><center>Complaint Details</center></h2>";
-echo "<tr><th>Customer Name</th><th>Complaint</th><th>Action</th><th>Status</th></tr>";
 while($v=mysqli_fetch_array($results))
 {
+	if($v['cstatus'] == 1)
+	 {
+	 $f='Solved';
+	 }
+	 else
+	 {
+		$f='Unsolved';
+	 }
 echo "<tr>";
-echo "<td>".$v['cust_name']."</td><td>"
+echo "<td>".$v['labour_name']."</td><td>"
+.$v['complaint']."</td><td>"
+.$f."</td>";
 
-.$v['complaint']."</td><td>";
-
-echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
-data-target="#AsgnLab'.$v['comp_id'].'">Assign Labour</a></td>';
-?>
-<div id="AsgnLab<?php echo $v['comp_id']; ?>" class="modal fade" role="dialog">
-<div class="modal-dialog">
-
-<!-- Modal content-->
-<div class="modal-content" style="width: 130%">
-<div class="modal-header"><h3>Assign Labour</h3>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body">
-<form method="POST" action="view.php">
-<div class="form-group">
-<div class="form-label-group">
-<input type="hidden" name="id" value="<?php echo $v['comp_id']; ?>">
-<label for="exampleInputEmail">Category Name</label>
-<select onChange="getlab(this.value,<?php echo $v['comp_id']; ?>)"  name="address" id="c" class="form-control" required>
-<option value="">Select Category</option>
-<?php $query =mysqli_query($con,"SELECT * FROM tbl_labour_category where status=1");
-while($row=mysqli_fetch_array($query))
-{ ?>
-<option value="<?php echo $row['category_name'];?>"><?php echo $row['category_name'];?></option>
-<?php
-}
-?>
-</select>
-<br><label for="exampleInputEmail">Labour Name</label>
-<select name="lab" id="<?php echo $v['comp_id']; ?>" class="form-control" required>
-<option value="">Select</option>
-</select>
-<br><label class="custom">Site Address</label>
- <textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">
-Close
-<span class="glyphicon glyphicon-remove-sign"></span>
-</button>
-<input type="submit" name="update" value="Send" class="btn btn-success">
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-<?php
-if($v['ccstatus']==1)
-{
-	$f='Solved';
-}
-else {
-	$f='Unsolved';
-}
-echo "<td>"
- .$f."</td>";
 echo "</tr>";
 }}
 else {
