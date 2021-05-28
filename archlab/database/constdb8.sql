@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 07:26 AM
+-- Generation Time: May 11, 2021 at 09:29 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -50,34 +50,6 @@ INSERT INTO `tbl_admin` (`login_id`, `reg_id`, `name`, `phno`, `email_id`) VALUE
 
 CREATE TABLE `tbl_attnd` (
   `attnd_id` int(10) NOT NULL,
-  `proj_id` int(10) NOT NULL,
-  `cdate` varchar(100) NOT NULL,
-  `contractor_name` varchar(100) NOT NULL,
-  `labour_name` varchar(100) NOT NULL,
-  `attd` varchar(50) NOT NULL,
-  `status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_attnd`
---
-
-INSERT INTO `tbl_attnd` (`attnd_id`, `proj_id`, `cdate`, `contractor_name`, `labour_name`, `attd`, `status`) VALUES
-(1, 6, '2021-05-18', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
-(2, 3, '2021-05-18', 'Antony Mathai', 'Appu Jose', 'Present', 0),
-(3, 6, '2021-05-19', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
-(4, 6, '2021-05-20', 'Melbin Joseph', 'Alex', 'Present', 0),
-(9, 1, '2021-05-19', 'Melbin Joseph', 'Alex', 'Present', 0),
-(10, 6, '2021-05-28', 'Melbin Joseph', 'Babu Meth', 'Present', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_attnd_copy`
---
-
-CREATE TABLE `tbl_attnd_copy` (
-  `attnd_id` int(10) NOT NULL,
   `proj_name` varchar(100) NOT NULL,
   `site_loc` varchar(100) NOT NULL,
   `cdate` varchar(100) NOT NULL,
@@ -89,35 +61,11 @@ CREATE TABLE `tbl_attnd_copy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_attnd_copy`
+-- Dumping data for table `tbl_attnd`
 --
 
-INSERT INTO `tbl_attnd_copy` (`attnd_id`, `proj_name`, `site_loc`, `cdate`, `contractor_name`, `labour_name`, `work_proof`, `attd`, `status`) VALUES
+INSERT INTO `tbl_attnd` (`attnd_id`, `proj_name`, `site_loc`, `cdate`, `contractor_name`, `labour_name`, `work_proof`, `attd`, `status`) VALUES
 (1, 'House Construction', 'Panamattam', '5/5/2021', 'Antony Mathai', 'Babu Meth', 'work-9.jpg', 'Present', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_bank`
---
-
-CREATE TABLE `tbl_bank` (
-  `bank_id` int(10) NOT NULL,
-  `cust_id` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `cardno` varchar(50) NOT NULL,
-  `exp_date` varchar(100) NOT NULL,
-  `cvv` int(100) NOT NULL,
-  `tamount` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_bank`
---
-
-INSERT INTO `tbl_bank` (`bank_id`, `cust_id`, `name`, `cardno`, `exp_date`, `cvv`, `tamount`) VALUES
-(1, 1, 'Joshy John', '8956-2356-1452-8523', 'April 2021', 562, '405000'),
-(2, 2, 'Biju Jose', '2356-1245-8541-8975', 'November 2022', 451, '1000000');
 
 -- --------------------------------------------------------
 
@@ -139,8 +87,7 @@ CREATE TABLE `tbl_complaint` (
 
 INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, `ccstatus`) VALUES
 (1, 2, 5, 'plastering cracks', 1),
-(2, 3, 4, 'bjhjhijoiuoiuo', 1),
-(3, 2, 4, 'roof leakage', 0);
+(2, 3, 4, 'bjhjhijoiuoiuo', 1);
 
 -- --------------------------------------------------------
 
@@ -162,8 +109,7 @@ CREATE TABLE `tbl_comp_assignlab` (
 
 INSERT INTO `tbl_comp_assignlab` (`assign_id`, `comp_id`, `proj_id`, `labour_name`, `cstatus`) VALUES
 (1, 1, 1, 'Appu Jose', 1),
-(2, 2, 4, 'Solomon', 1),
-(3, 3, 3, 'Ajay KT', 0);
+(2, 2, 4, 'Solomon', 1);
 
 -- --------------------------------------------------------
 
@@ -285,8 +231,7 @@ CREATE TABLE `tbl_daily_progress_report` (
 INSERT INTO `tbl_daily_progress_report` (`report_id`, `proj_id`, `description`, `activityDetails`, `fdate`, `tdate`, `dstatus`) VALUES
 (1, 3, 'bkjnkjhkk', 'site8.jpg', '2021-05-10', '2021-05-17', 1),
 (2, 4, 'vjgvjhhjgjh', 'site2.jpg', '2021-05-10', '2021-05-17', 1),
-(6, 1, 'vhjvhkjh', 'site3.jpg', '2021-05-10', '2021-05-17', 0),
-(7, 6, 'concrete work started', 'site7.jpg', '2021-05-28', '2021-06-04', 0);
+(6, 1, 'vhjvhkjh', 'site3.jpg', '2021-05-10', '2021-05-17', 0);
 
 -- --------------------------------------------------------
 
@@ -493,23 +438,12 @@ INSERT INTO `tbl_login` (`login_id`, `username`, `password`, `user_type`, `statu
 --
 
 CREATE TABLE `tbl_payment` (
-  `pay_id` int(10) NOT NULL,
-  `bank_id` int(10) NOT NULL,
-  `proj_id` int(10) NOT NULL,
-  `amount` int(11) NOT NULL
+  `paymentid` int(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `card_number` varchar(50) NOT NULL,
+  `amount` varchar(1000) NOT NULL,
+  `expdate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_payment`
---
-
-INSERT INTO `tbl_payment` (`pay_id`, `bank_id`, `proj_id`, `amount`) VALUES
-(1, 2, 4, 10000),
-(2, 1, 3, 50000),
-(3, 1, 1, 15000),
-(4, 1, 1, 20000),
-(5, 1, 3, 50000),
-(6, 1, 1, 45000);
 
 -- --------------------------------------------------------
 
@@ -688,16 +622,13 @@ CREATE TABLE `tbl_site_loc` (
 --
 
 INSERT INTO `tbl_site_loc` (`sid`, `proj_id`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `sstatus`, `proj_sstatus`) VALUES
-(1, 4, '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1, 2),
-(2, 6, '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 1, 1),
-(3, 7, '2021-04-27', '2021-05-04', 'Manu Philip', 'Alex', 0, 1),
+(1, 4, '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1, 0),
+(2, 6, '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 0, 0),
+(3, 7, '2021-04-27', '2021-05-04', 'Manu Philip', 'Alex', 0, 0),
 (4, 8, '2021-04-15', '2021-04-22', 'Siby Jose', 'Vishal Dev', 0, 0),
 (11, 3, '2021-05-14', '2021-05-14', 'Antony Mathai', 'Appu Jose', 0, 0),
 (12, 4, '2021-05-14', '2021-05-21', 'Antony Mathai', 'Solomon', 0, 0),
-(13, 6, '2021-05-11', '2021-05-18', 'Melbin Joseph', 'Alex', 1, 2),
-(14, 1, '2021-05-20', '2021-05-27', 'Melbin Joseph', 'Alex', 1, 1),
-(15, 1, '2021-05-28', '2021-06-04', 'Melbin Joseph', 'Solomon', 0, 0),
-(16, 6, '2021-05-24', '2021-05-31', 'Melbin Joseph', 'Billu', 0, 0);
+(13, 6, '2021-05-11', '2021-05-18', 'Melbin Joseph', 'Alex', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -760,18 +691,6 @@ ALTER TABLE `tbl_admin`
 --
 ALTER TABLE `tbl_attnd`
   ADD PRIMARY KEY (`attnd_id`);
-
---
--- Indexes for table `tbl_attnd_copy`
---
-ALTER TABLE `tbl_attnd_copy`
-  ADD PRIMARY KEY (`attnd_id`);
-
---
--- Indexes for table `tbl_bank`
---
-ALTER TABLE `tbl_bank`
-  ADD PRIMARY KEY (`bank_id`);
 
 --
 -- Indexes for table `tbl_complaint`
@@ -849,7 +768,7 @@ ALTER TABLE `tbl_login`
 -- Indexes for table `tbl_payment`
 --
 ALTER TABLE `tbl_payment`
-  ADD PRIMARY KEY (`pay_id`);
+  ADD PRIMARY KEY (`paymentid`);
 
 --
 -- Indexes for table `tbl_postoff`
@@ -913,31 +832,19 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_attnd`
 --
 ALTER TABLE `tbl_attnd`
-  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tbl_attnd_copy`
---
-ALTER TABLE `tbl_attnd_copy`
   MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_bank`
---
-ALTER TABLE `tbl_bank`
-  MODIFY `bank_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_comp_assignlab`
 --
 ALTER TABLE `tbl_comp_assignlab`
-  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
@@ -961,7 +868,7 @@ ALTER TABLE `tbl_daily_progress`
 -- AUTO_INCREMENT for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -1003,7 +910,7 @@ ALTER TABLE `tbl_login`
 -- AUTO_INCREMENT for table `tbl_payment`
 --
 ALTER TABLE `tbl_payment`
-  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `paymentid` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_postoff`
@@ -1039,7 +946,7 @@ ALTER TABLE `tbl_site`
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`
