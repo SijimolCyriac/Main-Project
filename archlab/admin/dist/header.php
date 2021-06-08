@@ -103,9 +103,9 @@ Close
 <div class="form-label-group">
 
 <label for="exampleInputEmail1">Username</label>
-<input type="text"  class="form-control"  name="name"  autofocus="autofocus" required  placeholder="UserName"  value="<?php echo $a['username']; ?>">
+<input type="text"  class="form-control"  name="name"  autofocus="autofocus" required  placeholder="UserName" disabled value="<?php echo $a['username']; ?>">
     <br><label for="exampleInputEmail1">Old Password</label>
-    <input type="password"  class="form-control"   autofocus="autofocus" required  placeholder="Old Password" name="old" id="old" value="<?php echo $a['password']; ?>">
+    <input type="password"  class="form-control"   autofocus="autofocus" required  placeholder="Old Password" name="old" id="old" disabled value="<?php echo $a['password']; ?>">
     <br><label for="exampleInputEmail1">New Password</label>
     <input type="password" class="form-control" name="new" id="pass" placeholder="New Password" onblur="validate4()" autofocus="autofocus" required>
     <br><label for="exampleInputEmail1">Confirm Password</label>

@@ -406,7 +406,7 @@ include("DbConne.php");
       var num= /^[A-Z]+[^a-z!@#?$%^&*()+=]+$/;
       if(!licnum.match(num))
       {
-      alert("Enter Valid License Number");
+      alert("Enter Valid License Number Eg: FG-45/NM/41");
       document.getElementById("license").value="";
       }
       }

@@ -48,14 +48,26 @@ $temp=$_SESSION['uname'];
 														</div>
 
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-																<div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-																Daily Progress Report
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Weekly Progress Report
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="viewreport.php">View Report</a>
+
+                                </nav>
+                            </div>
+
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+															 Payment
 																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report</a>
-
+																		<a class="nav-link" href="addpay.php">View Payment</a>
+                                    <a class="nav-link" href="viewtran.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -107,17 +119,9 @@ $temp=$_SESSION['uname'];
 																					$res=mysqli_fetch_array($query);
 																					$b=$res['login_id'];
 
-                                          $s=$result['login_id'];
-																					$sqli="select * from tbl_prof where login_id='$s'";
-								 													$c1=mysqli_query($con,$sqli);
-								 													$res1=mysqli_fetch_array($c1);
-
-																					$sqli="select proj_id from tbl_project";
-																					$d1=mysqli_query($con,$sqli);
-																					$res2=mysqli_fetch_array($d1);
 																				}
 								 													?>
-																					<img src="../contractor/photo/<?php echo $res1['photo']; ?>"
+																					<img src="../contractor/photo/<?php echo $result['photo']; ?>"
  																          align="left" width="300" height="400">
 
 																					<div style="margin-top:15%;  color:green;">
@@ -127,7 +131,7 @@ $temp=$_SESSION['uname'];
                                           <span><h5>Phone Number : <?php echo $result['phone_no']; ?></h5></span>
 																					<span><h5>Company Name : <?php echo $result['companyName']; ?></h5></span>
 																						<span><h5>Specialization : <?php echo $result['spec']; ?></h5></span>
-																				  <span><h5>Year of Experience : <?php echo $res1['yoexp']; ?></h5></span><br>
+																				  <span><h5>Year of Experience : <?php echo $result['yoexp']; ?></h5></span><br>
 																				  <a href="#" class="btn btn-sm btn-info" data-toggle="modal"
 		 																		 data-target="#UploadProject">Upload Project</a></center>
 																			 </div></form>
@@ -144,19 +148,12 @@ $temp=$_SESSION['uname'];
 
 
 		 																	 						<form method="POST" action="Addpro.php" enctype="multipart/form-data">
+
 		 																	 							<div class="form-group">
 		 																	 								<div class="form-label-group">
 		 																	 							<label class="custom">Your Service</label>
-		 																	 							<select name="services" id="service1" class="form-control" required>
-		 																	 								<option value="">Select Your Services</option>
-		 																	 								<?php $query =mysqli_query($con,"SELECT * FROM tbl_services where status=1");
-		 																	 								while($row=mysqli_fetch_array($query))
-		 																	 								{ ?>
-		 																	 								<option value="<?php echo $row['service'];?>"><?php echo $row['service'];?></option>
-		 																	 								<?php
-		 																	 								}
-		 																	 								?>
-		 																	 							</select>
+																										<input type="text" class="form-control" name="services" id="service1" disabled value="<?php echo $result['spec']; ?>" required>
+
 		 																	 								<br><label class="custom">Site Address</label>
 		 																	 							<textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
 		 																	 									<br><label class="custom">Upload Project Plan</label>

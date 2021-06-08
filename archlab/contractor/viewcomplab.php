@@ -134,7 +134,7 @@ while($v=mysqli_fetch_array($results))
 	 }
 	 else
 	 {
-		$f='Unsolved';
+		$f='Pending';
 	 }
 echo "<tr>";
 echo "<td>".$v['labour_name']."</td><td>"

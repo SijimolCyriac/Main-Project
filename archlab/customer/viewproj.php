@@ -50,7 +50,8 @@ if(isset($_SESSION['uname']))
 	                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	                                <nav class="sb-sidenav-menu-nested nav">
 	                                    <a class="nav-link" href="viewproj.php">View Project</a>
-<a class="nav-link" href="viewest.php">View Estimation</a>
+                                      <a class="nav-link" href="viewest.php">View Estimation</a>
+																					<a class="nav-link" href="checkproj.php">Check Project</a>
 	                                </nav>
 	                            </div>
 
@@ -65,6 +66,19 @@ if(isset($_SESSION['uname']))
 
 	                                </nav>
 	                            </div>
+
+															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																	<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+																 Payment
+																	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+															</a>
+															<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																	<nav class="sb-sidenav-menu-nested nav">
+																			<a class="nav-link" href="addpay.php">View Payment</a>
+	                                    <a class="nav-link" href="viewtran.php">View Transaction Log</a>
+																	</nav>
+															</div>
+
 
 															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																	<div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
@@ -88,7 +102,7 @@ if(isset($_SESSION['uname']))
 	                        <h1 class="mt-4">Project</h1>
 	                        <ol class="breadcrumb mb-4">
 	                            <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-	                            <li class="breadcrumb-item active">Project Details</li>
+	                            <li class="breadcrumb-item active">Customer</li>
 	                        </ol>
 
 														<div class="card mb-4">

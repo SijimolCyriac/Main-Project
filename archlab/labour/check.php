@@ -21,6 +21,8 @@ if(isset($_REQUEST['y']))
 	?>
 <!DOCTYPE html>
 <html lang="en">
+<?php 	include("header.php");
+?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,14 +33,17 @@ if(isset($_REQUEST['y']))
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
       $("#btn1").click(function(){
+
     $("#box1").show();
     $("#box2").hide();
     $("#box3").hide();
       });
       $("#btn2").click(function(){
+
     $("#box2").show();
     $("#box1").hide();
     $("#box3").hide();
@@ -52,9 +57,7 @@ if(isset($_REQUEST['y']))
     </script>
     <style>
                 table, th, td {
-
                     text-align:center;
-
                     min-width: 150px;
                 }
             </style>
@@ -62,30 +65,7 @@ if(isset($_REQUEST['y']))
 
 </head>
 <body>
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">BuildTech Construction</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
 
-                <div class="input-group-append">
-
-                </div>
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ml-auto ml-md-0">
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-               echo $temp;
-               ?></a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="logout.php">Logout</a>
-              </div>
-          </li>
-        </ul>
-    </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -98,25 +78,40 @@ if(isset($_REQUEST['y']))
                         </a>
                         <div class="sb-sidenav-menu-heading">Activities</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Contractor
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="searchcontra.php">Search Contractor</a>
-                              <a class="nav-link" href="viewreq.php">View Request</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                      Project
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
+                          <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                      Contractor
+                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                      </a>
+                      <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="searchcontra.php">Search Contractor</a>
+                            <a class="nav-link" href="viewreq.php">View Request</a>
 
-                              <a class="nav-link" href="check.php">Check Project</a>
+                          </nav>
+                      </div>
+                      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                          <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                    Project
+                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                      </a>
+                      <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                          <nav class="sb-sidenav-menu-nested nav">
+
+                            <a class="nav-link" href="check.php">Check Project</a>
+                            <a class="nav-link" href="addatt.php">Place Attendance</a>
+                            <a class="nav-link" href="addleave.php">Apply Leave</a>
+
+                          </nav>
+                      </div>
+                      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                          <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+                      Complaint
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                              <a class="nav-link" href="viewcomp.php">View Complaints</a>
+
                             </nav>
                         </div>
             </nav>
@@ -131,16 +126,16 @@ if(isset($_REQUEST['y']))
                     </ol>
 
                     <p><center>
-                    <a style="color:white;" class="btn btn-primary" id="btn1">
-                    Pending
-                    </a>
-                    <a style="color:white;" class="btn btn-primary" id="btn2">
-                    Work in Progress
-                    </a>
-                    <a style="color:white;" class="btn btn-primary" id="btn3">
-                    Completed
-                    </a></center>
-                    </p>
+<a style="color:white;" class="btn btn-primary" id="btn1">
+  Pending
+</a>
+<a style="color:white;" class="btn btn-primary" id="btn2">
+Work in Progress
+</a>
+<a style="color:white;" class="btn btn-primary" id="btn3">
+  Completed
+</a></center>
+</p>
                     <div class="row" >
                     <div class=".col-2 .col-md-8" id="box1">
                     <div class="card card-body">
@@ -148,7 +143,8 @@ if(isset($_REQUEST['y']))
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <?php
                     include("DbConne.php");
-                    $query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
+                    $query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and
+                    l.login_id=h.login_id";
                     $results = mysqli_query($con,$query);
                     $x=mysqli_fetch_array($results);
                     $d=$x['labour_name'];
@@ -156,8 +152,6 @@ if(isset($_REQUEST['y']))
                     $sql="select * from tbl_site_loc s,tbl_project p
                     where  p.proj_id=s.proj_id and s.labour_name='$d' and s.sstatus='1' and s.proj_sstatus='0'";
                     $res1 = mysqli_query($con,$sql);
-
-
                     if(mysqli_num_rows($res1)>0)
                     {
                       echo "<h2><center>Work Details</center></h2>";
@@ -175,9 +169,9 @@ if(isset($_REQUEST['y']))
 
                     if($v['proj_sstatus'] == 0 || $v['proj_sstatus'] =='')
                     {
-                    echo "<a href='check.php?x=" .$v['sid']." '>Pending</a>";
+                    echo "<a href='check.php?x=" .$v['sid']." '>Pending</a></td>";
                     }
-                    echo "</tr></table>	";
+                    echo "</tr>";
                     }
                     }
 
@@ -187,13 +181,12 @@ if(isset($_REQUEST['y']))
                     </table>
                     <?php
                     }
-                    ?>
+                    ?></table>
                     </div>
                     </div>
                     </div>
 
                     <div class=".col-2 .col-md-8" id="box2" style="display:none;">
-
                     <div class="card card-body">
                     <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -226,7 +219,7 @@ if(isset($_REQUEST['y']))
 
                     if($v['proj_sstatus'] == 1)
                     {
-                    echo "<a href='check.php?y=" .$v['sid']." '>Work in Progress</a>";
+                    echo "<a href='check.php?y=" .$v['sid']." '>Work in Progress</a></td>";
                     }
                     echo "</tr>";
                     }
@@ -244,9 +237,7 @@ if(isset($_REQUEST['y']))
                     </div>
                     </div>
 
-
                     <div class=".col-2 .col-md-8" id="box3" style="display:none;">
-
                     <div class="card card-body">
                     <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -270,7 +261,7 @@ if(isset($_REQUEST['y']))
                     {
                     if($v['proj_sstatus']==2)
                     {
-                    $f='completed';
+                    $f='Completed';
                     }
                     echo "<tr>";
                     echo "<td>".$v['yur_service']."</td><td>"
@@ -296,7 +287,6 @@ if(isset($_REQUEST['y']))
                     </div>
                     </div>
                     </div>
-
                     </div>
 
   <div style="height: 100vh;"></div>

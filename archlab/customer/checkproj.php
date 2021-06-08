@@ -4,10 +4,7 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 	$temp=$_SESSION['uname'];
-	$login_id=$_SESSION['lid'];
-	if(isset($_REQUEST['x']))
-		{
-			$u=intval($_GET['x']);}
+
 	?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -45,7 +42,7 @@ if(isset($_SESSION['uname']))
 	                                Dashboard
 	                            </a>
 															<div class="sb-sidenav-menu-heading">Activities</div>
-															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+	                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 	                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 	                                Project
 	                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -53,7 +50,8 @@ if(isset($_SESSION['uname']))
 	                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	                                <nav class="sb-sidenav-menu-nested nav">
 	                                    <a class="nav-link" href="viewproj.php">View Project</a>
-
+	                                    <a class="nav-link" href="viewest.php">View Estimation</a>
+																			<a class="nav-link" href="checkproj.php">Check Project</a>
 	                                </nav>
 	                            </div>
 
@@ -81,7 +79,6 @@ if(isset($_SESSION['uname']))
 																	</nav>
 															</div>
 
-
 															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																	<div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
 																	Complaints
@@ -90,6 +87,7 @@ if(isset($_SESSION['uname']))
 															<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																	<nav class="sb-sidenav-menu-nested nav">
 																			<a class="nav-link" href="viewcomp.php">View Complaints</a>
+
 
 																	</nav>
 															</div>
@@ -101,89 +99,76 @@ if(isset($_SESSION['uname']))
 	            <div id="layoutSidenav_content">
 	                <main>
 	                    <div class="container-fluid">
-	                        <h1 class="mt-4">Weekly Progress Report</h1>
+	                        <h1 class="mt-4">Project</h1>
 	                        <ol class="breadcrumb mb-4">
-	                            <li class="breadcrumb-item"><a href="viewreport.php">Dashboard</a></li>
-	                            <li class="breadcrumb-item active">Weekly Report</li>
+	                            <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+	                            <li class="breadcrumb-item active">Project Details</li>
 	                        </ol>
 
-	               <div class="graph-visual tables-main" id="exampl">
-									 		<h3><center><b>BuildTech Construction Management System</b></center></h3>
 														<div class="card mb-4">
 																<div class="card-body">
-
 																	<div class="table-responsive">
 
-																		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-																		<?php
-																		include("DbConne.php");
-																		$sql="select * from tbl_daily_progress_report where report_id='$u'";
-																		$res1 = mysqli_query($con,$sql);
-																		$v=mysqli_fetch_array($res1);
-																		$cid=$v['proj_id'];
+																	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<?php
+								include("DbConne.php");
+
+								$query = "select l.login_id,h.cust_id from tbl_login l,tbl_customer_reg h  where l.username='$temp' and l.login_id=h.login_id";
+								$results = mysqli_query($con,$query);
+								$x=mysqli_fetch_array($results);
+								$d=$x['cust_id'];
+
+								$sql="select p.proj_id, p.yur_service,p.site_address,p.proj_plan,p.proj_status,c.contractor_name,c.phone_no,c.email_id,c.contractor_id,p.cust_id from tbl_project p,tbl_contractor_reg c
+								where p.cust_id='$d' and p.contractor_id=c.contractor_id and p.status=1";
+
+								$res1 = mysqli_query($con,$sql);
+								if(mysqli_num_rows($res1)>0)
+								{
+
+								echo "<h2><center>Project Details</center></h2>";
+								echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th>
+								<th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Status</th></tr>";
+
+while($row=mysqli_fetch_array($res1))
+{
+								if($row['proj_status']==0)
+								{
+									$f='Pending';
+								}
+								else if($row['proj_status']==1) {
+									$f='Work in Progress';
+								}
+								else{
+									$f='Completed';
+								}
+							echo "<tr>";
+							echo "<td>".$row['yur_service']."</td><td>"
+							.$row['site_address']."</td><td>";
+							echo "<a href='proj.php?x=" .$row['proj_id']." ' target='_blank'>view project</a></td><td>"
+
+							.$row['contractor_name']."</td><td>"
+							.$row['phone_no']."</td><td>"
+									 .$row['email_id']."</td><td>"
+
+									 .$f."</td>";
+							echo "</tr>";
+						}}
 
 
-																		$sq="select * from tbl_contractor_reg c,tbl_project d where c.contractor_id=d.contractor_id and d.proj_id='$cid'";
-																		$res1 = mysqli_query($con,$sq);
-
-																		if(mysqli_num_rows($res1)>0)
-																		{
-
-																		  echo "<h3><center>Weekly Progress Report Details</center></h3>";
-																		  echo "<h4><center>Contractor Details</center></h4>";
-																		  echo "<tr><th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Company Name</th></tr>";
-
-																		$v=mysqli_fetch_array($res1);
-																		echo "<tr>";
-																		echo "<td>".$v['contractor_name']."</td><td>"
-																		.$v['phone_no']."</td><td>"
-																		.$v['email_id']."</td><td>"
-																		.$v['companyName']."</td>";
-																		echo "</tr>";
-																		}
-																		?>
-																		</table>
-
-																		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-																		<?php
-																		include("DbConne.php");
-																		echo "<h4><center>Report Details</center></h4>";
-																		echo "<tr><th>Title</th><th>Work Details</th><th>From Date</th><th>To Date</th></tr>";
-
-																		$sql="select * from tbl_daily_progress_report where report_id='$u'";
-																		$res1 = mysqli_query($con,$sql);
-																		$v1=mysqli_fetch_array($res1);
-																		$proj_id=$v1['proj_id'];
-
-																		$sql2="select * from tbl_daily_progress_report d,tbl_project p where p.proj_id=d.proj_id and p.proj_id='$proj_id'";
-																		$query3=mysqli_query($con,$sql2);
-
-																		while($v=mysqli_fetch_array($query3))
-																		{
-																		echo "<tr>";
-																		echo "<td>".$v['yur_service']."</td><td>"
-																		.$v['description']."</td><td>"
-																		.$v['fdate']."</td><td>"
-																		.$v['tdate']."</td>";
-																		echo "</tr>";
-																		}
-																		?>
-
-																		</table>
-                                <br>
-																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-													      <tr><th>Activity Details</th></tr>
-																<td><center><img src="../contractor/details/<?php echo $v1['activityDetails']; ?>"></center></td>
-													      </table>
+								else {
+									?>
+									<script>alert("No Records Uploaded");
+									location.href="index.php";
+									 exit;
+									</script>
+									<?php
+								}
+								?>
+								</table>
 
 								</div></div>
 								</div>
-               </div>
-							 <p style="margin-top:1%"  align="center">
 
-								<a style="color:white;"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" OnClick="CallPrint(this.value)"><i
-																			 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-						 	</p>
 
 
 								<div style="height: 100vh;"></div>
@@ -204,17 +189,6 @@ if(isset($_SESSION['uname']))
 							</footer>
 							</div>
 							</div>
-							<script>
-						function CallPrint(strid) {
-						var prtContent = document.getElementById("exampl");
-						var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-						WinPrint.document.write(prtContent.innerHTML);
-						WinPrint.document.close();
-						WinPrint.focus();
-						WinPrint.print();
-						WinPrint.close();
-						}
-						</script>
 							<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 							<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 							<script src="js/scripts.js"></script>

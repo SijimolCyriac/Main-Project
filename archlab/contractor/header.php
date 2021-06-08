@@ -57,9 +57,6 @@ $b=$a['login_id'];
 $sql="select * from tbl_contractor_reg where login_id='$b'";
 $c=mysqli_query($con,$sql);
 $result=mysqli_fetch_array($c);
-$sqli="select * from tbl_prof where login_id='$b'";
-$c1=mysqli_query($con,$sqli);
-$result1=mysqli_fetch_array($c1);
 ?>
 <div class="form-group">
 <div class="form-label-group">
@@ -71,9 +68,9 @@ $result1=mysqli_fetch_array($c1);
     <br><label for="exampleInputEmail1">Email Address</label>
     <input type="text" class="form-control" value="<?php echo $result['email_id']; ?>" autofocus="autofocus" name="email" id="email1" placeholder="Enter Email Address" onblur="validate1()" required/>
     <br><label for="exampleInputEmail1">Upload Photo</label>
-    <input type="file" class="form-control" value="<?php echo $result1['photo']; ?>" autofocus="autofocus" name="pic" id="file1" placeholder="Upload Photo">
+    <input type="file" class="form-control" value="<?php echo $result['photo']; ?>" autofocus="autofocus" onchange="valproof()"  name="pic" id="file1" placeholder="Upload Photo">
     <br><label for="exampleInputEmail1">Year of Experience</label>
-    <input type="number" class="form-control" value="<?php echo $result1['yoexp']; ?>" autofocus="autofocus" name="yoe" id="exp" placeholder="Enter Year of Experience" required/>
+    <input type="number" class="form-control" value="<?php echo $result['yoexp']; ?>" autofocus="autofocus" onblur="val()"  name="yoe" id="exp" placeholder="Enter Year of Experience" required/>
     <br><label for="exampleInputEmail1">Username</label>
     <input type="text" class="form-control" name="uname"  value="<?php echo $a['username']; ?>" autofocus="autofocus" id="uname1" placeholder="Enter Username" onblur="validate3()"  required/>
 </div>
@@ -110,9 +107,9 @@ Close
 <div class="form-label-group">
 
 <label for="exampleInputEmail1">Username</label>
-<input type="text"  class="form-control"  name="name"  autofocus="autofocus" required  placeholder="UserName"  value="<?php echo $a['username']; ?>">
+<input type="text"  class="form-control"  name="name"  autofocus="autofocus" required  placeholder="UserName" disabled value="<?php echo $a['username']; ?>">
     <br><label for="exampleInputEmail1">Old Password</label>
-    <input type="password"  class="form-control"   autofocus="autofocus" required  placeholder="Old Password" name="old" id="old" value="<?php echo $a['password']; ?>">
+    <input type="password"  class="form-control"   autofocus="autofocus" required  placeholder="Old Password" name="old" id="old" disabled value="<?php echo $a['password']; ?>">
     <br><label for="exampleInputEmail1">New Password</label>
     <input type="password" class="form-control" name="new" id="pass" placeholder="New Password" onblur="validate4()" autofocus="autofocus" required>
     <br><label for="exampleInputEmail1">Confirm Password</label>
@@ -179,6 +176,26 @@ alert("Please Enter Valid Username");
 document.getElementById("uname1").value="";
 }
 }
+function valproof()
+{
+var proof = document.getElementById("file1").value;
+var pat=/^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.png)$/;
+if(!proof.match(pat))
+{
+alert("Enter Valid File Type Eg: .jpg/.jpeg/.png");
+document.getElementById("file1").value="";
+}
+}
+function val()
+{
+var exp = document.getElementById("exp").value;
+var ex=/^[0-9]{1,2}$/;
+ if(!exp.match(ex))
+ {
+	alert("Please Enter Year of Experience Correctly");
+ document.getElementById("exp").value="";
+}
+}
 function validate4()
 {
 var password = document.getElementById("pass").value;
@@ -189,7 +206,6 @@ var pass=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,}/;
 	alert("Please Enter Valid Password");
  document.getElementById("pass").value="";
 }
-
 }
 function validcpass()
 	 {

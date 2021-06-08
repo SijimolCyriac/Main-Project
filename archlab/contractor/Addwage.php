@@ -1,11 +1,17 @@
 <?php
 session_start();
 include("DbConne.php");
-
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
+if(isset($_GET['attnd_id']))
+	{
+		$u=$_GET['attnd_id'];
+			$_SESSION['attnd_id']=$u;
+	  $y=$_GET['lab_name'];
+		$_SESSION['lab_name']=$y;
 
+	}
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,70 +116,128 @@ $temp=$_SESSION['uname'];
 														</div>
 
 
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4">Labour Details</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="searchlab.php">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Contractor</li>
-                        </ol>
+
+													<div class="container-fluid">
+															<h2 class="mt-4">Add Daily Wages </h2>
+															<ol class="breadcrumb mb-4">
+																	<li class="breadcrumb-item"><a href="viewattd.php">Dashboard</a></li>
+																	<li class="breadcrumb-item active">Contractor</li>
+															</ol>
+
+															<div class="card mb-4">
+																	<div class="card-body">
+																<form method="POST" action="#">
+																<div class="form-group">
+																<div class="form-label-group">
+
+																<label for="exampleInputEmail1">Labour Name:</label>
+																<input type="text" class="form-control" id="name1" name="name" disabled value="<?php echo $_SESSION['lab_name']; ?>"
+																placeholder="Contractor Name"  autofocus="autofocus" required>
+																<br><label for="exampleInputEmail1">Daily Wage:</label>
+															  <input type="number" class="form-control" id="amt1" name="amt"
+															  placeholder="Enter the daily wage"  autofocus="autofocus" required>
+
+																											</div>
+																											</div>
+
+																											<div class="modal-footer">
+																												 <button type="button" class="btn btn-default" data-dismiss="modal">
+																													 Close
+																													 <span class="glyphicon glyphicon-remove-sign"></span>
+																												 </button>
+																												 <input type="submit" name="submit" value="Add" class="btn btn-success">
+																											 </div>
+																											</form>
+																										</div></div>
+																										</div>
+
+																										<?php
+																										include("DbConne.php");
+																										if(isset($_POST['submit'])){
+                                                    $siji=$_SESSION['attnd_id'];
+																										$amt=$_POST['amt'];
+																										$status=1;
+																										$sql="select * from tbl_daily_wages where attnd_id='$siji'";
+																										$c=mysqli_query($con,$sql);
+																										$num=mysqli_num_rows($c);
+																										if($num==1)
+																										{
+
+																											?>
+																											<script>alert("Wage Already Added");
+																											location.href="viewattd.php";
+																											 exit;
+																											</script>
+																											<?php
+																										}
+
+																										else{
+																										$sq="insert into tbl_daily_wages(attnd_id,wages,status) values('$siji','$amt','$status')";
+
+																										if(mysqli_query($con,$sq))
+																										  {
+																										    ?>
+																										    <script>alert("Wage Added Successfully");
+																										    location.href="Addwage.php";
+																										     exit;
+																										    </script>
+																										    <?php
+																										  }}}
+																										    mysqli_close($con);
+																										     ?>
 
 
-												<div class="card mb-4">
-														<div class="card-body">
-															<div class="table-responsive">
-
-															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-
-<?php
-include("DbConne.php");
-$category_name=$_POST['category'];
-$dist_name=$_POST['dist'];
-$query1 = "select sid,sstatus from tbl_site_loc";
-$results1 = mysqli_query($con,$query1);
-$v=mysqli_fetch_array($results1);
-$query = "select * from tbl_labours_reg where category_name='$category_name' and dist_name='$dist_name'";
-$results = mysqli_query($con,$query);
-if(mysqli_num_rows($results)>0)
-{
-	?>
-	<script>alert("Search Found");
-	 exit;
-	</script>
-	<?php
-	echo "<h2><center>Labour Details</center></h2>";
-	echo "<tr><th>Labour Name</th><th>Phone No</th><th>Email Address</th><th>Location</th></tr>";
-while($fin=mysqli_fetch_array($results))
-{
+																										<div class="container-fluid">
+																												<h2 class="mt-4">Daily Wage Details </h2>
+																												<ol class="breadcrumb mb-4">
+																														<li class="breadcrumb-item"><a href="viewattd.php">Dashboard</a></li>
+																														<li class="breadcrumb-item active">Contractor</li>
+																												</ol>
 
 
-echo "<tr>";
-echo "<td>".$fin['labour_name']."</td><td>"
-.$fin['phoneno']."</td><td>"
-     .$fin['email_id']."</td><td>"
-		 .$fin['location']."</td>";
+																												<div class="card mb-4">
+																														<div class="card-body">
+																															<div class="table-responsive">
+
+																																<form action="#" method="POST">
+																																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																																	<?php
+																																	include("DbConne.php");
+																																	$query = "select l.login_id,h.contractor_id,h.contractor_name from tbl_login l,tbl_contractor_reg h  where l.username='$temp' and l.login_id=h.login_id";
+																																	$results = mysqli_query($con,$query);
+																																	$x=mysqli_fetch_array($results);
+																																	$d=$x['contractor_name'];
+
+																																	$sql="select * from tbl_daily_wages s,tbl_attnd p
+																																	where  p.attnd_id=s.attnd_id and p.contractor_name='$d'";
+																																	$res1 = mysqli_query($con,$sql);
+
+																																	echo "<h2><center>Daily Wage Details</center></h2>";
+																																	echo "<tr><th>Labour Name</th><th>Date</th><th>Wage</th></tr>";
+
+																																	while($v=mysqli_fetch_array($res1))
+																																	{
+
+																																	echo "<tr>";
+																																	echo "<td>"
+
+																																	.$v['labour_name']."</td><td>"
+                                                                   .$v['cdate']."</td><td>"
+																																	.$v['wages']."</td>";
+
+																																	echo "</tr>";
+																																	}
+
+																																	?>
+																													</table></form>
 
 
-echo "</tr>";
-}}else {
-	?>
-	<script>alert("Search  Not  Found");
-	location.href="searchlab.php";
-	 exit;
-	</script>
-	<?php
-}
-?>
-</table>
-
-
-</div></div>
-</div>
+																													</div></div>
+																													</div>
 
   <div style="height: 100vh;"></div>
   <div class="card mb-4"><div class="card-body"></div></div>
@@ -193,7 +257,28 @@ echo "</tr>";
 </footer>
 </div>
 </div>
-
+<script>
+function validate6()
+{
+var name=document.getElementById("address1").value;
+var letters=/^[a-z.A-Z0-9,\s]*$/;
+if(!name.match(letters))
+{
+alert("Please Enter Address Correctly");
+document.getElementById("address1").value="";
+}
+}
+function validate7()
+{
+var name=document.getElementById("proj1").value;
+var letters=/^[a-zA-Z0-9\s]*$/;
+if(!name.match(letters))
+{
+alert("Please Enter Project Name Correctly");
+document.getElementById("proj1").value="";
+}
+}
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>

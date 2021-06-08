@@ -54,7 +54,7 @@ if(isset($_SESSION['uname']))
 	                                Dashboard
 	                            </a>
 															<div class="sb-sidenav-menu-heading">Activities</div>
-															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+	                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 	                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 	                                Project
 	                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -62,7 +62,8 @@ if(isset($_SESSION['uname']))
 	                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	                                <nav class="sb-sidenav-menu-nested nav">
 	                                    <a class="nav-link" href="viewproj.php">View Project</a>
-
+	                                    <a class="nav-link" href="viewest.php">View Estimation</a>
+																			<a class="nav-link" href="checkproj.php">Check Project</a>
 	                                </nav>
 	                            </div>
 
@@ -79,6 +80,18 @@ if(isset($_SESSION['uname']))
 	                            </div>
 
 															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																	<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+																 Payment
+																	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+															</a>
+															<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																	<nav class="sb-sidenav-menu-nested nav">
+																			<a class="nav-link" href="addpay.php">View Payment</a>
+	                                    <a class="nav-link" href="viewtran.php">View Transaction Log</a>
+																	</nav>
+															</div>
+
+															<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																	<div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
 																	Complaints
 																	<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -86,7 +99,6 @@ if(isset($_SESSION['uname']))
 															<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																	<nav class="sb-sidenav-menu-nested nav">
 																			<a class="nav-link" href="viewcomp.php">View Complaints</a>
-
 																	</nav>
 															</div>
 
@@ -110,7 +122,7 @@ if(isset($_SESSION['uname']))
 								<?php
 								include("DbConne.php");
 								echo "<h5><center>Report Details</center></h5>";
-								echo "<tr><th>Title</th><th>Activity Details</th><th>Action</th><th>Status</th></tr>";
+								echo "<tr><th>Project Name</th><th>Action</th><th>Status</th></tr>";
 
 								$sql="select * from tbl_customer_reg where login_id='$login_id'";
 								$query1=mysqli_query($con,$sql);
@@ -135,7 +147,7 @@ if(isset($_SESSION['uname']))
 								{
 								echo "<tr>";
 								echo "<td>".$v['yur_service']."</td><td>";
-								echo "<a href='repp.php?x=" .$v['report_id']." ' target='_blank'>Activity</a></td><td>";
+
                 echo "<a href='viewrep.php?x=" .$v['report_id']." ' class='btn btn-sm btn-info'>View</a></td><td>";
 								if($v['dstatus'] == 1 || $v['dstatus'] =='')
 								{

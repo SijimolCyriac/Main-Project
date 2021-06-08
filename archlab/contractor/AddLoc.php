@@ -31,7 +31,7 @@ while($result=mysqli_fetch_array($query))
 
 
 $proj_name=$_POST["proj"];
-$site_address=$_POST["add"];
+
 $fdate=$_POST['fdate'];
 $tdate=$_POST['tdate'];
 $status='0';

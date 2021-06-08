@@ -12,7 +12,7 @@ $name=$_POST["name"];
 $complaint=$_POST["comp"];
 $status=0;
 
-$abc1="select a.login_id from tbl_login a,tbl_contractor_reg b where a.login_id=b.login_id and b.contractor_id='$cod'";
+$abc1="select a.login_id from tbl_login a,tbl_contractor_reg b where a.login_id=b.login_id and b.contractor_name='$cod'";
 $query1=mysqli_query($con,$abc1);
 $result1=mysqli_fetch_array($query1);
 $e=$result1['login_id'];

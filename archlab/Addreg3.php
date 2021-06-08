@@ -72,7 +72,7 @@ $sq="insert into tbl_labours_reg(login_id,labour_name,phoneno,email_id,location,
 if(mysqli_query($con,$sq))
 {
   ?>
-  <script>alert("Successfully Registered");
+  <script>alert("Successfully Registered. You will be directed to Login Page.");
   location.href="login.php";
    exit;
   </script>

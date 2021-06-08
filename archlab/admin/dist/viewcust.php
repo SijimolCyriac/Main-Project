@@ -32,7 +32,7 @@ if(!empty($_SESSION['uname']))
 
     </head>
     <body>
-        
+
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -157,7 +157,7 @@ if(!empty($_SESSION['uname']))
                             echo "<h2><center>Customer Details</center></h2>";
                             echo "<tr><th>Sl No</th><th>Customer Name</th><th>Address</th><th>Post Office</th><th>PIN Code</th><th>Phone No</th><th>Email Id</th><th>District Name</th><th>State Name</th></tr>";
 
-															$r="select c.cust_id,c.cust_name,c.address,c.post_office,c.PIN_Code,c.phno,c.email_id,c.dist_name,c.state_name from tbl_customer_reg c,tbl_login l where l.user_type='customer' and l.login_id=c.login_id";
+															$r="select * from tbl_customer_reg";
 															$result=mysqli_query($con,$r);
 															$n=mysqli_num_rows($result);
 

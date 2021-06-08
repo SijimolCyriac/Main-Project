@@ -304,8 +304,7 @@ if(!empty($_SESSION['uname']))
 			  function validate()
 			  {
 			  var name=document.getElementById("c").value;
-
-			  var letters=/^[a-zA-Z\s]*$/;
+			  var letters=/^[a-zA-Z]+$/;
 			  if(!name.match(letters))
 			  {
 					document.getElementById("c").value="";
@@ -313,11 +312,13 @@ if(!empty($_SESSION['uname']))
 
 			  }
 			  }
+				</script>
+				<script>
 				function validate1()
 			  {
 			  var name=document.getElementById("cc").value;
 
-			  var letters=/^[a-zA-Z\s]*$/;
+			  var letters=/^[a-zA-Z]+$/;
 			  if(!name.match(letters))
 			  {
 					document.getElementById("cc").value="";

@@ -59,7 +59,7 @@ $temp=$_SESSION['uname'];
                                 Dashboard
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
                               Project
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -67,7 +67,9 @@ $temp=$_SESSION['uname'];
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="viewproj.php">View Project Details</a>
-	<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
+
 
                                 </nav>
                             </div>
@@ -79,7 +81,10 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-                          <a class="nav-link" href="sitelab.php">Assign Location</a>
+																			<a class="nav-link" href="sitelab.php">Assign Location</a>
+	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
+																			  <a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
 
 																</nav>
 														</div>
@@ -90,7 +95,19 @@ $temp=$_SESSION['uname'];
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																</nav>
+														</div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+														Payment
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+
+																			<a class="nav-link" href="viewpay.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -105,8 +122,6 @@ $temp=$_SESSION['uname'];
 																		<a class="nav-link" href="viewcomplab.php">Worksite Complaints</a>
 																</nav>
 														</div>
-
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -177,8 +192,6 @@ while($row=mysqli_fetch_array($query))
 <select name="lab" id="<?php echo $v['comp_id']; ?>" class="form-control" required>
 <option value="">Select</option>
 </select>
-<br><label class="custom">Site Address</label>
- <textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>
 </div>
 </div>
 <div class="modal-footer">
@@ -199,7 +212,7 @@ if($v['ccstatus']==1)
 	$f='Solved';
 }
 else {
-	$f='Unsolved';
+	$f='Pending';
 }
 echo "<td>"
  .$f."</td>";

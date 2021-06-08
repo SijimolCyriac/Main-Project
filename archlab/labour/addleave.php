@@ -67,6 +67,7 @@ $temp=$_SESSION['uname'];
 														<a class="nav-link" href="check.php">Check Project</a>
 														<a class="nav-link" href="addatt.php">Place Attendance</a>
 														<a class="nav-link" href="addleave.php">Apply Leave</a>
+														<a class="nav-link" href="viewwage.php">View Wages</a>
 
 													</nav>
 											</div>
@@ -87,13 +88,12 @@ $temp=$_SESSION['uname'];
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                  <h2 class="mt-4">Attendence Details <a href="#" data-toggle="modal" data-target="#AddAtt"
+                  <h2 class="mt-4">Leave Details <a href="#" data-toggle="modal" data-target="#AddAtt"
                     class="btn btn-sm btn-info"> Add New</a></h2>
                   <ol class="breadcrumb mb-4">
                       <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                       <li class="breadcrumb-item active">Labour</li>
                   </ol>
-
 
                   <div class="card mb-4">
                       <div class="card-body">
@@ -103,27 +103,35 @@ $temp=$_SESSION['uname'];
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <?php
                             include("DbConne.php");
-                            $query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
+                            $query = "select l.login_id,h.lid from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
                             $results = mysqli_query($con,$query);
                             $x=mysqli_fetch_array($results);
-                            $d=$x['labour_name'];
+                            $d=$x['lid'];
 
-                            $sql="select * from tbl_attnd a,tbl_project p
-                            where  a.labour_name='$d' and a.proj_id=p.proj_id";
-                            $res1 = mysqli_query($con,$sql);
+														$sqli="select * from tbl_contractor_reg a,tbl_leave p
+														where  p.lid='$d' and a.contractor_id=p.contractor_id";
+														$res1 = mysqli_query($con,$sqli);
 
-                            echo "<h2><center>Attendence Details</center></h2>";
-                            echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Date</th><th>Site Location</th><th>Status</th></tr>";
+
+                            echo "<h2><center>Leave Details</center></h2>";
+                            echo "<tr><th>Contractor Name</th><th>Leave Dates</th><th>Applied On</th><th>Reason</th><th>Status</th></tr>";
 
                             while($v=mysqli_fetch_array($res1))
                             {
+															if($v['lstatus']==1)
+															{
+															 $f='Approved';
+															}
+															else {
+															 $f='Waiting for Approval';
+															}
                             echo "<tr>";
                             echo "<td>"
-                            .$v['yur_service']."</td><td>"
                             .$v['contractor_name']."</td><td>"
-                            .$v['cdate']."</td><td>"
-                            .$v['site_address']."</td><td>"
-                            .$v['attd']."</td>";
+                            .$v['leave_date']."</td><td>"
+                            .$v['applied_on']."</td><td>"
+														.$v['reason']."</td><td>"
+                            .$f."</td>";
                             echo "</tr>";
                             }
 
@@ -139,12 +147,12 @@ $temp=$_SESSION['uname'];
 
                       <!-- Modal content-->
                       <div class="modal-content" style="width: 130%">
-                        <div class="modal-header"><h3>Add Attendence</h3>
+                        <div class="modal-header"><h3>Add Leave</h3>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
 
-                          <form method="POST" action="AddAttn.php" enctype="multipart/form-data">
+                          <form method="POST" action="AddLeav.php">
                             <?php
                             include("DbConne.php");
                             $query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
@@ -159,7 +167,7 @@ $temp=$_SESSION['uname'];
 
                           <label  class="custom">Labour Name:</label>
                           <input type="text" class="form-control" id="name1" name="name" value="<?php echo $x['labour_name']; ?>"
-                          placeholder="Contractor Name" disabled autofocus="autofocus" required>
+                          placeholder="Labour Name" disabled autofocus="autofocus" required>
 
                           <br><label  class="custom">Contractor Name:</label>
                           <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>
@@ -173,28 +181,12 @@ $temp=$_SESSION['uname'];
                            ?>
                           </select>
 
-                          <br><label  class="custom">Project Name:</label>
-                      <select  id="proj1" name="proj" class="form-control" autofocus="autofocus" required>
-                      <option value="">Select Project Name</option>
-                      <?php $query =mysqli_query($con,"select distinct p.yur_service from tbl_site_loc s,tbl_project p  where p.proj_id=s.proj_id and s.labour_name='$d' and s.proj_sstatus=1");
-                      while($row=mysqli_fetch_array($query))
-                      { ?>
-                      <option value="<?php echo $row['yur_service'];?>"><?php echo $row['yur_service'];?></option>
-                      <?php
-                      }
-                      ?>
-                     </select>
+                          <br><label  class="custom">Leave Date:</label>
+													<input type="date" class="form-control" id="date1" name="leave"
+													placeholder="Leave Date"  autofocus="autofocus" required>
 
-
-
-                            <br><label  class="custom">Attendence:</label>
-                           <select  id="att1" name="att" class="form-control" autofocus="autofocus" required>
-                        <option value="">Select Attendence</option>
-                          <option value="Present">Present</option>
-                            <option value="Absent">Absent</option>
-                       </select>
-
-
+                            <br><label  class="custom">Reason:</label>
+                           <textarea id="reason1" name="reason" class="form-control" placeholder="Enter Reason" onblur="validate6()"  autofocus="autofocus" required></textarea>
 
                                                 </div>
                                                 </div>
@@ -204,7 +196,7 @@ $temp=$_SESSION['uname'];
                                                      Close
                                                      <span class="glyphicon glyphicon-remove-sign"></span>
                                                    </button>
-                                                   <input type="submit" name="submit" value="Upload" class="btn btn-success">
+                                                   <input type="submit" name="submit" value="Apply" class="btn btn-success">
                                                  </div>
                                                 </form>
 </div></div>
@@ -234,10 +226,16 @@ $temp=$_SESSION['uname'];
 </div>
 </div>
 <script>
-$(document).ready(function() {
-    $('#txtDate').datepicker();
-    $('#txtDate').datepicker('setDate', 'today');
-});
+function validate6()
+{
+var name=document.getElementById("reason1").value;
+var letters=/^[a-zA-Z,.\s]*$/;
+if(!name.match(letters))
+{
+alert("Please Enter Reason Correctly");
+document.getElementById("reason1").value="";
+}
+}
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

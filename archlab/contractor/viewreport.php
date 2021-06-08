@@ -46,7 +46,7 @@ $login_id=$_SESSION['lid'];
                                 Dashboard
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
                               Project
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -54,7 +54,9 @@ $login_id=$_SESSION['lid'];
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="viewproj.php">View Project Details</a>
-		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
+
 
                                 </nav>
                             </div>
@@ -66,7 +68,10 @@ $login_id=$_SESSION['lid'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-<a class="nav-link" href="sitelab.php">Assign Location</a>
+																			<a class="nav-link" href="sitelab.php">Assign Location</a>
+	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
+																			  <a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
 
 																</nav>
 														</div>
@@ -77,7 +82,19 @@ $login_id=$_SESSION['lid'];
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																</nav>
+														</div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+														Payment
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+
+																			<a class="nav-link" href="viewpay.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -91,7 +108,6 @@ $login_id=$_SESSION['lid'];
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
 																</nav>
 														</div>
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -204,7 +220,7 @@ $login_id=$_SESSION['lid'];
 																			<label class="custom">Title</label>
 																			<select  name="name" id="title1" class="form-control" autofocus="autofocus" required>
 			 																 <option value="">Select Report Title</option>
-			 																 <?php $query =mysqli_query($con,"select distinct p.yur_service from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
+			 																 <?php $query =mysqli_query($con,"select distinct p.yur_service from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1");
 			 																 while($row=mysqli_fetch_array($query))
 			 																 { ?>
 			 																 <option value="<?php echo $row['yur_service'];?>"><?php echo $row['yur_service'];?></option>
@@ -216,7 +232,7 @@ $login_id=$_SESSION['lid'];
                                       <br><label class="custom">Customer Name</label>
 																			<select  name="cname" id="nam" class="form-control" autofocus="autofocus" required>
 			 																 <option value="">Select Customer Name</option>
-			 																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
+			 																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1");
 			 																 while($row=mysqli_fetch_array($query))
 			 																 { ?>
 			 																 <option value="<?php echo $row['cust_name'];?>"><?php echo $row['cust_name'];?></option>

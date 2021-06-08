@@ -31,6 +31,8 @@ if(isset($_REQUEST['y']))
 	?>
 <!DOCTYPE html>
 <html lang="en">
+<?php 	include("header.php");
+?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -54,30 +56,7 @@ if(isset($_REQUEST['y']))
 
 </head>
 <body>
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">BuildTech Construction</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
 
-                <div class="input-group-append">
-
-                </div>
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ml-auto ml-md-0">
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-               echo $temp;
-               ?></a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="logout.php">Logout</a>
-              </div>
-          </li>
-        </ul>
-    </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -90,27 +69,42 @@ if(isset($_REQUEST['y']))
                         </a>
                         <div class="sb-sidenav-menu-heading">Activities</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Contractor
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="searchcontra.php">Search Contractor</a>
-                              <a class="nav-link" href="viewreq.php">View Request</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                      Project
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
+													<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+											Contractor
+													<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+											</a>
+											<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+													<nav class="sb-sidenav-menu-nested nav">
+														<a class="nav-link" href="searchcontra.php">Search Contractor</a>
+														<a class="nav-link" href="viewreq.php">View Request</a>
 
-                              <a class="nav-link" href="check.php">Check Project</a>
-                            </nav>
-                        </div>
+													</nav>
+											</div>
+											<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+													<div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+										Project
+													<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+											</a>
+											<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+													<nav class="sb-sidenav-menu-nested nav">
+
+														<a class="nav-link" href="check.php">Check Project</a>
+														<a class="nav-link" href="addatt.php">Place Attendance</a>
+														<a class="nav-link" href="addleave.php">Apply Leave</a>
+
+													</nav>
+											</div>
+											<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+													<div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+											Complaint
+														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+												</a>
+												<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+														<nav class="sb-sidenav-menu-nested nav">
+															<a class="nav-link" href="viewcomp.php">View Complaints</a>
+
+														</nav>
+												</div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
@@ -132,14 +126,15 @@ if(isset($_REQUEST['y']))
             																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             																	<?php
             																	include("DbConne.php");
+																							echo "<h2><center>Complaint Details</center></h2>";
+             																	echo "<tr><th>Customer Name</th><th>Phone No</th><th>Complaint</th><th>Site Location</th><th>Status</th></tr>";
             																	$query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
             																	$results = mysqli_query($con,$query);
             																	$x=mysqli_fetch_array($results);
             																	$d=$x['labour_name'];
 
-
                                               $sq="select c.complaint from tbl_complaint c,tbl_comp_assignlab p
-                                              where p.comp_id=c.comp_id";
+                                              where p.comp_id=c.comp_id and p.labour_name='$d'";
                                               $res = mysqli_query($con,$sq);
                                               $u=mysqli_fetch_array($res);
 
@@ -148,23 +143,20 @@ if(isset($_REQUEST['y']))
             																	$res1 = mysqli_query($con,$sql);
 
 
-
-
-            																	echo "<h2><center>Complaint Details</center></h2>";
-             																	echo "<tr><th>Customer Name</th><th>Complaint</th><th>Site Location</th><th>Status</th></tr>";
                                               if(mysqli_num_rows($res1)>0)
                                               {
                                               while($v=mysqli_fetch_array($res1))
                                               {
                                               $g=$v['proj_id'];
+                                              $squ="select c.cust_name,c.phno from tbl_customer_reg c,tbl_project p
+                                              where p.cust_id=c.cust_id and p.proj_id='$g'";
+                                              $resu = mysqli_query($con,$squ);
+                                              $x=mysqli_fetch_array($resu);
 
-                                                                                            $squ="select c.cust_name from tbl_customer_reg c,tbl_project p
-                                                                                            where p.cust_id=c.cust_id and p.proj_id='$g'";
-                                                                                            $resu = mysqli_query($con,$squ);
-                                                                                            $x=mysqli_fetch_array($resu);
                                               echo "<tr>";
                                               echo "<td>"
                                               .$x['cust_name']."</td><td>"
+																							.$x['phno']."</td><td>"
             																	.$u['complaint']."</td><td>"
             																	.$v['site_address']."</td><td>";
                                               if($v['cstatus'] == 0 || $v['cstatus'] =='')
@@ -181,7 +173,7 @@ if(isset($_REQUEST['y']))
                                               else
               																{
               																	?>
-              																<script>alert("No Request Found");
+              																<script>alert("No Complaint  Found");
               																location.href="index.php";
               																exit;
               																</script>

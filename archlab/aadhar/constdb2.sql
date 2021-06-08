@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2021 at 03:02 PM
+-- Generation Time: Jun 05, 2021 at 04:55 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -51,7 +51,7 @@ INSERT INTO `tbl_admin` (`login_id`, `reg_id`, `name`, `phno`, `email_id`) VALUE
 CREATE TABLE `tbl_attnd` (
   `attnd_id` int(10) NOT NULL,
   `proj_id` int(10) NOT NULL,
-  `cdate` varchar(100) NOT NULL,
+  `cdate` varchar(100) NOT NULL DEFAULT '',
   `contractor_name` varchar(100) NOT NULL,
   `labour_name` varchar(100) NOT NULL,
   `attd` varchar(50) NOT NULL,
@@ -63,36 +63,16 @@ CREATE TABLE `tbl_attnd` (
 --
 
 INSERT INTO `tbl_attnd` (`attnd_id`, `proj_id`, `cdate`, `contractor_name`, `labour_name`, `attd`, `status`) VALUES
-(1, 6, '2021-05-18', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
+(1, 6, '2021-05-18 ', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
 (2, 3, '2021-05-18', 'Antony Mathai', 'Appu Jose', 'Present', 0),
 (3, 6, '2021-05-19', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
-(4, 6, '2021-05-20', 'Melbin Joseph', 'Alex', 'Present', 0),
-(9, 1, '2021-05-19', 'Melbin Joseph', 'Alex', 'Present', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_attnd_copy`
---
-
-CREATE TABLE `tbl_attnd_copy` (
-  `attnd_id` int(10) NOT NULL,
-  `proj_name` varchar(100) NOT NULL,
-  `site_loc` varchar(100) NOT NULL,
-  `cdate` varchar(100) NOT NULL,
-  `contractor_name` varchar(100) NOT NULL,
-  `labour_name` varchar(100) NOT NULL,
-  `work_proof` varchar(500) NOT NULL,
-  `attd` varchar(50) NOT NULL,
-  `status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_attnd_copy`
---
-
-INSERT INTO `tbl_attnd_copy` (`attnd_id`, `proj_name`, `site_loc`, `cdate`, `contractor_name`, `labour_name`, `work_proof`, `attd`, `status`) VALUES
-(1, 'House Construction', 'Panamattam', '5/5/2021', 'Antony Mathai', 'Babu Meth', 'work-9.jpg', 'Present', 0);
+(4, 6, '2021-05-28', 'Melbin Joseph', 'Alex', 'Present', 0),
+(9, 1, '2021-05-19', 'Melbin Joseph', 'Alex', 'Present', 0),
+(10, 6, '2021-05-28', 'Melbin Joseph', 'Babu Meth', 'Present', 0),
+(11, 7, '2021-05-29', 'Manu Philip', 'Alex', 'Present', 0),
+(13, 7, '2021-05-30', 'Manu Philip', 'Alex', 'Present', 1),
+(14, 3, '2021-05-30', 'Antony Mathai', 'Appu Jose', 'Absent', 1),
+(15, 3, '2021-06-04', 'Antony Mathai', 'Appu Jose', 'Present', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +94,9 @@ CREATE TABLE `tbl_complaint` (
 
 INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, `ccstatus`) VALUES
 (1, 2, 5, 'plastering cracks', 1),
-(2, 3, 4, 'bjhjhijoiuoiuo', 1);
+(2, 3, 4, 'bjhjhijoiuoiuo', 1),
+(3, 2, 4, 'roof leakage', 0),
+(6, 3, 4, 'electrical complaint.', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +118,9 @@ CREATE TABLE `tbl_comp_assignlab` (
 
 INSERT INTO `tbl_comp_assignlab` (`assign_id`, `comp_id`, `proj_id`, `labour_name`, `cstatus`) VALUES
 (1, 1, 1, 'Appu Jose', 1),
-(2, 2, 4, 'Solomon', 1);
+(2, 2, 4, 'Solomon', 1),
+(3, 3, 3, 'Ajay KT', 0),
+(4, 6, 4, 'Alex', 1);
 
 -- --------------------------------------------------------
 
@@ -156,6 +140,8 @@ CREATE TABLE `tbl_contractor_reg` (
   `spec` varchar(50) NOT NULL,
   `dist_name` varchar(20) NOT NULL,
   `state_name` varchar(20) NOT NULL,
+  `photo` varchar(1000) NOT NULL,
+  `yoexp` int(10) NOT NULL,
   `status` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -163,13 +149,14 @@ CREATE TABLE `tbl_contractor_reg` (
 -- Dumping data for table `tbl_contractor_reg`
 --
 
-INSERT INTO `tbl_contractor_reg` (`contractor_id`, `login_id`, `contractor_name`, `email_id`, `phone_no`, `licenseNo`, `licenseProof`, `companyName`, `spec`, `dist_name`, `state_name`, `status`) VALUES
-(1, 4, 'Antony Mathai', 'anto@gmail.com', '6589324512', 'RL-ABS/DC/45', 'pic1.jpg', 'HomeJoy', 'House Construction', 'Kottayam', 'Kerala', 1),
-(2, 5, 'Melbin Joseph', 'melby@yahoo.com', '7845126325', 'AL-YH/124/LY', 'pic2.jpg', 'KJ Construction', 'Apartment Construction', 'Alappuzha', 'Kerala', 1),
-(3, 8, 'Vasu Dev', 'vasu@gmail.com', '7412365894', 'BJ-156/TF', 'pic3.jpg', 'HomR', 'House Construction', 'Ernakulam', 'Kerala', 1),
-(4, 14, 'Maya Shivan', 'maya@gmail.com', '6325412356', 'HX-NM/359/CD', 'pic3.jpg', 'Unique', 'Apartment Construction', 'Kottayam', 'Kerala', 1),
-(5, 18, 'Siby Jose', 'siby@gmail.com', '8852413689', 'FG-45/NM/41', 'pic4.jpg', 'DREAM', 'Office Construction', 'Alappuzha', 'Kerala', 1),
-(6, 21, 'Manu Philip', 'manu@yahoo.com', '6547894561', 'CV-32/87/SD', 'pic4.jpg', 'ASCOTIA', 'Office Construction', 'Thrissur', 'Kerala', 1);
+INSERT INTO `tbl_contractor_reg` (`contractor_id`, `login_id`, `contractor_name`, `email_id`, `phone_no`, `licenseNo`, `licenseProof`, `companyName`, `spec`, `dist_name`, `state_name`, `photo`, `yoexp`, `status`) VALUES
+(1, 4, 'Antony Mathai', 'anto@gmail.com', '6523895623', 'RL-ABS/DC/45', 'pic1.jpg', 'HomeJoy', 'House Construction', 'Kottayam', 'Kerala', 'person_3.jpg', 8, 1),
+(2, 5, 'Melbin Joseph', 'melby@yahoo.com', '7845126325', 'AL-YH/124/LY', 'pic2.jpg', 'KJ Construction', 'Apartment Construction', 'Alappuzha', 'Kerala', 'person_4.jpg', 9, 1),
+(3, 8, 'Vasu Dev', 'vasu@gmail.com', '7412365894', 'BJ-156/TF', 'pic3.jpg', 'HomR', 'House Construction', 'Ernakulam', 'Kerala', 'person_2.jpg', 5, 1),
+(4, 14, 'Maya Shivan', 'maya@gmail.com', '6325412356', 'HX-NM/359/CD', 'pic3.jpg', 'Unique', 'Apartment Construction', 'Kottayam', 'Kerala', 'team-4.jpg', 7, 1),
+(5, 18, 'Siby Jose', 'siby@gmail.com', '8852413689', 'FG-45/NM/41', 'pic4.jpg', 'DREAM', 'Office Construction', 'Alappuzha', 'Kerala', 'team-5.jpg', 10, 1),
+(6, 21, 'Manu Philip', 'manu@yahoo.com', '6547894561', 'CV-32/87/SD', 'pic4.jpg', 'ASCOTIA', 'Office Construction', 'Thrissur', 'Kerala', 'team-8.jpg', 5, 1),
+(7, 23, 'Hermus Alex', 'hermus@gmail.com', '8461352792', 'GB-OP/45/25', 'pic5.jpg', 'Kajaria Constructions', 'Flat Construction', 'Ernakulam', 'Kerala', 'person_1.jpg', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -207,37 +194,6 @@ INSERT INTO `tbl_customer_reg` (`cust_id`, `login_id`, `cust_name`, `address`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_daily_progress`
---
-
-CREATE TABLE `tbl_daily_progress` (
-  `report_id` int(10) NOT NULL,
-  `title` varchar(30) NOT NULL,
-  `login_id` int(10) NOT NULL,
-  `from_login_id` int(10) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `activityDetails` varchar(100) NOT NULL,
-  `fdate` varchar(100) NOT NULL,
-  `tdate` varchar(100) NOT NULL,
-  `status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_daily_progress`
---
-
-INSERT INTO `tbl_daily_progress` (`report_id`, `title`, `login_id`, `from_login_id`, `description`, `activityDetails`, `fdate`, `tdate`, `status`) VALUES
-(1, 'Apartment Construction', 2, 5, 'Concrete work started', 'site6.jpg', '2021-04-19', '2021-04-26', 1),
-(2, 'House Construction', 2, 4, 'Concrete work started', 'site8.jpg', '2021-04-20', '2021-04-27', 1),
-(3, 'Apartment Construction', 15, 14, 'concrete work started', 'site5.jpg', '2021-04-26', '2021-05-03', 1),
-(4, 'Apartment Construction', 16, 5, 'concrete work started', 'site1.jpg', '2021-04-26', '2021-04-26', 1),
-(5, 'Office Construction', 20, 21, 'foundation work started', 'site8.jpg', '2021-04-27', '2021-05-04', 0),
-(7, 'Office Construction', 22, 18, 'concrete work started', 'site8.jpg', '2021-04-22', '2021-04-29', 0),
-(11, 'House Construction', 3, 4, 'bnbkjhnkj', 'site5.jpg', '2021-05-17', '2021-05-24', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_daily_progress_report`
 --
 
@@ -256,9 +212,36 @@ CREATE TABLE `tbl_daily_progress_report` (
 --
 
 INSERT INTO `tbl_daily_progress_report` (`report_id`, `proj_id`, `description`, `activityDetails`, `fdate`, `tdate`, `dstatus`) VALUES
-(1, 3, 'bkjnkjhkk', 'site8.jpg', '2021-05-10', '2021-05-17', 1),
+(1, 3, 'concrete work started', 'site8.jpg', '2021-05-10', '2021-05-17', 1),
 (2, 4, 'vjgvjhhjgjh', 'site2.jpg', '2021-05-10', '2021-05-17', 1),
-(6, 1, 'vhjvhkjh', 'site3.jpg', '2021-05-10', '2021-05-17', 0);
+(6, 1, 'vhjvhkjh', 'site3.jpg', '2021-05-10', '2021-05-17', 1),
+(7, 6, 'concrete work started', 'site7.jpg', '2021-05-28', '2021-06-04', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_daily_wages`
+--
+
+CREATE TABLE `tbl_daily_wages` (
+  `wageid` int(10) NOT NULL,
+  `attnd_id` int(10) NOT NULL,
+  `wages` int(100) NOT NULL,
+  `status` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_daily_wages`
+--
+
+INSERT INTO `tbl_daily_wages` (`wageid`, `attnd_id`, `wages`, `status`) VALUES
+(1, 1, 500, 1),
+(2, 3, 500, 1),
+(3, 4, 500, 1),
+(4, 9, 500, 1),
+(8, 2, 500, 1),
+(9, 15, 500, 1),
+(10, 10, 500, 1);
 
 -- --------------------------------------------------------
 
@@ -419,6 +402,30 @@ INSERT INTO `tbl_labour_category` (`category_id`, `category_name`, `status`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_leave`
+--
+
+CREATE TABLE `tbl_leave` (
+  `leave_id` int(10) NOT NULL,
+  `leave_date` varchar(100) NOT NULL,
+  `applied_on` varchar(100) NOT NULL,
+  `contractor_id` int(10) NOT NULL,
+  `lid` int(10) NOT NULL,
+  `reason` varchar(1000) NOT NULL,
+  `lstatus` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_leave`
+--
+
+INSERT INTO `tbl_leave` (`leave_id`, `leave_date`, `applied_on`, `contractor_id`, `lid`, `reason`, `lstatus`) VALUES
+(1, '2021-05-31', '2021-05-30', 1, 4, 'fever', 1),
+(2, '2021-06-07', '2021-06-04', 1, 4, 'personal reason', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_login`
 --
 
@@ -456,7 +463,8 @@ INSERT INTO `tbl_login` (`login_id`, `username`, `password`, `user_type`, `statu
 (19, 'Vishal', 'ce62a796a473947f38aa8c13a654c8c0', 'labour', 1),
 (20, 'Liya', 'bf7414443685fc561549768762732db3', 'customer', 1),
 (21, 'Manu', '4404dfe5492b8d9dc697232d719c8725', 'contractor', 1),
-(22, 'Binoy', 'af91d6e7e33c2fa4ad296225cae316b1', 'customer', 1);
+(22, 'Binoy', 'af91d6e7e33c2fa4ad296225cae316b1', 'customer', 1),
+(23, 'Hermus12', '404242eaf15e3e2f828b5eb649f02a7c', 'contractor', 1);
 
 -- --------------------------------------------------------
 
@@ -465,12 +473,20 @@ INSERT INTO `tbl_login` (`login_id`, `username`, `password`, `user_type`, `statu
 --
 
 CREATE TABLE `tbl_payment` (
-  `paymentid` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `card_number` varchar(50) NOT NULL,
-  `amount` varchar(1000) NOT NULL,
-  `expdate` varchar(100) NOT NULL
+  `pay_id` int(10) NOT NULL,
+  `proj_id` int(10) NOT NULL,
+  `date` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `amount` int(11) NOT NULL,
+  `pstatus` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_payment`
+--
+
+INSERT INTO `tbl_payment` (`pay_id`, `proj_id`, `date`, `amount`, `pstatus`) VALUES
+(1, 1, '2021-06-05 14:32:35.282148', 25000, 1),
+(2, 3, '2021-06-05 14:33:52.391920', 50000, 1);
 
 -- --------------------------------------------------------
 
@@ -513,31 +529,6 @@ INSERT INTO `tbl_postoff` (`pid`, `post_office`, `status`) VALUES
 (23, 'Pala', 1),
 (24, 'Paika', 1),
 (25, 'Edappally', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_prof`
---
-
-CREATE TABLE `tbl_prof` (
-  `prof_id` int(10) NOT NULL,
-  `login_id` int(10) NOT NULL,
-  `photo` varchar(500) NOT NULL,
-  `yoexp` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_prof`
---
-
-INSERT INTO `tbl_prof` (`prof_id`, `login_id`, `photo`, `yoexp`) VALUES
-(1, 5, 'team-1.jpg', 6),
-(2, 4, 'team-6.jpg', 9),
-(3, 8, 'team-5.jpg', 5),
-(4, 14, 'team-4.jpg', 7),
-(5, 18, 'person_3.jpg', 10),
-(6, 21, 'person_4.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -599,37 +590,6 @@ INSERT INTO `tbl_services` (`serv_id`, `service`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_site`
---
-
-CREATE TABLE `tbl_site` (
-  `sid` int(10) NOT NULL,
-  `proj_id` int(10) NOT NULL,
-  `proj_name` varchar(100) NOT NULL,
-  `site_loc` varchar(100) NOT NULL,
-  `fdate` varchar(50) NOT NULL,
-  `tdate` varchar(50) NOT NULL,
-  `contractor_name` varchar(100) NOT NULL,
-  `labour_name` varchar(100) NOT NULL,
-  `status` int(10) NOT NULL,
-  `proj_status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_site`
---
-
-INSERT INTO `tbl_site` (`sid`, `proj_id`, `proj_name`, `site_loc`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `status`, `proj_status`) VALUES
-(1, 0, 'House Construction', 'Panamattam, Kottayam', '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1, 0),
-(2, 0, 'Apartment Construction', 'Panamattom, Kottayam', '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 0, 0),
-(3, 0, 'Office Construction', 'Aroor, Kottayam', '2021-04-27', '2021-05-04', 'Manu Philip', 'Alex', 0, 0),
-(4, 0, 'Office Construction', 'CCNB rd, Cherthala, Alappuzha', '2021-04-15', '2021-04-22', 'Siby Jose', 'Vishal Dev', 0, 0),
-(11, 3, 'House Construction', 'fygyguihi', '2021-05-14', '2021-05-14', 'Antony Mathai', 'Appu Jose', 0, 0),
-(12, 4, 'House Construction', ' bmbnbjn,jnj', '2021-05-14', '2021-05-21', 'Antony Mathai', 'Solomon', 0, 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_site_loc`
 --
 
@@ -650,13 +610,15 @@ CREATE TABLE `tbl_site_loc` (
 
 INSERT INTO `tbl_site_loc` (`sid`, `proj_id`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `sstatus`, `proj_sstatus`) VALUES
 (1, 4, '2021-04-19', '2021-04-26', 'Antony Mathai', 'Babu Meth', 1, 2),
-(2, 6, '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 1, 0),
-(3, 7, '2021-04-27', '2021-05-04', 'Manu Philip', 'Alex', 0, 1),
+(2, 6, '2021-04-20', '2021-04-27', 'Melbin Joseph', 'Babu Meth', 1, 1),
+(3, 7, '2021-04-27', '2021-05-04', 'Manu Philip', 'Alex', 1, 1),
 (4, 8, '2021-04-15', '2021-04-22', 'Siby Jose', 'Vishal Dev', 0, 0),
-(11, 3, '2021-05-14', '2021-05-14', 'Antony Mathai', 'Appu Jose', 0, 0),
+(11, 3, '2021-05-14', '2021-05-14', 'Antony Mathai', 'Appu Jose', 1, 1),
 (12, 4, '2021-05-14', '2021-05-21', 'Antony Mathai', 'Solomon', 0, 0),
 (13, 6, '2021-05-11', '2021-05-18', 'Melbin Joseph', 'Alex', 1, 2),
-(14, 1, '2021-05-20', '2021-05-27', 'Melbin Joseph', 'Alex', 1, 1);
+(14, 1, '2021-05-20', '2021-05-27', 'Melbin Joseph', 'Alex', 1, 1),
+(15, 1, '2021-05-28', '2021-06-04', 'Melbin Joseph', 'Solomon', 0, 0),
+(16, 6, '2021-05-24', '2021-05-31', 'Melbin Joseph', 'Billu', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -690,20 +652,6 @@ INSERT INTO `tbl_state` (`sid`, `state_name`, `status`) VALUES
 (13, 'Meghalaya', 0),
 (22, 'Himachal Pradesh', 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_weekly_wages`
---
-
-CREATE TABLE `tbl_weekly_wages` (
-  `wageid` int(10) NOT NULL,
-  `contractor_id` int(10) NOT NULL,
-  `lid` int(10) NOT NULL,
-  `wages` varchar(100) NOT NULL,
-  `status` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Indexes for dumped tables
 --
@@ -718,12 +666,6 @@ ALTER TABLE `tbl_admin`
 -- Indexes for table `tbl_attnd`
 --
 ALTER TABLE `tbl_attnd`
-  ADD PRIMARY KEY (`attnd_id`);
-
---
--- Indexes for table `tbl_attnd_copy`
---
-ALTER TABLE `tbl_attnd_copy`
   ADD PRIMARY KEY (`attnd_id`);
 
 --
@@ -751,16 +693,16 @@ ALTER TABLE `tbl_customer_reg`
   ADD PRIMARY KEY (`cust_id`);
 
 --
--- Indexes for table `tbl_daily_progress`
---
-ALTER TABLE `tbl_daily_progress`
-  ADD PRIMARY KEY (`report_id`);
-
---
 -- Indexes for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
   ADD PRIMARY KEY (`report_id`);
+
+--
+-- Indexes for table `tbl_daily_wages`
+--
+ALTER TABLE `tbl_daily_wages`
+  ADD PRIMARY KEY (`wageid`);
 
 --
 -- Indexes for table `tbl_district`
@@ -793,6 +735,12 @@ ALTER TABLE `tbl_labour_category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `tbl_leave`
+--
+ALTER TABLE `tbl_leave`
+  ADD PRIMARY KEY (`leave_id`);
+
+--
 -- Indexes for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
@@ -802,19 +750,13 @@ ALTER TABLE `tbl_login`
 -- Indexes for table `tbl_payment`
 --
 ALTER TABLE `tbl_payment`
-  ADD PRIMARY KEY (`paymentid`);
+  ADD PRIMARY KEY (`pay_id`);
 
 --
 -- Indexes for table `tbl_postoff`
 --
 ALTER TABLE `tbl_postoff`
   ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `tbl_prof`
---
-ALTER TABLE `tbl_prof`
-  ADD PRIMARY KEY (`prof_id`);
 
 --
 -- Indexes for table `tbl_project`
@@ -829,12 +771,6 @@ ALTER TABLE `tbl_services`
   ADD PRIMARY KEY (`serv_id`);
 
 --
--- Indexes for table `tbl_site`
---
-ALTER TABLE `tbl_site`
-  ADD PRIMARY KEY (`sid`);
-
---
 -- Indexes for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
@@ -845,12 +781,6 @@ ALTER TABLE `tbl_site_loc`
 --
 ALTER TABLE `tbl_state`
   ADD PRIMARY KEY (`sid`);
-
---
--- Indexes for table `tbl_weekly_wages`
---
-ALTER TABLE `tbl_weekly_wages`
-  ADD PRIMARY KEY (`wageid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -866,31 +796,25 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_attnd`
 --
 ALTER TABLE `tbl_attnd`
-  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `tbl_attnd_copy`
---
-ALTER TABLE `tbl_attnd_copy`
-  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_comp_assignlab`
 --
 ALTER TABLE `tbl_comp_assignlab`
-  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
 --
 ALTER TABLE `tbl_contractor_reg`
-  MODIFY `contractor_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `contractor_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_customer_reg`
@@ -899,16 +823,16 @@ ALTER TABLE `tbl_customer_reg`
   MODIFY `cust_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tbl_daily_progress`
---
-ALTER TABLE `tbl_daily_progress`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- AUTO_INCREMENT for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_daily_wages`
+--
+ALTER TABLE `tbl_daily_wages`
+  MODIFY `wageid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -941,28 +865,28 @@ ALTER TABLE `tbl_labour_category`
   MODIFY `category_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `tbl_leave`
+--
+ALTER TABLE `tbl_leave`
+  MODIFY `leave_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
-  MODIFY `login_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `login_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment`
 --
 ALTER TABLE `tbl_payment`
-  MODIFY `paymentid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_postoff`
 --
 ALTER TABLE `tbl_postoff`
   MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `tbl_prof`
---
-ALTER TABLE `tbl_prof`
-  MODIFY `prof_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_project`
@@ -977,28 +901,16 @@ ALTER TABLE `tbl_services`
   MODIFY `serv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tbl_site`
---
-ALTER TABLE `tbl_site`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`
 --
 ALTER TABLE `tbl_state`
   MODIFY `sid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `tbl_weekly_wages`
---
-ALTER TABLE `tbl_weekly_wages`
-  MODIFY `wageid` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

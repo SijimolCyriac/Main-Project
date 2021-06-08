@@ -54,18 +54,20 @@ $name=$li['contractor_name'];
                                 Dashboard
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-																<div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
-															Project
-																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-														</a>
-														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewproj.php">View Project Details</a>
-	<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                              Project
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
 
-																</nav>
-														</div>
+
+                                </nav>
+                            </div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
 															Labours
@@ -74,7 +76,10 @@ $name=$li['contractor_name'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-<a class="nav-link" href="sitelab.php">Assign Location</a>
+																			<a class="nav-link" href="sitelab.php">Assign Location</a>
+	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
+																			  <a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
 
 																</nav>
 														</div>
@@ -85,7 +90,19 @@ $name=$li['contractor_name'];
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																</nav>
+														</div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+														Payment
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+
+																			<a class="nav-link" href="viewpay.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -99,8 +116,6 @@ $name=$li['contractor_name'];
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
 																</nav>
 														</div>
-
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -140,7 +155,7 @@ $name=$li['contractor_name'];
 																			$f='Approved';
 																		}
 																		else {
-																			$f='Not Approved';
+																			$f='Pending';
 																		}
 																	echo "<tr>";
 																	echo "<td>"
@@ -192,7 +207,7 @@ $name=$li['contractor_name'];
 																<div class="form-label-group">
 
 																 <label for="exampleInputEmail1">Contractor Name:</label>
-																<input type="text" class="form-control" id="name1" name="name" value="<?php echo $x['contractor_name']; ?>"
+																<input type="text" class="form-control" id="name1" name="name" disabled value="<?php echo $x['contractor_name']; ?>"
 																placeholder="Contractor Name"  autofocus="autofocus" required>
 																<br><label for="exampleInputEmail1">Customer Name:</label>
 															 <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>

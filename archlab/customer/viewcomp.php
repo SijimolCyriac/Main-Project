@@ -54,17 +54,30 @@ if(isset($_SESSION['uname']))
 		 														 </nav>
 		 												 </div>
 
-		 												 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-		 														 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-		 														 Weekly Progress Report
-		 														 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-		 												 </a>
-		 												 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-		 														 <nav class="sb-sidenav-menu-nested nav">
-		 																 <a class="nav-link" href="viewreport.php">View Report</a>
+														 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+																Weekly Progress Report
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		<a class="nav-link" href="viewreport.php">View Report</a>
 
-		 														 </nav>
-		 												 </div>
+																</nav>
+														</div>
+
+														 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																 <div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+																Payment
+																 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														 </a>
+														 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																 <nav class="sb-sidenav-menu-nested nav">
+																		 <a class="nav-link" href="addpay.php">View Payment</a>
+																		<a class="nav-link" href="viewtran.php">View Transaction Log</a>
+
+																 </nav>
+														 </div>
 
 		 												 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 		 														 <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
@@ -119,7 +132,7 @@ if(isset($_SESSION['uname']))
 																				$f='Solved';
 																			}
 																			else {
-																				$f='Unsolved';
+																				$f='Pending';
 																			}
 
 																		echo "<tr>";
@@ -173,7 +186,7 @@ if(isset($_SESSION['uname']))
 
 																	while($row=mysqli_fetch_array($query1))
 																	{ ?>
-																	<option value="<?php echo $row['contractor_id'];?>"><?php echo $row['contractor_name'];?></option>
+																	<option value="<?php echo $row['contractor_name'];?>"><?php echo $row['contractor_name'];?></option>
 																	<?php
 																}}
 																	?>
@@ -220,26 +233,6 @@ if(isset($_SESSION['uname']))
 							</div>
 							</div>
 							<script>
-							function validate()
-							{
-							var name=document.getElementById("name1").value;
-							var letters=/^[a-zA-Z\s]*$/;
-							if(!name.match(letters))
-							{
-							alert("Please Enter Name Corrrectly");
-							document.getElementById("name1").value="";
-							}
-							}
-							function validate1()
-							{
-							var email = document.getElementById("email1").value;
-							var pat=/^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$/;
-							 if(!email.match(pat))
-							{
-							alert("Please Enter Valid Email");
-							document.getElementById("email1").value="";
-							}
-							}
 							function validate2()
 							{
 							var name=document.getElementById("comp1").value;

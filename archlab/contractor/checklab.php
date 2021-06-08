@@ -56,18 +56,20 @@ if(isset($_REQUEST['y']))
                                 Dashboard
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-																<div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
-															Project
-																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-														</a>
-														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewproj.php">View Project Details</a>
-<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                              Project
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
 
-																</nav>
-														</div>
+
+                                </nav>
+                            </div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
 															Labours
@@ -76,8 +78,11 @@ if(isset($_REQUEST['y']))
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-                                        <a class="nav-link" href="sitelab.php">Assign Location</a>
-                                              <a class="nav-link" href="checklab.php">Checking Works</a>
+																			<a class="nav-link" href="sitelab.php">Assign Location</a>
+	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
+																			  <a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
+
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -87,7 +92,19 @@ if(isset($_REQUEST['y']))
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																</nav>
+														</div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+														Payment
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+
+																			<a class="nav-link" href="viewpay.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -101,8 +118,6 @@ if(isset($_REQUEST['y']))
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
 																</nav>
 														</div>
-
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -129,13 +144,14 @@ if(isset($_REQUEST['y']))
 																	$d=$x['contractor_name'];
 
 																	$sql="select * from tbl_site_loc s,tbl_project p
-																	where  p.proj_id=s.proj_id and  s.contractor_name='$d'";
+																	where  p.proj_id=s.proj_id and  s.contractor_name='$d' and s.sstatus=1";
 																	$res1 = mysqli_query($con,$sql);
 
 																	echo "<h2><center>Work Details</center></h2>";
  																	echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
 
-
+																	if(mysqli_num_rows($res1)>0)
+																	{
 																	while($v=mysqli_fetch_array($res1))
 																	{
 																		if($v['proj_sstatus']==0)
@@ -159,7 +175,17 @@ if(isset($_REQUEST['y']))
 
 																	.$f."</td>";
 																	echo "</tr>";
-																	}
+																}}
+																else
+																{
+
+																	?>
+																<script>alert("No Records Found");
+																location.href="index.php";
+																exit;
+																</script>
+																<?php
+																}
 
 																	?>
 													</table></form>

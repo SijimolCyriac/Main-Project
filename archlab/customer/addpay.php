@@ -1,25 +1,14 @@
 <?php
 session_start();
 include("DbConne.php");
-
 if(isset($_SESSION['uname']))
 {
-
 $temp=$_SESSION['uname'];
-if(isset($_GET['est_id']))
-{
- $a=intval($_GET['est_id']);
-  $stat=intval($_GET['status']);
-if($stat=="approved"){$status='0';}
-else{$status='1';}
-
- $sql="update tbl_est  set status='$status' where est_id='$a'";
-mysqli_query($con,$sql);
-}
-
 	?>
 <!DOCTYPE html>
 <html lang="en">
+<?php 	include("header.php");
+?>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,30 +29,7 @@ mysqli_query($con,$sql);
 
 		</head>
 		<body>
-				<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-						<a class="navbar-brand" href="index.php">BuildTech Construction</a>
-						<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-						<!-- Navbar Search-->
-						<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" >
-								<div class="input-group">
 
-										<div class="input-group-append">
-
-										</div>
-								</div>
-						</form>
-						<!-- Navbar-->
-						<ul class="navbar-nav ml-auto ml-md-0">
-							<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-									 echo $temp;
-									 ?></a>
-									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-											<a class="dropdown-item" href="logout.php">Logout</a>
-									</div>
-							</li>
-						</ul>
-				</nav>
 				<div id="layoutSidenav">
 						<div id="layoutSidenav_nav">
 								<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -83,19 +49,31 @@ mysqli_query($con,$sql);
 													 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 															 <nav class="sb-sidenav-menu-nested nav">
 																	 <a class="nav-link" href="viewproj.php">View Project</a>
-
+<a class="nav-link" href="viewest.php">View Estimation</a>
 															 </nav>
 													 </div>
 
 													 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 															 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-															 Daily Progress Report
+															 Weekly Progress Report
 															 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 													 </a>
 													 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 															 <nav class="sb-sidenav-menu-nested nav">
 																	 <a class="nav-link" href="viewreport.php">View Report</a>
 
+															 </nav>
+													 </div>
+
+													 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+															 <div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+															Payment
+															 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+													 </a>
+													 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+															 <nav class="sb-sidenav-menu-nested nav">
+																	 <a class="nav-link" href="addpay.php">View Payment</a>
+																	 <a class="nav-link" href="viewtran.php">View Transaction Log</a>
 															 </nav>
 													 </div>
 
@@ -117,7 +95,7 @@ mysqli_query($con,$sql);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Estimation Details</h2>
+                        <h2 class="mt-4">Payment</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Customer</li>
@@ -128,58 +106,43 @@ mysqli_query($con,$sql);
 														<div class="card-body">
 															<div class="table-responsive">
 
-																<form action="viewest.php" method="get">
+																<form action="#" method="POST">
 																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 																	<?php
 																	include("DbConne.php");
-																	$abc="select login_id from tbl_login where username='$temp'";
-																	$query=mysqli_query($con,$abc);
-																	$result=mysqli_fetch_array($query);
+                                  $query = "select * from tbl_login l,tbl_customer_reg h  where l.username='$temp' and l.login_id=h.login_id";
+                  								$results = mysqli_query($con,$query);
+                  								$x=mysqli_fetch_array($results);
+                  								$d=$x['cust_id'];
 
-																	$c=$result['login_id'];
-																	$js="select cust_name from tbl_customer_reg where login_id='$c'";
-																	$que=mysqli_query($con,$js);
-																	$res=mysqli_fetch_array($que);
-																	$d=$res['cust_name'];
+                  								$sql="select p.proj_id, p.yur_service,c.contractor_name,c.contractor_id,p.cust_id from tbl_project p,tbl_contractor_reg c
+                  								where p.cust_id='$d' and p.contractor_id=c.contractor_id and p.status=1";
 
-																	$sql="select * from tbl_project p,tbl_est e
-																	where  p.proj_id=e.proj_id and e.cust_name='$d'";
-																	$res1 = mysqli_query($con,$sql);
+                  								$res1 = mysqli_query($con,$sql);
 
-																	echo "<h2><center>Estimation Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Status</th></tr>";
+
+																	echo "<h2><center>Payment Details</center></h2>";
+ 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Action</th></tr>";
 																	if(mysqli_num_rows($res1)>0)
  								 								{
 
 																	while($v=mysqli_fetch_array($res1))
 																	{
-
+                                      $u=$v['contractor_name'];
+																			$y=$v['proj_id'];
 																	echo "<tr>";
 																	echo "<td>"
 																	.$v['yur_service']."</td><td>"
-																	.$v['contractor_name']."</td><td>"
-																	.$v['total_cost']."</td><td>"
-																	.$v['concrete']."</td><td>"
-																	.$v['brick']."</td><td>"
-																	.$v['door']."</td><td>"
-																	.$v['electrical']."</td><td>";
-																	echo "<input type='hidden' name='est_id' value=".$v['est_id'].">";
-																	if($v['status'] == 1 || $v['status'] =='')
-																	{
-																	echo "<input type='submit' value='approved' name='status'>";
-																	}
-																	else
-																	{
-																		echo "<input type='submit' value='pending' name='status'>
-																	</td>";
-																	}
+																	.$v['contractor_name']."</td><td>";
+																	$uy="Payment.php?proj_id=$y&con_name=$u";
+                                  echo "<a href=$uy class='btn btn-success'>Pay</a></td>";
 																	echo "</tr>";
 																}}
 																else
 																{
-																echo "</table><h1 align='center'>No Estimation Found..</h1>";
+																echo "</table><h1 align='center'>No Payment Found..</h1>";
 																	?>
-																<script>alert("No Estimation Found");
+																<script>alert("No Payment Found");
 																location.href="index.php";
 																exit;
 																</script>

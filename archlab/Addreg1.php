@@ -64,7 +64,7 @@ $sq="insert into tbl_customer_reg(login_id,cust_name,address,post_office,PIN_Cod
 if(mysqli_query($con,$sq))
 {
   ?>
-  <script>alert("Successfully Registered");
+  <script>alert("Successfully Registered. You will be directed to Login Page.");
   location.href="login.php";
    exit;
   </script>

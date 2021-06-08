@@ -7,10 +7,11 @@ $abc="select login_id from tbl_login where username='$b'";
 $query=mysqli_query($con,$abc);
 
 $cn = $_POST['cname'];
-$ab="select contractor_name from tbl_contractor_reg where contractor_id='$cn'";
+$ab="select contractor_name from tbl_contractor_reg where contractor_name='$cn'";
 $qe=mysqli_query($con,$ab);
 $re=mysqli_fetch_array($qe);
 $ce=$re['contractor_name'];
+
 
 while($result=mysqli_fetch_array($query))
 {
@@ -20,21 +21,18 @@ while($result=mysqli_fetch_array($query))
   $res=mysqli_fetch_array($que);
   $d=$res['labour_name'];
 
+  $sql="select * from tbl_project p,tbl_site_loc c
+  where p.proj_id=c.proj_id and c.contractor_name='$ce' and c.labour_name='$d' and c.proj_sstatus=1";
+  $res1 = mysqli_query($con,$sql);
+  $v=mysqli_fetch_array($res1);
+  $m=$v['proj_id'];
+
 }
 
-
-$proj_name=$_POST["proj"];
-$site_address=$_POST["add"];
-$cdate=$_POST['cdate'];
-
-$details=$_FILES['proof']['name'];
-$fileloc="work/";
-move_uploaded_file($_FILES["proof"]["tmp_name"],$fileloc.$details);
 $att=$_POST['att'];
-
-$status='0';
-
-$jss="select * from tbl_attnd where proj_name='$proj_name' and site_loc='$site_address' and cdate='$cdate' and contractor_name='$ce' and labour_name='$d' and work_proof='$details'";
+$status='1';
+$cdate=date("Y-m-d");
+$jss="select * from tbl_attnd where proj_id='$m' and cdate='$cdate' and contractor_name='$ce' and labour_name='$d'";
 $quee=mysqli_query($con,$jss);
 $num=mysqli_num_rows($quee);
 if($num==1)
@@ -48,7 +46,7 @@ if($num==1)
 }
 
 else{
-$sq="insert into tbl_attnd(proj_name,site_loc,cdate,contractor_name,labour_name,work_proof,attd,status) values('$proj_name','$site_address','$cdate','$ce','$d','$details','$att','$status')";
+$sq="insert into tbl_attnd(proj_id,cdate,contractor_name,labour_name,attd,status) values('$m','$cdate','$ce','$d','$att','$status')";
 if(mysqli_query($con,$sq))
   {
     ?>

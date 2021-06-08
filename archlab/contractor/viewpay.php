@@ -1,10 +1,10 @@
 <?php
 session_start();
 include("DbConne.php");
-
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
+
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,19 +20,16 @@ $temp=$_SESSION['uname'];
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
-				<script>
-				function getdistrict(val) {
-				$.ajax({
-				type: "POST",
-				url: "get_district.php",
-				data:'state_id='+val,
-				success: function(data){
-					$("#district-list").html(data);
-				}
-				});
-				}
+				<style>
+										table, th, td {
 
-				</script>
+												text-align:center;
+
+			min-width: 150px;
+										}
+
+
+								</style>
 
     </head>
     <body>
@@ -48,20 +45,20 @@ $temp=$_SESSION['uname'];
                                 Dashboard
                             </a>
 														<div class="sb-sidenav-menu-heading">Activities</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
-                              Project
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+															Project
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		<a class="nav-link" href="viewproj.php">View Project Details</a>
 																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
-                                </nav>
-                            </div>
+																</nav>
+														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 																<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
 															Labours
@@ -71,8 +68,8 @@ $temp=$_SESSION['uname'];
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
 																			<a class="nav-link" href="sitelab.php">Assign Location</a>
-	                                     <a class="nav-link" href="checklab.php">Checking Works</a>
-																			  <a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="checklab.php">Checking Works</a>
+																				<a class="nav-link" href="viewleave.php">View Leave</a>
 																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
 
 																</nav>
@@ -110,13 +107,12 @@ $temp=$_SESSION['uname'];
 																		<a class="nav-link" href="viewcomp.php">View Complaints</a>
 																</nav>
 														</div>
-
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Labour Details</h1>
+                        <h2 class="mt-4">View Transaction</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -126,79 +122,103 @@ $temp=$_SESSION['uname'];
 												<div class="card mb-4">
 														<div class="card-body">
 															<div class="table-responsive">
-                            <h2><center>Search Labour</center></h2>
-															<form action="viewlab.php" method="POST">
-															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <div class="input-group form-group">
-																<div class="input-group-prepend">
-																<span class="input-group-text"><i class="fa fa-list"></i></span>
-																</div>
 
-																<select onChange="getcat(this.value);"  name="category" id="category" class="form-control" required >
-																<option value="">Select Category</option>
-																<?php $query =mysqli_query($con,"SELECT * FROM tbl_labour_category where status=1");
-																while($row=mysqli_fetch_array($query))
-																{ ?>
-																<option value="<?php echo $row['category_name'];?>"><?php echo $row['category_name'];?></option>
-																<?php
-																}
-																?>
-																</select>
+																<form action="#" method="POST">
+																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																	<?php
+																	include("DbConne.php");
 
-												<div class="input-group-prepend">
-												<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-												</div>
-												<select   name="dist" id="dist" class="form-control" required/>
-												<option value="">Select District</option>
-												<?php $query =mysqli_query($con,"SELECT * FROM tbl_district where status=1");
-												while($row=mysqli_fetch_array($query))
-												{ ?>
-												<option value="<?php echo $row['dist_name'];?>"><?php echo $row['dist_name'];?></option>
-												<?php
-												}
-												?>
-												</select>
+																	$query = "select h.contractor_id from tbl_login l,tbl_contractor_reg h  where l.username='$temp' and l.login_id=h.login_id";
+			                            $results = mysqli_query($con,$query);
+			                            $x=mysqli_fetch_array($results);
+			                            $d=$x['contractor_id'];
+
+
+																	$sql="select * from tbl_payment a,tbl_project p
+			                            where  p.contractor_id='$d' and a.proj_id=p.proj_id and a.pstatus=1";
+			                            $res1 = mysqli_query($con,$sql);
+
+			                            echo "<h2><center>Transaction Log Details</center></h2>";
+			                            echo "<tr><th>Project Name</th><th>Customer Name</th><th>Transaction Date</th><th>Transaction Amount</th></tr>";
+																	if(mysqli_num_rows($res1)>0)
+																{
+
+			                            while($v=mysqli_fetch_array($res1))
+			                            {
+                                      $d1=$v['proj_id'];
+																			$sql="select * from tbl_customer_reg a,tbl_project p
+																			where  p.proj_id='$d1' and a.cust_id=p.cust_id";
+																			$res2 = mysqli_query($con,$sql);
+																			$y=mysqli_fetch_array($res2);
+
+
+			                            echo "<tr>";
+			                            echo "<td>"
+			                            .$v['yur_service']."</td><td>"
+                               .$y['cust_name']."</td><td>"
+			                            .$v['date']."</td><td>"
+
+			                            .$v['amount']."</td>";
+			                            echo "</tr>";
+																}}
+																	else
+																	{
+																	echo "</table><h1 align='center'>No Transaction Log Found..</h1>";
+																		?>
+																	<script>alert("No Transaction Log Found");
+																	location.href="index.php";
+																	exit;
+																	</script>
+																	<?php
+																	}
+
+																	?>
+													</table></form>
+
+
+													</div></div>
+													</div>
+
+
+</div></div>
+</div>
 </div>
 
+  <div style="height: 100vh;"></div>
+  <div class="card mb-4"><div class="card-body"></div></div>
+</div>
+</main>
+<footer class="py-4 bg-light mt-auto">
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between small">
+      <div class="text-muted"></div>
+      <div>
+          <a href="#"></a>
+          &middot;
+          <a href="#"></a>
+      </div>
+  </div>
+</div>
+</footer>
+</div>
+</div>
 
-												<div class="card-footer">
-						            <div class="d-flex justify-content-center links">
-						            <center><input type="submit" name="search" value="Search" class="btn btn-primary" >
-						            <input type="reset" value="Cancel" class="btn btn-primary"></center>
-						            </div>
-						            </div>
-											</table>
-											</form>
-										</div></div>
-									</div>
-
-                        <div style="height: 100vh;"></div>
-                        <div class="card mb-4"><div class="card-body"></div></div>
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"></div>
-                            <div>
-                                <a href="#"></a>
-                                &middot;
-                                <a href="#"></a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+</body>
+<script src="app.js"></script>
+<script>
+	 history.pushState(null, null, location.href);
+	window.onpopstate = function () {
+			history.go(1);
+	};
+	</script>
 </html>
 <?php
 }
 else
 {
-		header("location: ../login.php");
+	header("location: ../login.php");
 }
 ?>

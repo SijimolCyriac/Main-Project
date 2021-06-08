@@ -161,7 +161,7 @@ include("DbConne.php");
             <div class="col-md-4">
             <div class="form-group">
               <label class="small mb-1" for="inputFirstName">Location</label>
-                      <input type="text" class="form-control py-4" name="loc" id="loc1" placeholder="Location"  required/>
+                      <input type="text" class="form-control py-4" name="loc" id="loc1" placeholder="Location" onblur="val()"  required/>
                       </div>
 
           </div></div>
@@ -425,11 +425,20 @@ include("DbConne.php");
   var num=/^\d{12}$|^\d{4}\d{4}\d{4}$/;
   if(!adnum.match(num))
   {
-  alert("Enter Valid Adharcard Number");
+  alert("Enter Valid Adharcard Number Eg: 235689451245");
   document.getElementById("card1").value="";
   }
   }
-
+  function val()
+  {
+  var name=document.getElementById("loc1").value;
+  var letters=/^[a-zA-Z\s]*$/;
+  if(!name.match(letters))
+  {
+  alert("Please Enter Location Correctly");
+  document.getElementById("loc1").value="";
+  }
+  }
   function validate3()
   {
   var usname=document.getElementById("uname").value;

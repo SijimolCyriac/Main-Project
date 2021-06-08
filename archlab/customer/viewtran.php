@@ -1,19 +1,6 @@
 <?php
 session_start();
 include("DbConne.php");
-if(isset($_REQUEST['x']))
-{
- $a=$_GET['x'];
- $sql="update tbl_est  set status='0' where est_id='$a'";
-mysqli_query($con,$sql);
-}
-if(isset($_REQUEST['y']))
-{
-	$a=$_GET['y'];
-
-	$sql="update tbl_est set status='1' where est_id='$a'";
-	mysqli_query($con,$sql);
-}
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
@@ -62,22 +49,21 @@ $temp=$_SESSION['uname'];
 													 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 															 <nav class="sb-sidenav-menu-nested nav">
 																	 <a class="nav-link" href="viewproj.php">View Project</a>
-                                  <a class="nav-link" href="viewest.php">View Estimation</a>
-                                  		<a class="nav-link" href="checkproj.php">Check Project</a>
+<a class="nav-link" href="viewest.php">View Estimation</a>
 															 </nav>
 													 </div>
 
-                           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                               <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                               Weekly Progress Report
-                               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                           </a>
-                           <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                               <nav class="sb-sidenav-menu-nested nav">
-                                   <a class="nav-link" href="viewreport.php">View Report</a>
+													 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+															 <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+															 Weekly Progress Report
+															 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+													 </a>
+													 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+															 <nav class="sb-sidenav-menu-nested nav">
+																	 <a class="nav-link" href="viewreport.php">View Report</a>
 
-                               </nav>
-                           </div>
+															 </nav>
+													 </div>
 
                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
@@ -87,7 +73,8 @@ $temp=$_SESSION['uname'];
                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                <nav class="sb-sidenav-menu-nested nav">
                                    <a class="nav-link" href="addpay.php">View Payment</a>
-                                   <a class="nav-link" href="viewtran.php">View Transaction Log</a>
+																	 <a class="nav-link" href="viewtran.php">View Transaction Log</a>
+
                                </nav>
                            </div>
 
@@ -109,7 +96,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Estimation Details</h2>
+                        <h2 class="mt-4">View Transaction</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Customer</li>
@@ -124,55 +111,51 @@ $temp=$_SESSION['uname'];
 																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 																	<?php
 																	include("DbConne.php");
-																	$abc="select login_id from tbl_login where username='$temp'";
-																	$query=mysqli_query($con,$abc);
-																	$result=mysqli_fetch_array($query);
+                                  $query = "select l.login_id,h.cust_id from tbl_login l,tbl_customer_reg h  where l.username='$temp' and l.login_id=h.login_id";
+                  								$results = mysqli_query($con,$query);
+                  								$x=mysqli_fetch_array($results);
+                  								$d=$x['cust_id'];
 
-																	$c=$result['login_id'];
-																	$js="select cust_name from tbl_customer_reg where login_id='$c'";
-																	$que=mysqli_query($con,$js);
-																	$res=mysqli_fetch_array($que);
-																	$d=$res['cust_name'];
+																	$sql="select * from tbl_payment a,tbl_project p
+			                            where  p.cust_id='$d' and a.proj_id=p.proj_id";
+			                            $res1 = mysqli_query($con,$sql);
 
-																	$sql="select * from tbl_project p,tbl_est e
-																	where  p.proj_id=e.proj_id and e.cust_name='$d'";
-																	$res1 = mysqli_query($con,$sql);
 
-																	echo "<h2><center>Estimation Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Floor</th><th>Painting</th><th>Status</th></tr>";
+																	echo "<h2><center>Transaction Log Details</center></h2>";
+ 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Transaction Date</th><th>Transaction Amount</th><th>Transaction Status</th></tr>";
 																	if(mysqli_num_rows($res1)>0)
  								 								{
 
 																	while($v=mysqli_fetch_array($res1))
 																	{
+																		$d1=$v['proj_id'];
+																		$sql="select * from tbl_contractor_reg a,tbl_project p
+																		where  p.proj_id='$d1' and a.contractor_id=p.contractor_id";
+																		$res2 = mysqli_query($con,$sql);
+																		$y=mysqli_fetch_array($res2);
 
+																		if($v['pstatus']==1)
+																		{
+																		 $f='Success';
+																		}
+																		else {
+																		 $f='Failed';
+																		}
 																	echo "<tr>";
 																	echo "<td>"
 																	.$v['yur_service']."</td><td>"
-																	.$v['contractor_name']."</td><td>"
-																	.$v['total_cost']."</td><td>"
-																	.$v['concrete']."</td><td>"
-																	.$v['brick']."</td><td>"
-																	.$v['door']."</td><td>"
-																	.$v['electrical']."</td><td>"
-                                  .$v['floor']."</td><td>"
-                                  .$v['paint']."</td><td>";
-																	if($v['status'] == 1 || $v['status'] =='')
-																	{
-																	echo "<a href='viewest.php?x=" .$v['est_id']." '>Approved</a>";
-																	}
-																	else
-																	{
-																	echo "<a href='viewest.php?y=" .$v['est_id']." '>Waiting for Approval</a>
-																	</td>";
-																	}
+																	.$y['contractor_name']."</td><td>"
+																	.$v['date']."</td><td>"
+																	.$v['amount']."</td><td>"
+																	.$f."</td>";
+
 																	echo "</tr>";
 																}}
 																else
 																{
-																echo "</table><h1 align='center'>No Estimation Found..</h1>";
+																echo "</table><h1 align='center'>No Transaction Log Found..</h1>";
 																	?>
-																<script>alert("No Estimation Found");
+																<script>alert("No Transaction Log Found");
 																location.href="index.php";
 																exit;
 																</script>

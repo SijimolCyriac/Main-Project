@@ -30,6 +30,7 @@ if(!empty($_SESSION['uname']))
         <title>Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
 				<style>
 				            table, th, td {
 
@@ -215,9 +216,21 @@ if(!empty($_SESSION['uname']))
 																	<div class="form-group">
 																	<div class="form-label-group">
 																	<input type="hidden" name="id" value="<?php echo $fin['pid']; ?>">
-																	<input type="text" id="am1" class="form-control" placeholder="Enter PostOffice Name" name="address" onblur="validate()" autofocus="autofocus" required value="<?php echo $fin['post_office']; ?>">
+																	<input type="text" id="am" class="form-control" placeholder="Enter PostOffice Name" name="address" onblur="validate()" autofocus="autofocus" required value="<?php echo $fin['post_office']; ?>">
 																	</div>
 																	</div>
+																	<script>
+																	function validate()
+																	{
+																	var name=document.getElementById("am").value;
+																	var letters=/^[a-zA-Z]+$/;
+																	if(!name.match(letters))
+																	{
+																	document.getElementById("am").value="";
+																	alert("Please Enter Valid Postoffice Name");
+																	}
+																	}
+																	</script>
 														<div class="modal-footer">
 													 <button type="button" class="btn btn-default" data-dismiss="modal">
 														Close
@@ -288,9 +301,21 @@ if(!empty($_SESSION['uname']))
 																		<form method="POST" action="#">
 																			<div class="form-group">
 																			<div class="form-label-group">
-																			<input type="text" id="am" class="form-control" placeholder="PostOffice Name" name="address" onblur="validate1()" autofocus="autofocus" required>
+																			<input type="text" id="amm" class="form-control" placeholder="PostOffice Name" name="address" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
+																							<script>
+																							function validate1()
+																							{
+																							var name=document.getElementById("amm").value;
+																							var letters=/^[a-zA-Z]+$/;
+																							if(!name.match(letters))
+																							{
+																								document.getElementById("amm").value="";
+																							  alert("Please Enter Valid Postoffice Name");
+																							}
+																							}
+																							</script>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-default" data-dismiss="modal">
 																Close
@@ -350,32 +375,7 @@ if(!empty($_SESSION['uname']))
                 </footer>
             </div>
         </div>
-				<script>
-				function validate()
-				{
-				var name=document.getElementById("am").value;
 
-				var letters=/^[a-zA-Z\s]*$/;
-				if(!name.match(letters))
-				{
-					document.getElementById("am").value="";
-				alert("Please Enter Valid Postoffice Name");
-
-				}
-				}
-				function validate1()
-				{
-				var name=document.getElementById("am1").value;
-
-				var letters=/^[a-zA-Z\s]*$/;
-				if(!name.match(letters))
-				{
-					document.getElementById("am1").value="";
-				alert("Please Enter Valid Postoffice Name");
-
-				}
-				}
-				</script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

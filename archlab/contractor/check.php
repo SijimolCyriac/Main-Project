@@ -86,7 +86,9 @@ $("#box1").hide();
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="viewproj.php">View Project Details</a>
-<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																			<a class="nav-link" href="check.php">Checking Projects</a>
+
 
 																</nav>
 														</div>
@@ -98,7 +100,10 @@ $("#box1").hide();
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-<a class="nav-link" href="sitelab.php">Assign Location</a>
+																			<a class="nav-link" href="sitelab.php">Assign Location</a>
+																			 <a class="nav-link" href="checklab.php">Checking Works</a>
+																				<a class="nav-link" href="viewleave.php">View Leave</a>
+																			 <a class="nav-link" href="viewattd.php">View Attendence</a>
 
 																</nav>
 														</div>
@@ -109,7 +114,19 @@ $("#box1").hide();
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+
+																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																</nav>
+														</div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+																<div class="sb-nav-link-icon"><i class="fa fa-credit-card"></i></div>
+														Payment
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+
+																			<a class="nav-link" href="viewpay.php">View Transaction Log</a>
 																</nav>
 														</div>
 
@@ -286,7 +303,7 @@ $("#box1").hide();
 			$m=$v['proj_id'];
 			if($v['proj_status']==2)
 			{
-				$f='completed';
+				$f='Completed';
 			}
 			echo "<tr>";
 			echo "<td>".$v['yur_service']."</td><td>"

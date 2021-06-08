@@ -167,7 +167,7 @@ min-width: 150px;
                                $query = "select * from tbl_contractor_reg";
                                $results = mysqli_query($con,$query);
                              	echo "<h2><center>Contractor Details</center></h2>";
-                               echo "<tr><th>Sl No</th><th>Contractor Name</th><th>Email Id</th><th>Phone No</th><th>License No</th><th>License Proof</th><th>Company Name</th><th>District Name</th><th>State Name</th><th>Status</th></tr>";
+                               echo "<tr><th>Sl No</th><th>Contractor Name</th><th>Email Id</th><th>Phone No</th><th>License No</th><th>License Proof</th><th>Company Name</th><th>Specialization</th><th>District Name</th><th>State Name</th><th>Status</th></tr>";
                                while($fin=mysqli_fetch_array($results))
                                {
                                echo "<tr>";
@@ -179,6 +179,7 @@ min-width: 150px;
 
 																		echo "<a href='viewproof.php?x=" .$fin['login_id']." ' target='_blank'>proof details</a></td><td>"
                                  .$fin['companyName']."</td><td>"
+																 .$fin['spec']."</td><td>"
 																    .$fin['dist_name']."</td><td>"
                                 .$fin['state_name']."</td><td>";
                              	 if($fin['status'] == 0 || $fin['status'] =='')

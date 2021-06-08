@@ -3,7 +3,6 @@ include("DbConne.php");
 if(isset($_POST['update'])){
 $id = $_POST['id'];
 $lab = $_POST['lab'];
-$site = $_POST['add'];
 $status='0';
 
 $sql="select b.contractor_id,b.login_id,a.comp_id,a.login_id,a.to_login_id from tbl_complaint a,tbl_contractor_reg b where

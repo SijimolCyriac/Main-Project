@@ -61,18 +61,16 @@ else
     <?php
   }else {
 
-
-
 $sqli="insert into tbl_login(username,password,user_type,status) values ('$username','$pass','$user_type','$status')";
 $result1=mysqli_query($con,$sqli);
 $n=mysqli_insert_id($con);
 
-$sq="insert into tbl_contractor_reg(login_id,contractor_name,email_id,phone_no,licenseNo,licenseProof,companyName,spec,dist_name,state_name,status) values('$n','$contractor_name','$email_id','$phone_no','$licenseNo','$licenseProof','$companyName','$spec','$dist_name','$state_name','$status')";
+$sq="insert into tbl_contractor_reg(login_id,contractor_name,email_id,phone_no,licenseNo,licenseProof,companyName,spec,dist_name,state_name,photo,yoexp,status) values('$n','$contractor_name','$email_id','$phone_no','$licenseNo','$licenseProof','$companyName','$spec','$dist_name','$state_name','0','0','$status')";
 
 if(mysqli_query($con,$sq))
 {
   ?>
-  <script>alert("Successfully Registered");
+  <script>alert("Successfully Registered. You will be directed to Login Page.");
   location.href="login.php";
    exit;
   </script>

@@ -297,7 +297,7 @@ if(!empty($_SESSION['uname']))
 																				}
 																				?>
 																			</select><br>
-																			<input type="text" id="am1" class="form-control" placeholder="District Name" name="address" onblur="validate1()" autofocus="autofocus" required>
+																			<input type="text" id="amm" class="form-control" placeholder="District Name" name="address" onblur="validate1()" autofocus="autofocus" required>
 																			</div>
 																			</div>
 														<div class="modal-footer">
@@ -369,7 +369,7 @@ if(!empty($_SESSION['uname']))
 				{
 				var name=document.getElementById("am").value;
 
-				var letters=/^[a-zA-Z\s]*$/;
+				var letters=/^[a-zA-Z]+$/;
 				if(!name.match(letters))
 				{
 					document.getElementById("am").value="";
@@ -379,12 +379,12 @@ if(!empty($_SESSION['uname']))
 				}
 				function validate1()
 				{
-				var name=document.getElementById("am1").value;
+				var name=document.getElementById("amm").value;
 
-				var letters=/^[a-zA-Z\s]*$/;
+				var letters=/^[a-zA-Z]+$/;
 				if(!name.match(letters))
 				{
-					document.getElementById("am1").value="";
+					document.getElementById("amm").value="";
 				alert("Please Enter Valid District Name");
 
 				}

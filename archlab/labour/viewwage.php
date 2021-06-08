@@ -4,19 +4,6 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
-if(isset($_REQUEST['x']))
-{
- $a=$_GET['x'];
- $sql="update tbl_site_loc  set sstatus='0' where sid='$a'";
-mysqli_query($con,$sql);
-}
-if(isset($_REQUEST['y']))
-{
-	$a=$_GET['y'];
-
-	$sql="update tbl_site_loc set sstatus='1' where sid='$a'";
-	mysqli_query($con,$sql);
-}
 
 	?>
 <!DOCTYPE html>
@@ -81,6 +68,7 @@ if(isset($_REQUEST['y']))
                             <a class="nav-link" href="check.php">Check Project</a>
                             <a class="nav-link" href="addatt.php">Place Attendance</a>
                             <a class="nav-link" href="addleave.php">Apply Leave</a>
+                            <a class="nav-link" href="viewwage.php">View Wages</a>
 
                           </nav>
                       </div>
@@ -100,7 +88,7 @@ if(isset($_REQUEST['y']))
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">Worksite Details</h2>
+                    <h2 class="mt-4">Daily Wages Details</h2>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">Labour</li>
@@ -121,46 +109,29 @@ if(isset($_REQUEST['y']))
             																	$x=mysqli_fetch_array($results);
             																	$d=$x['labour_name'];
 
-            																	$sql="select * from tbl_site_loc s,tbl_project p
-            																	where  p.proj_id=s.proj_id and s.labour_name='$d'";
-            																	$res1 = mysqli_query($con,$sql);
+                                              $sql="select * from tbl_daily_wages s,tbl_attnd p
+                                              where  p.attnd_id=s.attnd_id and p.labour_name='$d'";
+                                              $res1 = mysqli_query($con,$sql);
 
-            																	echo "<h2><center>Location Details</center></h2>";
-             																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Phone Number</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
-                                              if(mysqli_num_rows($res1)>0)
-                                              {
-
+                                              echo "<h2><center>Daily Wage Details</center></h2>";
+                                              echo "<tr><th>Contractor Name</th><th>Date</th><th>Wage</th></tr>";
+                                   if(mysqli_num_rows($res1)>0){
                                               while($v=mysqli_fetch_array($res1))
                                               {
-                                                $name=$v['contractor_name'];
-                                                $que = "select * from tbl_contractor_reg c , tbl_site_loc s  where c.contractor_name='$name' and c.contractor_name=s.contractor_name";
-              																	$res = mysqli_query($con,$que);
-              																	$y=mysqli_fetch_array($res);
-
 
                                               echo "<tr>";
                                               echo "<td>"
-                                              .$v['yur_service']."</td><td>"
-            																	.$v['contractor_name']."</td><td>"
-                                              .$y['phone_no']."</td><td>"
-            																	.$v['fdate']."</td><td>"
-            																	.$v['tdate']."</td><td>"
-            																	.$v['site_address']."</td><td>";
-                                              if($v['sstatus'] == 1 || $v['sstatus'] =='')
-                                              {
-                                              echo "<a href='viewreq.php?x=" .$v['sid']." '>Available</a>";
-                                              }
-                                              else
-                                              {
-                                              echo "<a href='viewreq.php?y=" .$v['sid']." '>Engaged</a>
-                                              </td>";
-                                              }
+
+                                              .$v['contractor_name']."</td><td>"
+                                               .$v['cdate']."</td><td>"
+                                              .$v['wages']."</td>";
                                               echo "</tr>";
-                                              }}
+                                              }
+}
                                               else
               																{
               																	?>
-              																<script>alert("No Request Found");
+              																<script>alert("No Wages Found");
               																location.href="index.php";
               																exit;
               																</script>

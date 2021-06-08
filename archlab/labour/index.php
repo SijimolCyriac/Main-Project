@@ -33,7 +33,7 @@ if(isset($_SESSION['uname']))
                             </a>
                             <div class="sb-sidenav-menu-heading">Activities</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Contractor
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -45,7 +45,7 @@ if(isset($_SESSION['uname']))
                                 </nav>
                             </div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
                           Project
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -53,11 +53,14 @@ if(isset($_SESSION['uname']))
                                 <nav class="sb-sidenav-menu-nested nav">
 
 																	<a class="nav-link" href="check.php">Check Project</a>
+																	<a class="nav-link" href="addatt.php">Place Attendance</a>
+																	<a class="nav-link" href="addleave.php">Apply Leave</a>
+																	<a class="nav-link" href="viewwage.php">View Wages</a>
 
                                 </nav>
                             </div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                           Complaint
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -83,28 +86,28 @@ if(isset($_SESSION['uname']))
 
 																	<div class="row">
 																		<div class="col-xl-4 col-md-6">
-																				<div class="card bg-warning text-white mb-4">
-																						<div class="card-body">Contractor</div>
-																						<div class="card-footer d-flex align-items-center justify-content-between">
-																								<a class="small text-white stretched-link" href="searchcontra.php">Search Contractors</a>
-																								<div class="small text-white"><i class="fas fa-angle-right"></i></div>
-																						</div>
-																				</div>
-																		</div>
-																		<div class="col-xl-4 col-md-6">
 																				<div class="card bg-success text-white mb-4">
-																						<div class="card-body">Request</div>
+																						<div class="card-body">Project</div>
 																						<div class="card-footer d-flex align-items-center justify-content-between">
 																								<a class="small text-white stretched-link" href="viewreq.php">View Requests</a>
 																								<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 																						</div>
 																				</div>
 																		</div>
+																		<div class="col-xl-4 col-md-6">
+																				<div class="card bg-warning text-white mb-4">
+																						<div class="card-body">Leave</div>
+																						<div class="card-footer d-flex align-items-center justify-content-between">
+																								<a class="small text-white stretched-link" href="addleave.php">Apply Leave</a>
+																								<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+																						</div>
+																				</div>
+																		</div>
 																			<div class="col-xl-4 col-md-6">
 																					<div class="card bg-primary text-white mb-4">
-																							<div class="card-body">Payments</div>
+																							<div class="card-body">Complaints</div>
 																							<div class="card-footer d-flex align-items-center justify-content-between">
-																									<a class="small text-white stretched-link" href="#">View Details</a>
+																									<a class="small text-white stretched-link" href="viewcomp.php">View Details</a>
 																									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 																							</div>
 																					</div>
