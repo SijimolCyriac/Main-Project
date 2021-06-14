@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("DbConne.php");
-$a;
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
@@ -101,7 +100,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Contractor Details</h1>
+                        <h2 class="mt-4">Contractor</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="searchcontra.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -116,9 +115,14 @@ $temp=$_SESSION['uname'];
 
 
 <?php
+
 include("DbConne.php");
 $dist_name=$_POST["district"];
 $state_name=$_POST["state"];
+$_SESSION['dist']=$dist_name;
+$_SESSION['state']=$state_name;
+$dist=$_SESSION['dist'];
+$statee=$_SESSION['state'];
 $query = "select contractor_id,contractor_name from tbl_contractor_reg where dist_name='$dist_name' and state_name='$state_name'";
 $results = mysqli_query($con,$query);
 if(mysqli_num_rows($results)>0)

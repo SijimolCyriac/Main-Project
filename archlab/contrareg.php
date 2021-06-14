@@ -75,7 +75,7 @@ include("DbConne.php");
 
 	          <li class="nav-item"><a href="servic.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="contacts.html" class="nav-link">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="custreg.php">Sign Up </a>
+          <li class="nav-item active"><a class="nav-link" href="custreg.php">Sign Up </a>
             </li>
             <li class="nav-item"><a href="login.php" class="nav-link">Sign In</a></li>
 	        </ul>
@@ -96,10 +96,13 @@ include("DbConne.php");
                       <div class="card shadow-lg border-0 rounded-lg mt-5">
                           <div class="card-header" style="background:#ccd4e0">
                             <h3 class="text-center font-weight-light my-4">Create Account</h3>
-            <center><p>Register As:
-            &nbsp;&nbsp;<a href="custreg.php"><input type="radio" name="color" id="r1" /><label for="r1">Customer</label></a>
-            &nbsp;&nbsp;<a href="contrareg.php"><input type="radio" name="color" id="r2" checked="checked"/><label for="r2">Contractor</label></a>
-            &nbsp;&nbsp;<a href="labreg.php"><input type="radio" name="color" id="r3" /><label for="r3">Labour</label></a></p></center>
+            <center>
+              &nbsp;&nbsp;<a href="custreg.php"><img src="cust.jpg" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Customer" width="90" height="90"></a>
+              &nbsp;&nbsp;<a href="contrareg.php"><img src="contra.jpg" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Contractor" width="90" height="90"></a>
+              &nbsp;&nbsp;<a href="labreg.php"><img src="lab.png" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Labour" width="90" height="90"></a></center></div>
             </div>
             <div class="card-body" style="background:#ccd4e0">
             <form action="Addreg2.php" method="POST" enctype="multipart/form-data">

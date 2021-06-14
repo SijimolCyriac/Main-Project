@@ -5,6 +5,8 @@ include("DbConne.php");
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
+$dist=$_SESSION['dist'];
+$statee=$_SESSION['state'];
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +94,7 @@ $temp=$_SESSION['uname'];
                     <div class="container-fluid">
                         <h1 class="mt-4">Contractor Details</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="searchcontra.php">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="viewcontra1.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
                         </ol>
 
@@ -119,7 +121,8 @@ $temp=$_SESSION['uname'];
 																					$res=mysqli_fetch_array($query);
 																					$b=$res['login_id'];
 
-																				}
+
+																				  }
 								 													?>
 																					<img src="../contractor/photo/<?php echo $result['photo']; ?>"
  																          align="left" width="300" height="400">
@@ -152,7 +155,7 @@ $temp=$_SESSION['uname'];
 		 																	 							<div class="form-group">
 		 																	 								<div class="form-label-group">
 		 																	 							<label class="custom">Your Service</label>
-																										<input type="text" class="form-control" name="services" id="service1" disabled value="<?php echo $result['spec']; ?>" required>
+																										<input type="text" class="form-control" name="services" id="service1"  value="<?php echo $result['spec']; ?>" required>
 
 		 																	 								<br><label class="custom">Site Address</label>
 		 																	 							<textarea type="text" name="add" class="form-control" id="address1" onblur="validate6()" placeholder="Enter Site Address"  autofocus="autofocus" required></textarea>

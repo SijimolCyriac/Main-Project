@@ -52,8 +52,8 @@ $temp=$_SESSION['uname'];
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																		<a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -82,7 +82,7 @@ $temp=$_SESSION['uname'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -112,7 +112,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View Transaction</h2>
+                        <h2 class="mt-4">Transaction</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -138,11 +138,11 @@ $temp=$_SESSION['uname'];
 			                            where  p.contractor_id='$d' and a.proj_id=p.proj_id and a.pstatus=1";
 			                            $res1 = mysqli_query($con,$sql);
 
-			                            echo "<h2><center>Transaction Log Details</center></h2>";
-			                            echo "<tr><th>Project Name</th><th>Customer Name</th><th>Transaction Date</th><th>Transaction Amount</th></tr>";
+
 																	if(mysqli_num_rows($res1)>0)
 																{
-
+																	echo "<h2><center>Transaction Details</center></h2>";
+																	echo "<tr><th>Transferred From</th><th>Transaction Date</th><th>Transaction Amount</th></tr>";
 			                            while($v=mysqli_fetch_array($res1))
 			                            {
                                       $d1=$v['proj_id'];
@@ -154,7 +154,7 @@ $temp=$_SESSION['uname'];
 
 			                            echo "<tr>";
 			                            echo "<td>"
-			                            .$v['yur_service']."</td><td>"
+
                                .$y['cust_name']."</td><td>"
 			                            .$v['date']."</td><td>"
 
@@ -163,7 +163,7 @@ $temp=$_SESSION['uname'];
 																}}
 																	else
 																	{
-																	echo "</table><h1 align='center'>No Transaction Log Found..</h1>";
+
 																		?>
 																	<script>alert("No Transaction Log Found");
 																	location.href="index.php";
@@ -180,9 +180,6 @@ $temp=$_SESSION['uname'];
 													</div>
 
 
-</div></div>
-</div>
-</div>
 
   <div style="height: 100vh;"></div>
   <div class="card mb-4"><div class="card-body"></div></div>

@@ -174,7 +174,7 @@ if(!empty($_SESSION['uname']))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View District <a href="#" data-toggle="modal" data-target="#AddLocation"
+                        <h2 class="mt-4">District <a href="#" data-toggle="modal" data-target="#AddLocation"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -190,12 +190,12 @@ if(!empty($_SESSION['uname']))
 														$con=mysqli_connect("localhost","root","","constdb") or die("COULDN'T CONNECT");
                             $query = "select * from tbl_district";
                             $results = mysqli_query($con,$query);
-
+                            $count=1;
                             echo "<tr><th>Sl No</th><th>District Name</th><th>Action</th><th>Status</th></tr>";
                             while($fin=mysqli_fetch_array($results))
                             {
                             echo "<tr>";
-                            echo "<td>".$fin['did']."</td><td>"
+                            echo "<td>".$count."</td><td>"
 
                             	       .$fin['dist_name']."</td><td>";
 																		 echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
@@ -265,8 +265,8 @@ if(!empty($_SESSION['uname']))
 																					echo "<a href='viewdist.php?y=" .$fin['did']." '>active</a>
 																					</td>";
 																				}
-                          echo "</tr>";
-                            }
+                          echo "</tr>";$count++;
+												}
                              ?>
                           </table>
                           </form>
@@ -316,6 +316,7 @@ if(!empty($_SESSION['uname']))
 												<?php
 												if(isset($_POST['submit'])){
 												$address = $_POST['address'];
+												$status=0;
 												$b=$_POST['state'];
 												$abc="select sid from tbl_state where state_name='$b'";
 												$query=mysqli_query($con,$abc);
@@ -334,7 +335,7 @@ if(!empty($_SESSION['uname']))
 												<?php
 												}
 												else {
-												$query = "insert into tbl_district(sid,dist_name) values('$c','$address')";
+												$query = "insert into tbl_district(sid,dist_name,status) values('$c','$address','$status')";
 													mysqli_query($con,$query)or die (mysqli_error($con));
 
 													?>

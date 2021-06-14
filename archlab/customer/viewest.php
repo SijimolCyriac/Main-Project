@@ -109,7 +109,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Estimation Details</h2>
+                        <h2 class="mt-4">Estimation</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Customer</li>
@@ -138,10 +138,11 @@ $temp=$_SESSION['uname'];
 																	where  p.proj_id=e.proj_id and e.cust_name='$d'";
 																	$res1 = mysqli_query($con,$sql);
 
-																	echo "<h2><center>Estimation Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Floor</th><th>Painting</th><th>Status</th></tr>";
+
 																	if(mysqli_num_rows($res1)>0)
  								 								{
+                                  echo "<h2><center>Estimation Details</center></h2>";
+ 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Total Cost</th><th>Concrete</th><th>Brick</th><th>Door</th><th>Electrical</th><th>Floor</th><th>Painting</th><th>Status</th></tr>";
 
 																	while($v=mysqli_fetch_array($res1))
 																	{
@@ -170,7 +171,7 @@ $temp=$_SESSION['uname'];
 																}}
 																else
 																{
-																echo "</table><h1 align='center'>No Estimation Found..</h1>";
+															
 																	?>
 																<script>alert("No Estimation Found");
 																location.href="index.php";

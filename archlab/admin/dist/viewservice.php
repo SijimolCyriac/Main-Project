@@ -150,7 +150,7 @@ if(!empty($_SESSION['uname']))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View Services <a href="#" data-toggle="modal" data-target="#AddServices"
+                        <h2 class="mt-4">Services <a href="#" data-toggle="modal" data-target="#AddServices"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>

@@ -101,7 +101,7 @@ if(isset($_SESSION['uname']))
 	            <div id="layoutSidenav_content">
 	                <main>
 	                    <div class="container-fluid">
-	                        <h1 class="mt-4">Weekly Progress Report</h1>
+	                        <h2 class="mt-4">Weekly Progress Report</h2>
 	                        <ol class="breadcrumb mb-4">
 	                            <li class="breadcrumb-item"><a href="viewreport.php">Dashboard</a></li>
 	                            <li class="breadcrumb-item active">Weekly Report</li>
@@ -114,25 +114,21 @@ if(isset($_SESSION['uname']))
 
 																	<div class="table-responsive">
 
-																		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																		<table class="table table-bordered" border='1' id="dataTable" width="100%" cellspacing="0">
 																		<?php
 																		include("DbConne.php");
+																		echo "<h3><center>Weekly Progress Report Details</center></h3>";
+																		echo "<h4><center>Contractor Details</center></h4>";
+																		echo "<tr><th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Company Name</th></tr>";
 																		$sql="select * from tbl_daily_progress_report where report_id='$u'";
 																		$res1 = mysqli_query($con,$sql);
 																		$v=mysqli_fetch_array($res1);
 																		$cid=$v['proj_id'];
 
-
 																		$sq="select * from tbl_contractor_reg c,tbl_project d where c.contractor_id=d.contractor_id and d.proj_id='$cid'";
 																		$res1 = mysqli_query($con,$sq);
-
 																		if(mysqli_num_rows($res1)>0)
 																		{
-
-																		  echo "<h3><center>Weekly Progress Report Details</center></h3>";
-																		  echo "<h4><center>Contractor Details</center></h4>";
-																		  echo "<tr><th>Contractor Name</th><th>Phone No</th><th>Email Address</th><th>Company Name</th></tr>";
-
 																		$v=mysqli_fetch_array($res1);
 																		echo "<tr>";
 																		echo "<td>".$v['contractor_name']."</td><td>"
@@ -144,36 +140,30 @@ if(isset($_SESSION['uname']))
 																		?>
 																		</table>
 
-																		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																		<table class="table table-bordered" border='1' id="dataTable" width="100%" cellspacing="0">
 																		<?php
 																		include("DbConne.php");
 																		echo "<h4><center>Report Details</center></h4>";
 																		echo "<tr><th>Title</th><th>Work Details</th><th>From Date</th><th>To Date</th></tr>";
 
-																		$sql="select * from tbl_daily_progress_report where report_id='$u'";
-																		$res1 = mysqli_query($con,$sql);
-																		$v1=mysqli_fetch_array($res1);
-																		$proj_id=$v1['proj_id'];
-
-																		$sql2="select * from tbl_daily_progress_report d,tbl_project p where p.proj_id=d.proj_id and p.proj_id='$proj_id'";
+																		$sql2="select * from tbl_daily_progress_report d,tbl_project p where d.report_id='$u' and p.proj_id=d.proj_id";
 																		$query3=mysqli_query($con,$sql2);
-
-																		while($v=mysqli_fetch_array($query3))
+																		if(mysqli_num_rows($query3)>0)
 																		{
+																		$v=mysqli_fetch_array($query3);
 																		echo "<tr>";
 																		echo "<td>".$v['yur_service']."</td><td>"
 																		.$v['description']."</td><td>"
 																		.$v['fdate']."</td><td>"
 																		.$v['tdate']."</td>";
 																		echo "</tr>";
-																		}
+																	  }
 																		?>
-
 																		</table>
                                 <br>
 																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 													      <tr><th>Activity Details</th></tr>
-																<td><center><img src="../contractor/details/<?php echo $v1['activityDetails']; ?>"></center></td>
+																<td><center><img src="../contractor/details/<?php echo $v['activityDetails']; ?>"></center></td>
 													      </table>
 
 								</div></div>

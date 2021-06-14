@@ -3,6 +3,7 @@ session_start();
 include("DbConne.php");
 if(isset($_POST['submit'])){
 $address = $_POST['address'];
+$status=0;
 $r="select * from tbl_state where state_name='$address'";
 $result=mysqli_query($con,$r);
 $num=mysqli_num_rows($result);
@@ -16,7 +17,7 @@ location.href="viewstate.php";
 <?php
 }
 else {
-$query = "insert into tbl_state(state_name) values('$address')";
+$query = "insert into tbl_state(state_name,status) values('$address','$status')";
   mysqli_query($con,$query)or die (mysqli_error($con));
 
   ?>

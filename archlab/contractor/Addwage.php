@@ -59,8 +59,8 @@ if(isset($_GET['attnd_id']))
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -89,7 +89,7 @@ if(isset($_GET['attnd_id']))
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -192,7 +192,7 @@ if(isset($_GET['attnd_id']))
 
 
 																										<div class="container-fluid">
-																												<h2 class="mt-4">Daily Wage Details </h2>
+																												<h2 class="mt-4">Daily Wage </h2>
 																												<ol class="breadcrumb mb-4">
 																														<li class="breadcrumb-item"><a href="viewattd.php">Dashboard</a></li>
 																														<li class="breadcrumb-item active">Contractor</li>

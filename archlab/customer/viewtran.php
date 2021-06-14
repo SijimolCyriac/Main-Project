@@ -96,7 +96,7 @@ $temp=$_SESSION['uname'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View Transaction</h2>
+                        <h2 class="mt-4">Transaction</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Customer</li>
@@ -121,10 +121,11 @@ $temp=$_SESSION['uname'];
 			                            $res1 = mysqli_query($con,$sql);
 
 
-																	echo "<h2><center>Transaction Log Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Transaction Date</th><th>Transaction Amount</th><th>Transaction Status</th></tr>";
+
 																	if(mysqli_num_rows($res1)>0)
  								 								{
+																	echo "<h2><center>Transaction Log Details</center></h2>";
+ 																	echo "<tr><th>Transferred To</th><th>Transaction Date</th><th>Transaction Amount</th><th>Transaction Status</th></tr>";
 
 																	while($v=mysqli_fetch_array($res1))
 																	{
@@ -143,7 +144,7 @@ $temp=$_SESSION['uname'];
 																		}
 																	echo "<tr>";
 																	echo "<td>"
-																	.$v['yur_service']."</td><td>"
+
 																	.$y['contractor_name']."</td><td>"
 																	.$v['date']."</td><td>"
 																	.$v['amount']."</td><td>"
@@ -153,7 +154,7 @@ $temp=$_SESSION['uname'];
 																}}
 																else
 																{
-																echo "</table><h1 align='center'>No Transaction Log Found..</h1>";
+														
 																	?>
 																<script>alert("No Transaction Log Found");
 																location.href="index.php";

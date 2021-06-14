@@ -177,11 +177,11 @@ if(!empty($_SESSION['uname']))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View PostOffice <a href="#" data-toggle="modal" data-target="#AddLocation"
+                        <h2 class="mt-4">Postoffice <a href="#" data-toggle="modal" data-target="#AddLocation"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                            <li class="breadcrumb-item active">PostOffice</li>
+                            <li class="breadcrumb-item active">Postoffice</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -193,12 +193,12 @@ if(!empty($_SESSION['uname']))
 														$con=mysqli_connect("localhost","root","","constdb") or die("COULDN'T CONNECT");
                             $query = "select * from tbl_postoff";
                             $results = mysqli_query($con,$query);
-
-                            echo "<tr><th>Sl No</th><th>PostOffice Name</th><th>Action</th><th>Status</th></tr>";
+$count=1;
+                            echo "<tr><th>Sl No</th><th>Postoffice Name</th><th>Action</th><th>Status</th></tr>";
                             while($fin=mysqli_fetch_array($results))
                             {
                             echo "<tr>";
-                            echo "<td>".$fin['pid']."</td><td>"
+                            echo "<td>".$count."</td><td>"
                             	       .$fin['post_office']."</td><td>";
 																		 echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
 																		 data-target="#UpdateLocation'.$fin['pid'].'">edit</a></td><td>';
@@ -279,7 +279,7 @@ if(!empty($_SESSION['uname']))
 																					echo "<a href='viewpost.php?y=" .$fin['pid']." '>active</a>
 																					</td>";
 																				}
-                          echo "</tr>";
+                          echo "</tr>";$count++;
                             }
                              ?>
                           </table>
@@ -332,6 +332,7 @@ if(!empty($_SESSION['uname']))
 												<?php
 												if(isset($_POST['submit'])){
 												$address = $_POST['address'];
+														$status=0;
 												$r="select * from tbl_postoff where post_office='$address'";
 												$result=mysqli_query($con,$r);
 												$num=mysqli_num_rows($result);
@@ -345,7 +346,7 @@ if(!empty($_SESSION['uname']))
 												<?php
 												}
 												else {
-												$query = "insert into tbl_postoff(post_office) values('$address')";
+												$query = "insert into tbl_postoff(post_office,status) values('$address','$status')";
 													mysqli_query($con,$query)or die (mysqli_error($con));
 
 													?>

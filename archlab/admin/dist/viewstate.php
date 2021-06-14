@@ -176,7 +176,7 @@ if(!empty($_SESSION['uname']))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">View State <a href="#" data-toggle="modal" data-target="#AddLocation"
+                        <h2 class="mt-4">State <a href="#" data-toggle="modal" data-target="#AddLocation"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -192,12 +192,12 @@ if(!empty($_SESSION['uname']))
 														$con=mysqli_connect("localhost","root","","constdb") or die("COULDN'T CONNECT");
                             $query = "select * from tbl_state";
                             $results = mysqli_query($con,$query);
-
+                            $count=1;
                             echo "<tr><th>Sl No</th><th>State Name</th><th>Action</th><th>Status</th></tr>";
                             while($fin=mysqli_fetch_array($results))
                             {
                             echo "<tr>";
-                            echo "<td>".$fin['sid']."</td><td>"
+                            echo "<td>".$count."</td><td>"
                             	       .$fin['state_name']."</td><td>";
 																		 echo '<a href="#" class="btn btn-sm btn-info" data-toggle="modal"
 																		 data-target="#UpdateLocation'.$fin['sid'].'">edit</a></td><td>';
@@ -266,7 +266,7 @@ if(!empty($_SESSION['uname']))
 			                             				echo "<a href='viewstate.php?y=" .$fin['sid']." '>active</a>
 			                             				</td>";
 			                             			}
-                          echo "</tr>";
+                          echo "</tr>";$count++;
                             }
                              ?>
                           </table>

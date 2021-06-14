@@ -116,16 +116,16 @@ $temp=$_SESSION['uname'];
                   								$d=$x['cust_id'];
 
                   								$sql="select p.proj_id, p.yur_service,c.contractor_name,c.contractor_id,p.cust_id from tbl_project p,tbl_contractor_reg c
-                  								where p.cust_id='$d' and p.contractor_id=c.contractor_id and p.status=1";
+                  								where p.cust_id='$d' and p.contractor_id=c.contractor_id and p.status=1 and p.proj_status=1";
 
                   								$res1 = mysqli_query($con,$sql);
 
 
-																	echo "<h2><center>Payment Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Action</th></tr>";
+
 																	if(mysqli_num_rows($res1)>0)
  								 								{
-
+																	echo "<h2><center>Payment Details</center></h2>";
+																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Action</th></tr>";
 																	while($v=mysqli_fetch_array($res1))
 																	{
                                       $u=$v['contractor_name'];
@@ -140,7 +140,7 @@ $temp=$_SESSION['uname'];
 																}}
 																else
 																{
-																echo "</table><h1 align='center'>No Payment Found..</h1>";
+
 																	?>
 																<script>alert("No Payment Found");
 																location.href="index.php";

@@ -14,7 +14,7 @@ while($result=mysqli_fetch_array($query))
   $b=$res['cust_id'];
 }
 
-$service=$_POST["services"];
+$service=$_POST['services'];
 $site_address=$_POST["add"];
 $a=$_SESSION['siji'];
 

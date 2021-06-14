@@ -116,8 +116,7 @@ include("DbConne.php");
 $sql="select a.login_id,b.to_login_id from tbl_login a,tbl_complaint b where
 a.login_id=b.to_login_id and a.username='$temp'";
 $query1=mysqli_query($con,$sql);
-echo "<h2><center>Complaint Details</center></h2>";
-echo "<tr><th>Labour Name</th><th>Complaint</th><th>Status</th></tr>";
+
 if(mysqli_num_rows($query1)>0)
 {
 $result=mysqli_fetch_array($query1);
@@ -125,7 +124,8 @@ $h=$result['login_id'];
 $query = "select l.comp_id,l.complaint,h.cstatus,h.labour_name from tbl_complaint l,tbl_comp_assignlab h
 where  l.comp_id=h.comp_id and l.to_login_id='$h'";
 $results = mysqli_query($con,$query);
-
+echo "<h2><center>Complaint Details</center></h2>";
+echo "<tr><th>Labour Name</th><th>Complaint</th><th>Status</th></tr>";
 while($v=mysqli_fetch_array($results))
 {
 	if($v['cstatus'] == 1)
@@ -136,6 +136,7 @@ while($v=mysqli_fetch_array($results))
 	 {
 		$f='Pending';
 	 }
+
 echo "<tr>";
 echo "<td>".$v['labour_name']."</td><td>"
 .$v['complaint']."</td><td>"

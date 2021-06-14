@@ -110,7 +110,7 @@ if(isset($_REQUEST['y']))
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">Complaint Details</h2>
+                    <h2 class="mt-4">Complaint</h2>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">Labour</li>
@@ -126,8 +126,7 @@ if(isset($_REQUEST['y']))
             																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             																	<?php
             																	include("DbConne.php");
-																							echo "<h2><center>Complaint Details</center></h2>";
-             																	echo "<tr><th>Customer Name</th><th>Phone No</th><th>Complaint</th><th>Site Location</th><th>Status</th></tr>";
+
             																	$query = "select l.login_id,h.lid,h.labour_name from tbl_login l,tbl_labours_reg h  where l.username='$temp' and l.login_id=h.login_id";
             																	$results = mysqli_query($con,$query);
             																	$x=mysqli_fetch_array($results);
@@ -142,9 +141,10 @@ if(isset($_REQUEST['y']))
             																	where p.proj_id=c.proj_id and c.labour_name='$d'";
             																	$res1 = mysqli_query($con,$sql);
 
-
                                               if(mysqli_num_rows($res1)>0)
                                               {
+																								echo "<h2><center>Complaint Details</center></h2>";
+	             																	echo "<tr><th>Customer Name</th><th>Phone No</th><th>Complaint</th><th>Site Location</th><th>Status</th></tr>";
                                               while($v=mysqli_fetch_array($res1))
                                               {
                                               $g=$v['proj_id'];

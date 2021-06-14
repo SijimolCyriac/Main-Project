@@ -3,6 +3,7 @@ session_start();
 include("DbConne.php");
 if(isset($_POST['submit'])){
 $address = $_POST['address'];
+$status=0;
 $r="select * from tbl_services where service='$address'";
 $result=mysqli_query($con,$r);
 $num=mysqli_num_rows($result);
@@ -16,7 +17,7 @@ location.href="viewservice.php";
 <?php
 }
 else {
-$query = "insert into tbl_services(service) values('$address')";
+$query = "insert into tbl_services(service,status) values('$address','$status')";
   mysqli_query($con,$query)or die (mysqli_error($con));
 
   ?>

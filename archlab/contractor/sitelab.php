@@ -63,8 +63,8 @@ if(isset($_REQUEST['y']))
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -93,7 +93,7 @@ if(isset($_REQUEST['y']))
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -125,7 +125,7 @@ if(isset($_REQUEST['y']))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Worksite Details <a href="#" data-toggle="modal" data-target="#AddSite"
+                        <h2 class="mt-4">Worksite <a href="#" data-toggle="modal" data-target="#AddSite"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -150,10 +150,11 @@ if(isset($_REQUEST['y']))
 																	where  p.proj_id=s.proj_id and s.contractor_name='$d'";
 																	$res1 = mysqli_query($con,$sql);
 
-																	echo "<h2><center>Location Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
 
-
+                                if(mysqli_num_rows($res1)>0)
+																{
+																	echo "<h2><center>Assign Labours</center></h2>";
+																	echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
 																	while($v=mysqli_fetch_array($res1))
 																	{
 																		if($v['sstatus']==1)
@@ -163,6 +164,7 @@ if(isset($_REQUEST['y']))
 																		else {
 																			$f='Pending';
 																		}
+
 																	echo "<tr>";
 																	echo "<td>"
 																	.$v['yur_service']."</td><td>"
@@ -174,7 +176,7 @@ if(isset($_REQUEST['y']))
 
 																	.$f."</td>";
 																	echo "</tr>";
-																	}
+																}}
 
 																	?>
 													</table></form>
@@ -214,7 +216,7 @@ if(isset($_REQUEST['y']))
 																<br><label class="custom">Customer Name</label>
 																<select  name="nam" id="nam1" class="form-control" autofocus="autofocus" required>
 																 <option value="">Select Customer Name</option>
-																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
+																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and proj_status=1 and p.status=1");
 																 while($row=mysqli_fetch_array($query))
 																 { ?>
 																 <option value="<?php echo $row['cust_name'];?>"><?php echo $row['cust_name'];?></option>
@@ -237,7 +239,7 @@ if(isset($_REQUEST['y']))
 																<select  id="proj1" name="proj" class="form-control" autofocus="autofocus" required>
  																 <option value="">Select Project Name</option>
  																 <?php $query =mysqli_query($con,"select distinct yur_service from tbl_project p,tbl_customer_reg c
-															   where p.contractor_id='$d' and p.cust_id=c.cust_id");
+															   where p.contractor_id='$d' and p.cust_id=c.cust_id and proj_status=1 and p.status=1");
  																 while($row=mysqli_fetch_array($query))
  																 { ?>
  																 <option value="<?php echo $row['yur_service'];?>"><?php echo $row['yur_service'];?></option>

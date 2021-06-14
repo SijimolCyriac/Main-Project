@@ -88,7 +88,7 @@ $temp=$_SESSION['uname'];
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">Daily Wages Details</h2>
+                    <h2 class="mt-4">Daily Wages</h2>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">Labour</li>
@@ -109,25 +109,33 @@ $temp=$_SESSION['uname'];
             																	$x=mysqli_fetch_array($results);
             																	$d=$x['labour_name'];
 
+																							$fff = "select sum(w.wages) from tbl_daily_wages w,tbl_attnd a where w.attnd_id=a.attnd_id and a.labour_name='$d' group by w.wages";
+																							$ggg = mysqli_query($con,$fff);
+                                              $hhh=mysqli_fetch_array($ggg);
+
                                               $sql="select * from tbl_daily_wages s,tbl_attnd p
                                               where  p.attnd_id=s.attnd_id and p.labour_name='$d'";
                                               $res1 = mysqli_query($con,$sql);
 
-                                              echo "<h2><center>Daily Wage Details</center></h2>";
-                                              echo "<tr><th>Contractor Name</th><th>Date</th><th>Wage</th></tr>";
-                                   if(mysqli_num_rows($res1)>0){
+
+                                              if(mysqli_num_rows($res1)>0){
+																								echo "<h2><center>Daily Wage Details</center></h2>";
+																								echo "<tr><th>Contractor Name</th><th>Date</th><th>Wage</th></tr>";
+
                                               while($v=mysqli_fetch_array($res1))
                                               {
 
                                               echo "<tr>";
                                               echo "<td>"
-
                                               .$v['contractor_name']."</td><td>"
                                                .$v['cdate']."</td><td>"
                                               .$v['wages']."</td>";
                                               echo "</tr>";
-                                              }
-}
+																						  }
+																						echo "<tr>";
+																						echo"<td colspan='2'><h5>Total Wage</h5></td><td><h5>".$hhh['sum(w.wages)']."</h5></td>";
+																						echo "</tr>";
+                                                 }
                                               else
               																{
               																	?>

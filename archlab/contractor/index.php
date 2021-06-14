@@ -40,8 +40,8 @@ if(isset($_SESSION['uname']))
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -119,7 +119,7 @@ if(isset($_SESSION['uname']))
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Daily Progress Report</div>
+                                    <div class="card-body">Weekly Progress Report</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="viewreport.php">View Reports</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

@@ -56,8 +56,8 @@ $login_id=$_SESSION['lid'];
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-	<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+	                               <a class="nav-link" href="EstAdd.php">Add Estimation</a>
 
                                 </nav>
                             </div>
@@ -69,7 +69,7 @@ $login_id=$_SESSION['lid'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 																		<a class="nav-link" href="searchlab.php">Search Labours</a>
-<a class="nav-link" href="sitelab.php">Assign Location</a>
+                                    <a class="nav-link" href="sitelab.php">Assign Location</a>
 
 																</nav>
 														</div>
@@ -80,7 +80,7 @@ $login_id=$_SESSION['lid'];
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewreport.php">View Report Details</a>
+																		<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 

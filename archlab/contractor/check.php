@@ -85,8 +85,8 @@ $("#box1").hide();
 														</a>
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
-																		<a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+																		<a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -115,7 +115,7 @@ $("#box1").hide();
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -146,7 +146,7 @@ $("#box1").hide();
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Project Details</h1>
+                        <h2 class="mt-4">Project</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Contractor</li>
@@ -239,7 +239,7 @@ $("#box1").hide();
 
 			if(mysqli_num_rows($res1)>0)
 			{
-			echo "<h2><center>Ongoing Project Details</center></h2>";
+			echo "<h2><center>Project Details</center></h2>";
 			echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th><th>Package</th><th>Customer Name</th><th>Status</th></tr>";
 			while($v=mysqli_fetch_array($res1))
 			{
@@ -296,7 +296,7 @@ $("#box1").hide();
 
 			if(mysqli_num_rows($res1)>0)
 			{
-			echo "<h2><center>Completed Project Details</center></h2>";
+			echo "<h2><center>Project Details</center></h2>";
 			echo "<tr><th>Project Name</th><th>Site Address</th><th>Project Plan</th><th>Package</th><th>Customer Name</th><th>Status</th></tr>";
 			while($v=mysqli_fetch_array($res1))
 			{

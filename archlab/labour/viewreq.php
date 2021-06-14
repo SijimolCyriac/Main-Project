@@ -100,7 +100,7 @@ if(isset($_REQUEST['y']))
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h2 class="mt-4">Worksite Details</h2>
+                    <h2 class="mt-4">Worksite</h2>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">Labour</li>
@@ -125,11 +125,11 @@ if(isset($_REQUEST['y']))
             																	where  p.proj_id=s.proj_id and s.labour_name='$d'";
             																	$res1 = mysqli_query($con,$sql);
 
-            																	echo "<h2><center>Location Details</center></h2>";
-             																	echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Phone Number</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
+
                                               if(mysqli_num_rows($res1)>0)
                                               {
-
+                                                echo "<h2><center>Worksite Details</center></h2>";
+                                                echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Phone Number</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
                                               while($v=mysqli_fetch_array($res1))
                                               {
                                                 $name=$v['contractor_name'];

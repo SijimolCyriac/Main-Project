@@ -61,8 +61,8 @@ $name=$li['contractor_name'];
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -91,7 +91,7 @@ $name=$li['contractor_name'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -121,7 +121,7 @@ $name=$li['contractor_name'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Estimation Details <a href="#" data-toggle="modal" data-target="#AddEst"
+                        <h2 class="mt-4">Estimation  <a href="#" data-toggle="modal" data-target="#AddEst"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -212,7 +212,7 @@ $name=$li['contractor_name'];
 																<br><label for="exampleInputEmail1">Customer Name:</label>
 															 <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>
 																 <option value="">Select Customer Name</option>
-																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id");
+																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.proj_status=0");
 																 while($row=mysqli_fetch_array($query))
 																 { ?>
 																 <option value="<?php echo $row['cust_id'];?>"><?php echo $row['cust_name'];?></option>

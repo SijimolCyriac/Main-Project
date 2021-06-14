@@ -53,8 +53,8 @@ $login_id=$_SESSION['lid'];
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -83,7 +83,7 @@ $login_id=$_SESSION['lid'];
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -113,7 +113,7 @@ $login_id=$_SESSION['lid'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h2 class="mt-4">Weekly Work Details <a href="#" data-toggle="modal" data-target="#AddReport"
+                        <h2 class="mt-4">Weekly Progress Report <a href="#" data-toggle="modal" data-target="#AddReport"
 													class="btn btn-sm btn-info"> Add New</a></h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -128,31 +128,35 @@ $login_id=$_SESSION['lid'];
 															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
 																<?php
-																echo "<h2><center>Weekly Work Details</center></h2>";
-																echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Uploaded Date</th><th>Status</th></tr>";
 
 																include("DbConne.php");
 
 																$sql="select * from tbl_contractor_reg where login_id='$login_id'";
 																$query1=mysqli_query($con,$sql);
-																if(mysqli_num_rows($query1)>0)
-																{
+
+
 																$result=mysqli_fetch_array($query1);
 																$contractor_id=$result['contractor_id'];
 
 																$sql1="select * from tbl_project where contractor_id='$contractor_id'";
 																$query2=mysqli_query($con,$sql1);
-															while($result1=mysqli_fetch_array($query2)){
+																if(mysqli_num_rows($query2)>0)
+																{
+																	echo "<h2><center>Weekly Report Details</center></h2>";
+																	echo "<tr><th>Customer Name</th><th>Title</th><th>Work Details</th><th>Activity Details</th><th>Uploaded Date</th><th>Status</th></tr>";
+															  while($result1=mysqli_fetch_array($query2)){
 																$cust_id=$result1['cust_id'];
 																$proj_id=$result1['proj_id'];
 
 																$query = "select * from tbl_customer_reg where cust_id='$cust_id'";
 																$results = mysqli_query($con,$query);
-																if($v=mysqli_fetch_array($results))
-																{
+																$v=mysqli_fetch_array($results);
+
 
 																	$sql2="select * from tbl_daily_progress_report where proj_id='$proj_id'";
 																	$query3=mysqli_query($con,$sql2);
+																	if(mysqli_num_rows($query3)>0)
+																	{
 																	while($result2=mysqli_fetch_array($query3)){
 
 																	if($result2['dstatus']==1)
@@ -160,8 +164,9 @@ $login_id=$_SESSION['lid'];
 																		$a='Verified';
 																	}
 																	else {
-																		$a='Not Verified';
+																		$a='Pending';
 																	}
+
 																echo "<tr>";
 																echo "<td>".$v['cust_name']."</td><td>"
 																.$result1['yur_service']."</td><td>"
@@ -172,14 +177,6 @@ $login_id=$_SESSION['lid'];
 																.$a."</td>";
 																echo "</tr>";
 															}}}}
-																else {
-																?>
-																<script>alert("No Report Found");
-																location.href="index.php";
-																exit;
-																</script>
-																<?php
-															}
 
 																?>
 </table>
@@ -220,7 +217,7 @@ $login_id=$_SESSION['lid'];
 																			<label class="custom">Title</label>
 																			<select  name="name" id="title1" class="form-control" autofocus="autofocus" required>
 			 																 <option value="">Select Report Title</option>
-			 																 <?php $query =mysqli_query($con,"select distinct p.yur_service from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1");
+			 																 <?php $query =mysqli_query($con,"select distinct p.yur_service from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1 and proj_status=1");
 			 																 while($row=mysqli_fetch_array($query))
 			 																 { ?>
 			 																 <option value="<?php echo $row['yur_service'];?>"><?php echo $row['yur_service'];?></option>
@@ -232,7 +229,7 @@ $login_id=$_SESSION['lid'];
                                       <br><label class="custom">Customer Name</label>
 																			<select  name="cname" id="nam" class="form-control" autofocus="autofocus" required>
 			 																 <option value="">Select Customer Name</option>
-			 																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1");
+			 																 <?php $query =mysqli_query($con,"select * from tbl_customer_reg c,tbl_project p where p.contractor_id='$d' and p.cust_id=c.cust_id and p.status=1 and proj_status=1");
 			 																 while($row=mysqli_fetch_array($query))
 			 																 { ?>
 			 																 <option value="<?php echo $row['cust_name'];?>"><?php echo $row['cust_name'];?></option>

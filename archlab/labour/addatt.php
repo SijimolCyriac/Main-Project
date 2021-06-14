@@ -87,7 +87,7 @@ $temp=$_SESSION['uname'];
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                  <h2 class="mt-4">Attendence Details <a href="#" data-toggle="modal" data-target="#AddAtt"
+                  <h2 class="mt-4">Attendence  <a href="#" data-toggle="modal" data-target="#AddAtt"
                     class="btn btn-sm btn-info"> Add New</a></h2>
                   <ol class="breadcrumb mb-4">
                       <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -112,11 +112,13 @@ $temp=$_SESSION['uname'];
                             where  a.labour_name='$d' and a.proj_id=p.proj_id";
                             $res1 = mysqli_query($con,$sql);
 
-                            echo "<h2><center>Attendence Details</center></h2>";
-                            echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Date</th><th>Site Location</th><th>Status</th></tr>";
-
+                            if(mysqli_num_rows($res1)>0)
+														{
+														echo "<h2><center>Attendence Details</center></h2>";
+														echo "<tr><th>Project Name</th><th>Contractor Name</th><th>Date</th><th>Site Location</th><th>Status</th></tr>";
                             while($v=mysqli_fetch_array($res1))
                             {
+
                             echo "<tr>";
                             echo "<td>"
                             .$v['yur_service']."</td><td>"
@@ -126,7 +128,7 @@ $temp=$_SESSION['uname'];
                             .$v['attd']."</td>";
                             echo "</tr>";
                             }
-
+													}
                             ?>
                     </table></form>
 

@@ -35,7 +35,7 @@ $proj_name=$_POST["proj"];
 $fdate=$_POST['fdate'];
 $tdate=$_POST['tdate'];
 $status='0';
-
+$sstatus='0';
 $jss="select * from tbl_site_loc where proj_id='$m' and fdate='$fdate' and tdate='$tdate' and contractor_name='$d' and labour_name='$ce'";
 $quee=mysqli_query($con,$jss);
 $num=mysqli_num_rows($quee);
@@ -50,7 +50,7 @@ if($num==1)
 }
 
 else{
-$sq="insert into tbl_site_loc(proj_id,fdate,tdate,contractor_name,labour_name,sstatus) values('$m','$fdate','$tdate','$d','$ce','$status')";
+$sq="insert into tbl_site_loc(proj_id,fdate,tdate,contractor_name,labour_name,sstatus,proj_sstatus) values('$m','$fdate','$tdate','$d','$ce','$status','$sstatus')";
 if(mysqli_query($con,$sq))
   {
     ?>

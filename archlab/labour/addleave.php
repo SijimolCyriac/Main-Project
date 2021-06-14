@@ -88,7 +88,7 @@ $temp=$_SESSION['uname'];
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                  <h2 class="mt-4">Leave Details <a href="#" data-toggle="modal" data-target="#AddAtt"
+                  <h2 class="mt-4">Leave <a href="#" data-toggle="modal" data-target="#AddAtt"
                     class="btn btn-sm btn-info"> Add New</a></h2>
                   <ol class="breadcrumb mb-4">
                       <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -111,11 +111,10 @@ $temp=$_SESSION['uname'];
 														$sqli="select * from tbl_contractor_reg a,tbl_leave p
 														where  p.lid='$d' and a.contractor_id=p.contractor_id";
 														$res1 = mysqli_query($con,$sqli);
-
-
-                            echo "<h2><center>Leave Details</center></h2>";
-                            echo "<tr><th>Contractor Name</th><th>Leave Dates</th><th>Applied On</th><th>Reason</th><th>Status</th></tr>";
-
+														if(mysqli_num_rows($res1)>0)
+														{
+															echo "<h2><center>Leave Details</center></h2>";
+	                            echo "<tr><th>Contractor Name</th><th>Leave Dates</th><th>Applied On</th><th>Reason</th><th>Status</th></tr>";
                             while($v=mysqli_fetch_array($res1))
                             {
 															if($v['lstatus']==1)
@@ -125,8 +124,9 @@ $temp=$_SESSION['uname'];
 															else {
 															 $f='Waiting for Approval';
 															}
-                            echo "<tr>";
-                            echo "<td>"
+
+                              echo "<tr>";
+                              echo "<td>"
                             .$v['contractor_name']."</td><td>"
                             .$v['leave_date']."</td><td>"
                             .$v['applied_on']."</td><td>"
@@ -134,7 +134,7 @@ $temp=$_SESSION['uname'];
                             .$f."</td>";
                             echo "</tr>";
                             }
-
+                                }
                             ?>
                     </table></form>
 

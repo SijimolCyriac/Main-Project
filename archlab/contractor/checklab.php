@@ -63,8 +63,8 @@ if(isset($_REQUEST['y']))
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewproj.php">View Project Details</a>
-																		<a class="nav-link" href="EstAdd.php">Add Estimation Details</a>
+                                    <a class="nav-link" href="viewproj.php">View Project</a>
+																		<a class="nav-link" href="EstAdd.php">Add Estimation</a>
 																			<a class="nav-link" href="check.php">Checking Projects</a>
 
 
@@ -93,7 +93,7 @@ if(isset($_REQUEST['y']))
 														<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 																<nav class="sb-sidenav-menu-nested nav">
 
-																			<a class="nav-link" href="viewreport.php">View Report Details</a>
+																			<a class="nav-link" href="viewreport.php">View Report</a>
 																</nav>
 														</div>
 														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -147,11 +147,12 @@ if(isset($_REQUEST['y']))
 																	where  p.proj_id=s.proj_id and  s.contractor_name='$d' and s.sstatus=1";
 																	$res1 = mysqli_query($con,$sql);
 
-																	echo "<h2><center>Work Details</center></h2>";
- 																	echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
+
 
 																	if(mysqli_num_rows($res1)>0)
 																	{
+																		echo "<h2><center>Work Details</center></h2>";
+																		echo "<tr><th>Project Name</th><th>Labour Name</th><th>From Date</th><th>To Date</th><th>Site Location</th><th>Status</th></tr>";
 																	while($v=mysqli_fetch_array($res1))
 																	{
 																		if($v['proj_sstatus']==0)
@@ -164,8 +165,9 @@ if(isset($_REQUEST['y']))
 																		else {
 																			$f='Completed';
 																		}
-																	echo "<tr>";
-																	echo "<td>"
+
+																	  echo "<tr>";
+																	  echo "<td>"
 																	.$v['yur_service']."</td><td>"
 																	.$v['labour_name']."</td><td>"
 
