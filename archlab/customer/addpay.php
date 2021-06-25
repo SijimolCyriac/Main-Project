@@ -135,7 +135,7 @@ $temp=$_SESSION['uname'];
 																	.$v['yur_service']."</td><td>"
 																	.$v['contractor_name']."</td><td>";
 																	$uy="Payment.php?proj_id=$y&con_name=$u";
-                                  echo "<a href=$uy class='btn btn-success'>Pay</a></td>";
+                                  echo "<a href=$uy class='btn btn-success'>Pay with Razorpay</a></td>";
 																	echo "</tr>";
 																}}
 																else

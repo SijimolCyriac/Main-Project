@@ -121,7 +121,7 @@ if(isset($_GET['proj_id']))
 
 																								<div class="modal-footer">
 
-																									 <input type="submit" name="submit" value="Pay with Razorpay" class="btn btn-success">
+																									 <input type="submit" name="submit" value="Proceed to Pay" class="btn btn-success">
 																								 </div>
 																								</form>
 																							</div></div>
