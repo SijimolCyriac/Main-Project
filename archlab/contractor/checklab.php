@@ -193,9 +193,6 @@ if(isset($_REQUEST['y']))
 													</table></form>
 
 
-													</div></div>
-													</div>
-
 
 </div></div>
 </div>

@@ -161,7 +161,7 @@ $temp=$_SESSION['uname'];
 
                           <label  class="custom">Labour Name:</label>
                           <input type="text" class="form-control" id="name1" name="name" value="<?php echo $x['labour_name']; ?>"
-                          placeholder="Contractor Name" disabled autofocus="autofocus" required>
+                          placeholder="Labour Name" disabled autofocus="autofocus" required>
 
                           <br><label  class="custom">Contractor Name:</label>
                           <select  name="cname" id="cname1" class="form-control" autofocus="autofocus" required>

@@ -42,7 +42,7 @@ $sq="update tbl_login set password='$pass' where login_id='$login_id'";
 if(mysqli_query($con,$sq))
 {
   ?>
-  <script>alert("password successfully changed");
+  <script>alert("Password Changed Successfully");
   location.href="login.php";
    exit;
   </script>
@@ -50,7 +50,7 @@ if(mysqli_query($con,$sq))
 }}
 else {
   ?>
-  <script>alert("invalid email");
+  <script>alert("Invalid Email. Please Check Again!!!");
   location.href="forgot.html";
    exit;
   </script>

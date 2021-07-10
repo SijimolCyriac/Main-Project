@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2021 at 05:55 PM
+-- Generation Time: Jun 16, 2021 at 02:53 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -68,10 +68,11 @@ INSERT INTO `tbl_attnd` (`attnd_id`, `proj_id`, `cdate`, `contractor_name`, `lab
 (3, 2, '2021-06-08', 'Manu Philip', 'Ajay KT', 'Present', 1),
 (4, 2, '2021-06-08', 'Manu Philip', 'Babu Meth', 'Present', 1),
 (5, 1, '2021-06-09', 'Antony Mathai', 'Appu Jose', 'Present', 1),
-(6, 3, '2021-06-11', 'Vasu Dev', 'Billu', 'Present', 1),
-(7, 3, '2021-06-11', 'Vasu Dev', 'Alex', 'Present', 1),
-(8, 5, '2021-06-10', 'Antony Mathai', 'Abdulla', 'Absent', 1),
-(9, 5, '2021-06-12', 'Antony Mathai', 'Babu Meth', 'Present', 1);
+(6, 3, '2021-06-11', 'Vasu Dev', 'Billu Mitt', 'Present', 1),
+(7, 3, '2021-06-11', 'Vasu Dev', 'Alex Mathew', 'Present', 1),
+(8, 5, '2021-06-10', 'Antony Mathai', 'Abdulla Saif', 'Absent', 1),
+(9, 5, '2021-06-12', 'Antony Mathai', 'Babu Meth', 'Present', 1),
+(10, 2, '2021-06-08', 'Manu Philip', 'Solomon Jose', 'Present', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ CREATE TABLE `tbl_complaint` (
 
 INSERT INTO `tbl_complaint` (`comp_id`, `login_id`, `to_login_id`, `complaint`, `ccstatus`) VALUES
 (1, 3, 21, 'roof leakage', 1),
-(2, 2, 14, 'roof leakage', 1);
+(2, 2, 14, 'roof leakage', 1),
+(3, 3, 21, 'power failure daily', 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,8 @@ CREATE TABLE `tbl_comp_assignlab` (
 
 INSERT INTO `tbl_comp_assignlab` (`assign_id`, `comp_id`, `proj_id`, `labour_name`, `cstatus`) VALUES
 (1, 1, 2, 'Babu Meth', 1),
-(2, 2, 4, 'Vishal Dev', 1);
+(2, 2, 4, 'Vishal Dev', 1),
+(3, 3, 2, 'Billu Mitt', 1);
 
 -- --------------------------------------------------------
 
@@ -209,10 +212,11 @@ CREATE TABLE `tbl_daily_progress_report` (
 INSERT INTO `tbl_daily_progress_report` (`report_id`, `proj_id`, `description`, `activityDetails`, `fdate`, `tdate`, `dstatus`) VALUES
 (1, 1, 'concrete work started', 'site8.jpg', '2021-05-31', '2021-06-05', 1),
 (2, 2, 'concrete work started', 'site5.jpg', '2021-05-31', '2021-06-05', 1),
-(3, 1, 'structural work started', 'site2.jpg', '2021-06-07', '2021-06-12', 1),
+(3, 1, 'concrete work continuing', 'site2.jpg', '2021-06-07', '2021-06-12', 1),
 (4, 3, 'concrete work started', 'site5.jpg', '2021-06-07', '2021-06-12', 1),
 (5, 4, 'concrete work started', 'site5.jpg', '2021-06-07', '2021-06-12', 1),
-(6, 5, 'concrete work started', 'site1.jpg', '2021-06-07', '2021-06-12', 1);
+(6, 5, 'concrete work started', 'site1.jpg', '2021-06-07', '2021-06-12', 1),
+(7, 2, 'concrete work continuing', 'site8.jpg', '2021-06-07', '2021-06-12', 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +242,9 @@ INSERT INTO `tbl_daily_wages` (`wageid`, `attnd_id`, `wages`, `status`) VALUES
 (4, 4, 500, 1),
 (5, 5, 500, 1),
 (6, 7, 500, 1),
-(7, 6, 500, 1);
+(7, 6, 500, 1),
+(8, 9, 500, 1),
+(9, 10, 500, 1);
 
 -- --------------------------------------------------------
 
@@ -320,7 +326,9 @@ INSERT INTO `tbl_est` (`est_id`, `proj_id`, `cust_name`, `contractor_name`, `tot
 (2, 2, 'Biju Jose', 'Manu Philip', '1950000', '156000', '75000', '7121111', '60000', '87500', '136500', 1),
 (3, 3, 'Vinod Jose', 'Vasu Dev', '3870000', '193500', '283500', '2449000', '70000', '364500', '150500', 1),
 (4, 4, 'Joshy John', 'Maya Shivan', '1750000', '122500', '62500', '667666.6666666667', '55000', '75000', '122500', 1),
-(5, 5, 'Biju Jose', 'Antony Mathai', '2625000', '122500', '140625', '1501000', '55000', '168750', '122500', 1);
+(5, 5, 'Biju Jose', 'Antony Mathai', '2625000', '122500', '140625', '1501000', '55000', '168750', '122500', 1),
+(6, 6, 'Vinod Jose', 'Antony Mathai', '2275000', '122500', '105625', '1127666.6666666667', '55000', '126750', '122500', 1),
+(7, 7, 'Liya Cyriac', 'Siby Jose', '1750000', '122500', '62500', '667666.6666666667', '55000', '75000', '122500', 1);
 
 -- --------------------------------------------------------
 
@@ -362,13 +370,14 @@ CREATE TABLE `tbl_labours_reg` (
 INSERT INTO `tbl_labours_reg` (`lid`, `login_id`, `labour_name`, `phoneno`, `email_id`, `location`, `dist_name`, `state_name`, `aadharcard`, `adhar_no`, `category_name`, `status`) VALUES
 (1, 6, 'Babu Meth', '7124563210', 'babu21@gmail.com', 'Kanjirappally', 'Kottayam', 'Kerala', 'adhar3.jpg', '841236521478', 'Mason', 1),
 (2, 7, 'Ajay KT', '7563241811', 'ajay@gmail.com', 'Cherthala', 'Alappuzha', 'Kerala', 'adhar2.jpg', '451223568978', 'Plumber', 1),
-(3, 9, 'Billu', '6523894512', 'billu@yahoo.com', 'Kaloor', 'Ernakulam', 'Kerala', 'adhar2.jpg', '561478321002', 'Electrician', 1),
+(3, 9, 'Billu Mitt', '6523894512', 'billu@yahoo.com', 'Kaloor', 'Ernakulam', 'Kerala', 'adhar2.jpg', '561478321002', 'Electrician', 1),
 (4, 10, 'Appu Jose', '6874125632', 'appu@yahoo.com', 'Ponkunnam', 'Kottayam', 'Kerala', 'Aadhar2.pdf', '235689451245', 'Mason', 1),
-(5, 11, 'Solomon', '6652234125', 'solo@gmail.com', 'Thumboli', 'Alappuzha', 'Kerala', 'Aadhar3.pdf', '963258965231', 'Electrician', 1),
-(6, 12, 'Alex', '7412457865', 'alex@gmail.com', 'Palarivattam', 'Ernakulam', 'Kerala', 'adhar2.jpg', '235689562389', 'Electrician', 1),
-(7, 13, 'Abdulla', '8523124578', 'abdul@gmail.com', 'Poomkavu', 'Alappuzha', 'Kerala', 'adhar2.jpg', '741256238945', 'Plumber', 1),
+(5, 11, 'Solomon Jose', '6652234125', 'solo@gmail.com', 'Thumboli', 'Alappuzha', 'Kerala', 'Aadhar3.pdf', '963258965231', 'Electrician', 1),
+(6, 12, 'Alex Mathew', '7412457865', 'alex@gmail.com', 'Palarivattam', 'Ernakulam', 'Kerala', 'adhar2.jpg', '235689562389', 'Electrician', 1),
+(7, 13, 'Abdulla Saif', '8523124578', 'abdul@gmail.com', 'Poomkavu', 'Alappuzha', 'Kerala', 'adhar2.jpg', '741256238945', 'Plumber', 1),
 (8, 19, 'Vishal Dev', '6641235689', 'vishal@gmail.com', 'Cherthala', 'Alappuzha', 'Kerala', 'adhar4.jpg', '234512568974', 'Mason', 1),
-(9, 24, 'George James', '9647523689', 'georgy@gmail.com', 'Pala', 'Kottayam', 'Kerala', 'adhar3.jpg', '214521456987', 'Painter', 1);
+(9, 24, 'George James', '9647523689', 'georgy@gmail.com', 'Pala', 'Kottayam', 'Kerala', 'adhar3.jpg', '214521456987', 'Painter', 1),
+(10, 25, 'Aneesh K T', '6211235684', 'aneesh@gmail.com', 'Thumboli', 'Alappuzha', 'Kerala', 'adhar3.jpg', '561245124578', 'Mason', 1);
 
 -- --------------------------------------------------------
 
@@ -461,7 +470,8 @@ INSERT INTO `tbl_login` (`login_id`, `username`, `password`, `user_type`, `statu
 (21, 'Manu', '4404dfe5492b8d9dc697232d719c8725', 'contractor', 1),
 (22, 'Binoy', 'af91d6e7e33c2fa4ad296225cae316b1', 'customer', 1),
 (23, 'Hermus12', '404242eaf15e3e2f828b5eb649f02a7c', 'contractor', 1),
-(24, 'Georgy', '9d71f5c77dd53fff8be52dcb2d4edcd9', 'labour', 1);
+(24, 'Georgy', '9d71f5c77dd53fff8be52dcb2d4edcd9', 'labour', 1),
+(25, 'Aneesh', '71a1227f4529136f8c3fe47b90b1f60f', 'labour', 1);
 
 -- --------------------------------------------------------
 
@@ -486,7 +496,10 @@ INSERT INTO `tbl_payment` (`pay_id`, `proj_id`, `date`, `amount`, `pstatus`) VAL
 (2, 1, '2021-06-06 09:31:51.338634', 25000, 1),
 (3, 2, '2021-06-08 12:48:43.565918', 25000, 1),
 (4, 2, '2021-06-08 12:50:38.833935', 25000, 0),
-(5, 4, '2021-06-11 15:38:09.423077', 25000, 1);
+(5, 4, '2021-06-11 15:38:09.423077', 25000, 1),
+(6, 4, '2021-06-13 08:04:19.239432', 25000, 1),
+(7, 5, '2021-06-13 13:02:34.452316', 25000, 1),
+(8, 2, '2021-06-15 05:38:26.343192', 25000, 1);
 
 -- --------------------------------------------------------
 
@@ -558,8 +571,10 @@ INSERT INTO `tbl_project` (`proj_id`, `yur_service`, `site_address`, `proj_plan`
 (1, 'House Construction', 'Vanchimala Kavala, Ponkunnam, Kottayam', 'plan1.jpg', 'Standard Package', 1, 1500, 1, 1, 1, 1),
 (2, 'Office Construction', 'Mithilapuri North,Chalakkudy, Thrissur', 'plan2.jpg', 'Premium Package', 2, 1000, 2, 6, 1, 1),
 (3, 'House Construction', 'Vimala Bhavan, Edappally South, Ernakulam', 'plan7.jpg', 'Luxury Package', 1, 1800, 5, 3, 1, 1),
-(4, 'Apartment Construction', 'Vanchimala Kavala, Ponkunnam, Kottayam', 'plan7.jpg', 'Standard Package', 3, 1000, 1, 4, 1, 1),
-(5, 'House Construction', 'Mithilapuri North,Chalakkudy, Thrissur', 'plan3.jpg', 'Standard Package', 1, 1500, 2, 1, 1, 1);
+(4, 'Apartment Construction', 'Vanchimala Kavala, Ponkunnam, Kottayam', 'plan7.jpg', 'Standard Package', 3, 1000, 1, 4, 1, 2),
+(5, 'House Construction', 'Mithilapuri North,Chalakkudy, Thrissur', 'plan3.jpg', 'Standard Package', 1, 1500, 2, 1, 1, 2),
+(6, 'House Construction', 'Kanjikkuzhy Block 12, Kottayam', 'plan6.jpg', 'Standard Package', 1, 1300, 5, 1, 1, 0),
+(7, 'Office Construction', 'Vimala Bhavan, Thumboly South, Alappuzha', 'plan9.jpg', 'Standard Package', 2, 1000, 6, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -608,13 +623,17 @@ CREATE TABLE `tbl_site_loc` (
 
 INSERT INTO `tbl_site_loc` (`sid`, `proj_id`, `fdate`, `tdate`, `contractor_name`, `labour_name`, `sstatus`, `proj_sstatus`) VALUES
 (1, 1, '2021-05-31', '2021-06-05', 'Antony Mathai', 'Appu Jose', 1, 2),
-(2, 1, '2021-05-31', '2021-06-05', 'Antony Mathai', 'Vishal Dev', 1, 1),
+(2, 1, '2021-05-31', '2021-06-05', 'Antony Mathai', 'Vishal Dev', 1, 2),
 (3, 2, '2021-05-31', '2021-06-05', 'Manu Philip', 'Babu Meth', 1, 2),
-(4, 2, '2021-05-31', '2021-06-05', 'Manu Philip', 'Ajay KT', 1, 1),
-(5, 3, '2021-06-07', '2021-06-12', 'Vasu Dev', 'Alex', 1, 1),
-(6, 3, '2021-06-07', '2021-06-12', 'Vasu Dev', 'Billu', 1, 1),
-(7, 5, '2021-05-31', '2021-06-05', 'Antony Mathai', 'Abdulla', 1, 1),
-(8, 5, '2021-06-07', '2021-06-12', 'Antony Mathai', 'Babu Meth', 1, 1);
+(4, 2, '2021-05-31', '2021-06-05', 'Manu Philip', 'Ajay KT', 1, 2),
+(5, 3, '2021-06-07', '2021-06-12', 'Vasu Dev', 'Alex Mathew', 1, 1),
+(6, 3, '2021-06-07', '2021-06-12', 'Vasu Dev', 'Billu Mitt', 1, 1),
+(7, 5, '2021-05-31', '2021-06-05', 'Antony Mathai', 'Abdulla Saif', 1, 2),
+(8, 5, '2021-06-07', '2021-06-12', 'Antony Mathai', 'Babu Meth', 1, 2),
+(9, 4, '2021-05-31', '2021-06-05', 'Maya Shivan', 'Billu Mitt', 1, 2),
+(10, 2, '2021-06-07', '2021-06-12', 'Manu Philip', 'Solomon Jose', 1, 2),
+(11, 2, '2021-06-07', '2021-06-12', 'Manu Philip', 'Billu Mitt', 0, 0),
+(12, 3, '2021-06-14', '2021-06-19', 'Vasu Dev', 'Ajay KT', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -792,19 +811,19 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_attnd`
 --
 ALTER TABLE `tbl_attnd`
-  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `attnd_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_comp_assignlab`
 --
 ALTER TABLE `tbl_comp_assignlab`
-  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `assign_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_contractor_reg`
@@ -822,13 +841,13 @@ ALTER TABLE `tbl_customer_reg`
 -- AUTO_INCREMENT for table `tbl_daily_progress_report`
 --
 ALTER TABLE `tbl_daily_progress_report`
-  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `report_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_daily_wages`
 --
 ALTER TABLE `tbl_daily_wages`
-  MODIFY `wageid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `wageid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -840,7 +859,7 @@ ALTER TABLE `tbl_district`
 -- AUTO_INCREMENT for table `tbl_est`
 --
 ALTER TABLE `tbl_est`
-  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `est_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_feedback`
@@ -852,7 +871,7 @@ ALTER TABLE `tbl_feedback`
 -- AUTO_INCREMENT for table `tbl_labours_reg`
 --
 ALTER TABLE `tbl_labours_reg`
-  MODIFY `lid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `lid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_labour_category`
@@ -870,13 +889,13 @@ ALTER TABLE `tbl_leave`
 -- AUTO_INCREMENT for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
-  MODIFY `login_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `login_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment`
 --
 ALTER TABLE `tbl_payment`
-  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_postoff`
@@ -888,7 +907,7 @@ ALTER TABLE `tbl_postoff`
 -- AUTO_INCREMENT for table `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `proj_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_services`
@@ -900,7 +919,7 @@ ALTER TABLE `tbl_services`
 -- AUTO_INCREMENT for table `tbl_site_loc`
 --
 ALTER TABLE `tbl_site_loc`
-  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`

@@ -102,7 +102,8 @@ include("DbConne.php");
               &nbsp;&nbsp;<a href="contrareg.php"><img src="contra.jpg" data-bs-toggle="tooltip" data-bs-placement="top"
                 title="Contractor" width="90" height="90"></a>
               &nbsp;&nbsp;<a href="labreg.php"><img src="lab.png" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Labour" width="90" height="90"></a></center></div>
+                title="Labour" width="90" height="90"></a></center>
+                <center><span>Customer</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Contractor</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Labour</span></center></div>
             </div>
             <div class="card-body" style="background:#ccd4e0">
             <form action="Addreg2.php" method="POST" enctype="multipart/form-data">
@@ -436,7 +437,7 @@ include("DbConne.php");
       function validate3()
       {
       var usname=document.getElementById("uname1").value;
-      var letters=/^[0-9a-zA-Z]+$/;
+      var letters=/^[A-Za-z0-9]+$/;
       if(!usname.match(letters))
       {
       alert("Please Enter Valid Name");

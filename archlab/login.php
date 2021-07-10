@@ -76,8 +76,8 @@
 			              <input type="submit" value="Login" class="btn btn-primary py-3 px-4">
 			            </div>
 
-                  <center><a href="forgot.html" style="color:white;">Forget your Password ?</a><br>
-                  <a href="custreg.php" style="color:white;">Don't have an account ?</a></center>
+                  <center><a href="forgot.html" style="color:white;">Forgot your Password ?</a><br>
+                  <a href="custreg.php" style="color:white;">Don't have an Account ?</a></center>
 
 			    			</form>
 	    				</div>

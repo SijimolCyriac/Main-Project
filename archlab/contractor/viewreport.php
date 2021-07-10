@@ -173,7 +173,7 @@ $login_id=$_SESSION['lid'];
 																.$result2['description']."</td><td>";
 																echo "<a href='repp.php?x=" .$result2['report_id']." ' target='_blank'>View Activity</a></td><td>"
 
-																.$result2['fdate']."</td><td>"
+																.$result2['tdate']."</td><td>"
 																.$a."</td>";
 																echo "</tr>";
 															}}}}
@@ -294,7 +294,7 @@ $login_id=$_SESSION['lid'];
 													$p=$o['proj_id'];
 
 
-													$r="select * from tbl_daily_progress_report where proj_id='$p' and description='$summary' and activityDetails='$details' and fdate='$fdate' and tdate='$tdate'";
+													$r="select * from tbl_daily_progress_report where proj_id='$p' and fdate='$fdate' and tdate='$tdate'";
 													$result=mysqli_query($con,$r);
 													$num=mysqli_num_rows($result);
 													if($num==1)

@@ -121,30 +121,16 @@ if(isset($_SESSION['uname']))
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<?php
 								include("DbConne.php");
-
-
-
 								$sql="select * from tbl_customer_reg where login_id='$login_id'";
 								$query1=mysqli_query($con,$sql);
 								$result=mysqli_fetch_array($query1);
-							  $cust_id=$result['cust_id'];
-								$sql1="select * from tbl_project where cust_id='$cust_id'";
-								$query2=mysqli_query($con,$sql1);
-								if(mysqli_num_rows($query2)>0)
-								{
-									echo "<tr><th>Uploaded Date</th><th>Action</th><th>Status</th></tr>";
-								while($result1=mysqli_fetch_array($query2))
-								{
-									$contractor_id=$result1['contractor_id'];
-									$proj_id=$result1['proj_id'];
-									$query = "select * from tbl_contractor_reg where contractor_id='$contractor_id'";
-									$results = mysqli_query($con,$query);
-									$v=mysqli_fetch_array($results);
+							    $cust_id=$result['cust_id'];
 
-								$sql2="select * from tbl_daily_progress_report d,tbl_project p where p.proj_id=d.proj_id and p.proj_id='$proj_id'";
+								$sql2="select * from tbl_daily_progress_report d,tbl_project p where p.proj_id=d.proj_id and p.cust_id='$cust_id'";
 								$query3=mysqli_query($con,$sql2);
 								if(mysqli_num_rows($query3)>0)
 								{
+								    echo "<tr><th>Uploaded Date</th><th>Action</th><th>Status</th></tr>";
 								while($v=mysqli_fetch_array($query3))
 								{
 								echo "<tr>";
@@ -161,7 +147,9 @@ if(isset($_SESSION['uname']))
 								</td>";
 								}
 								echo "</tr>";
-							}}}}
+							}
+
+								}
 else
 {
 

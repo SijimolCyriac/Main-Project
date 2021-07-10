@@ -36,17 +36,12 @@ if(!empty($_SESSION['uname']))
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 				<style>
 				            table, th, td {
-
-				                text-align:center;
-
-min-width: 150px;
+											text-align:center;
+											min-width: 150px;
 				            }
-
-
-				        </style>
+       </style>
     </head>
     <body>
-
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -58,7 +53,8 @@ min-width: 150px;
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Activities</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
+														aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-users"></i></div>
                                 Users
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -70,78 +66,72 @@ min-width: 150px;
 																		 <a class="nav-link" href="viewlab.php">Manage Labour</a>
                                 </nav>
                             </div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
+														aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
                                 Category
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-
-                                      <a class="nav-link" href="viewcat.php">Manage Category</a>
-
-
-                                </nav>
+                                    <a class="nav-link" href="viewcat.php">Manage Category</a>
+                              </nav>
                             </div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
+														aria-expanded="false" aria-controls="collapseLayouts">
 																			<div class="sb-nav-link-icon"><i class=" fas fa-tasks"></i></div>
-
 																	Services
 																		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																	</a>
 																	<div class="collapse" id="collapseLayouts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 																			<nav class="sb-sidenav-menu-nested nav">
-
 																						<a class="nav-link" href="viewservice.php">Manage Services</a>
-
-
 																			</nav>
 																	</div>
-														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+														aria-expanded="false" aria-controls="collapsePages">
 																<div class="sb-nav-link-icon"><i class=" fa fa-map-marker"></i></div>
 															Locations
 															<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 														</a>
 															<div class="collapse" id="collapsePages" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
 																	<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-																			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+																			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth"
+																			aria-expanded="false" aria-controls="pagesCollapseAuth">
 																		State
 																					<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																			</a>
-																			<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+																			<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+																			data-parent="#sidenavAccordionPages">
 																					<nav class="sb-sidenav-menu-nested nav">
-
 																							<a class="nav-link" href="viewstate.php">Manage State</a>
-
 																					</nav>
 																			</div>
-																			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+																			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError"
+																			aria-expanded="false" aria-controls="pagesCollapseError">
 																					District
 																					<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																			</a>
-																			<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+																			<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+																			data-parent="#sidenavAccordionPages">
 																					<nav class="sb-sidenav-menu-nested nav">
-
 																							<a class="nav-link" href="viewdist.php">Manage District</a>
-
 																					</nav>
 																			</div>
-																			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+																			<a class="nav-link collapsed" href="#" data-toggle="collapse"
+																			data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
 																				Post Office
 																					<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																			</a>
-																			<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+																			<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+																			data-parent="#sidenavAccordionPages">
 																					<nav class="sb-sidenav-menu-nested nav">
-
 																							<a class="nav-link" href="viewpost.php">Manage Post Office</a>
-
-																					</nav>
+																			</nav>
 																			</div>
 																			</nav>
 																			</div>
-
-
-                        </div>
+                    </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -162,12 +152,15 @@ min-width: 150px;
 															<div class="table-responsive">
 
                               <form action="Addreg2.php" method="POST">
-                            	<table style="background-color:#ccd4e0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            	<table style="background-color:#ccd4e0" class="table table-bordered" id="dataTable"
+															width="100%" cellspacing="0">
                                 <?php
                                $query = "select * from tbl_contractor_reg";
                                $results = mysqli_query($con,$query);
                              	echo "<h2><center>Contractor Details</center></h2>";
-                               echo "<tr><th>Sl No</th><th>Contractor Name</th><th>Email Id</th><th>Phone No</th><th>License No</th><th>License Proof</th><th>Company Name</th><th>Specialization</th><th>District Name</th><th>State Name</th><th>Status</th></tr>";
+                               echo "<tr><th>Sl No</th><th>Contractor Name</th><th>Email Id</th><th>Phone No</th><th>License No</th>
+															 <th>License Proof</th><th>Company Name</th><th>Specialization</th><th>District Name</th>
+															 <th>State Name</th><th>Status</th></tr>";
                                while($fin=mysqli_fetch_array($results))
                                {
                                echo "<tr>";
@@ -184,7 +177,6 @@ min-width: 150px;
                                 .$fin['state_name']."</td><td>";
                              	 if($fin['status'] == 0 || $fin['status'] =='')
                              	 {
-
                              		 echo "<a href='viewcontra.php?x=" .$fin['login_id']." '>deactivated</a>";
                              		 }
                              		 else
@@ -195,7 +187,6 @@ min-width: 150px;
                              echo "</tr>";
                                }
                                 ?>
-
                           </table>
                           </form>
                             </div>
